@@ -10,7 +10,7 @@ Monte Carlo simulation of a queue of vehicles at an intersection
 
 import random
 
-vehicles = ('bus','auto','bike')
+vehicles = ('bus','auto','bike','truck')
 
 queue = []  # intially empty
 
@@ -36,7 +36,7 @@ def run(n=3, s=None):
     """
     random.seed(s)
     while n > 0 or queue:
-        f = random.choice((arrive, depart))
+        f = random.choice((arrive, depart))   # a typle of functions
         if (f == arrive and n > 0) or (f == depart and queue):
             v = f()
             print '%s %s: %s' % (v, f.__name__, queue)
