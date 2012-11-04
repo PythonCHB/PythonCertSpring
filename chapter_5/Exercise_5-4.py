@@ -47,7 +47,7 @@ pu(bob)
 bk ( bob, 200 )
 pd(bob)
 koch ( bob, 81 )
-snowflake ( bob, 243 )
+snowflake ( bob, 3**5 )
 
 
 
