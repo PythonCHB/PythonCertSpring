@@ -50,6 +50,17 @@ def main() :
             i += 1
             if i > 200 : # I just want 200 anagrams as a proof of concept
                 break
+# Part 2 of the problem: output the list sorted by length
+    anagram_list_length_list = []
+    for key in anagram_dict.keys() :
+        anagram_list_length_list.append( (len(anagram_dict[key]), key) )
+    anagram_list_length_list.sort()
+    for i in range( len ( anagram_list_length_list ) ) :
+        key = anagram_list_length_list[i][1]
+        anagram = anagram_dict[key]
+        if len(anagram) > 1 :
+            print anagram
+#
 
 if __name__ == "__main__" :
     main()
