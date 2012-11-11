@@ -18,20 +18,24 @@ def populate ( size, num_range ) :
     return (a_dict, a_list)
         
 
-size=int(raw_input("Enter how big you want the list and the dictionary to be "))
-num_range=int(raw_input("Enter the range of random numbers "))
-iterations=int(raw_input("Enter the number of iterations to loop over "))
+if __name__ == "__main__" :
+    size=int(raw_input("Enter how big you want the list and the dictionary to be "))
+    num_range=int(raw_input("Enter the range of random numbers "))
+    iterations=int(raw_input("Enter the number of iterations to loop over "))
 
-a_dict, a_list = populate(size, num_range)
+    a_dict, a_list = populate(size, num_range)
 
-start_time = time.time()
-for i in range(iterations) :
-    in_list = random.randint(0, num_range) in a_list
-end_time = time.time()
-print "It took ", end_time - start_time, "seconds to find the random number in the list"
-start_time = time.time()
-for i in range(iterations) :
-    in_list = random.randint(0, num_range) in a_dict
-end_time = time.time()
-print "It took ", end_time - start_time, "seconds to find the random number in the dictionary"
+    start_time_list = time.time()
+    for i in range(iterations) :
+        in_list = random.randint(0, num_range) in a_list
+    end_time_list = time.time()
+    print "It took ", end_time_list - start_time_list, "seconds to find the random number in the list"
+    start_time_dict = time.time()
+    for i in range(iterations) :
+        in_list = random.randint(0, num_range) in a_dict
+    end_time_dict = time.time()
+    print "It took ", end_time_dict - start_time_dict, "seconds to find the random number in the dictionary"
+    print "Dictionaries are ", (end_time_list - start_time_list)/(end_time_dict - start_time_dict),\
+            "times facter than lists"
 
+    
