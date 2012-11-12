@@ -14,6 +14,9 @@ def walk ( directory ) :
     "Return a list of all the files in the directory tree directory"
     file_list = []
     for root, dirs, files in os.walk(directory, topdown=True, onerror=None ):
+        print "root=",root
+        print "dirs=",dirs
+        print "files=",files
         for f in files :
 # os.sep is the path element separator.  It is / for unix and Mac OS X, \ for
 # MS-DOS, and . for OpenVMS.
