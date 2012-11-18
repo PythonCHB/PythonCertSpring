@@ -34,7 +34,7 @@ by three asterisks (***) at the beginning of the line"""
     f = open(filename, "r" )
     for line in f :
         lc += 1
-        print lc,line[0:3],":", line
+        # print lc,line[0:3],":", line
         if line[0:3] == "***" :
             break
         
