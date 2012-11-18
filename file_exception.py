@@ -1,17 +1,16 @@
 #! /usr/bin/python
 #
 #
-opened = False
-while not opened :
-    filename = raw_input("Enter the filename ")
+while True :
+    filename = raw_input("Enter the filename (a.txt) ")
     try :
         f=file(filename,"r")
     except IOError:
         print "Unable to open "+filename
         opened = False
     else :
-        opened = True
-print "opened file "+filename+"for reading"
+        break
+print "opened file "+filename+" for reading"
 
 for line in f :
     try :
