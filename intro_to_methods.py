@@ -10,7 +10,7 @@ class F(object):
         print self.x
 
     def __str__(self):
-        return str(self.x)
+        return "x="+str(self.x)
         
 
 f = F()
@@ -19,6 +19,7 @@ try :
 except AttributeError, e:
     print "I guess you can't do that: " + str(e)
 f.f(4)
+print f.x
 f.p()
 print str(f)
 
