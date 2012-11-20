@@ -11,9 +11,10 @@
 
 
 # http://www.greenteapress.com/thinkpython/html/book011.html#wordlist1
-import bisection_search_10_8 as bisect
+import bisection_search_10_8 as bisect_recurse
 import random
 import time
+import bisect     # see http://docs.python.org/2/library/bisect.html
 
 word_list = []
 word_dict = {}
@@ -49,7 +50,16 @@ def bisection_search ( my_word_list ) :
 word in my_word_list is in the list word_list"""
     global word_list
     for word in my_word_list :
-        _ = bisect.bisection_search ( word_list, word )
+        _ = bisect_recurse.bisection_search ( word_list, word )
+
+def builtin_bisection_search ( my_word_list ) :
+    """Use the built-in bisection search functions"""
+    global word_list
+    for word in my_word_list :
+        i = bisect.bisect_left(word_list, word)
+        if i == len(word_list) or word_list[i] != word:
+            raise ValueError
+        
  
 if __name__ == "__main__" :
     NUM_SAMPLES = 1000
@@ -61,14 +71,19 @@ if __name__ == "__main__" :
     print "Dictionary search took %f seconds" % ( time.time() - start )
 
     start=time.time()
+    builtin_bisection_search ( sample_word_list )
+    print "the built in bisection search took %f seconds" % ( time.time() - start )
+
+    print "Doing the recursive bisection search took 35 seconds on Jeff's computer"
+    start=time.time()
     bisection_search( sample_word_list )
-    print "bisection search took %f seconds"% (time.time() - start )
+    print "Recursive bisection search took %f seconds"% (time.time() - start )
 
     start=time.time()
     list_membership_search( sample_word_list )
     print "list membership search took %f seconds" % ( time.time() - start )
     
-
+    
 
 
 
