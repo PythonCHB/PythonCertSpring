@@ -34,7 +34,7 @@ class F(D,B) :
     f = "foolish"    # It's a good thing I am in computers, because if I were
                      # a poet, I would starve
 
-# These 6 statements have to be here because multiple_inheritence.py is imported
+# These statements have to be here because multiple_inheritence.py is imported
 # by intro_to_polymorphism.py
 a = A()
 b = B()
