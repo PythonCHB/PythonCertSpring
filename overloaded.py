@@ -39,9 +39,13 @@ scaling if v is a float, int, or complex"""
         elif isinstance(v, Vector_3) :
             r = self.x * v.x + self.y * v.y + self.z * v.z
         else :
-            assert False,"__mul__ was passed an argument that isn't a Vector_3 or a numeric"
+            raise AssertionError("__mul__ was passed an argument that isn't a Vector_3 or a numeric")
         return r
 
+    def __rmul__( self, v ):
+        """Just like __mul__ only the arguments are reversed.  The combination
+of __rmul__ and __mul__ make addition commutative"""
+        return self.__mul__(v)
     
     def __eq__ ( self, v ) :
         """Compares two vectors for equality"""
@@ -78,7 +82,11 @@ if __name__ == "__main__" :
     t = Vector_3(12.0, 14.0, 18.0)
     print r,"should be",t
     assert r == t, "Multiplication by integer scalar failed"
-    r *= (2+1j)
+    r = 0.25 * t
+    t = Vector_3(3.0, 3.5, 4.5 )
+    print r,"should be",t
+    assert r == t, "Reverse multiplication by a scalar failed"
+    r *= 4.0*(2+1j)
     t = Vector_3((24.0+12j), (28.0+14j), (36.0+18j))
     print r,"should be",t
     assert r == t, "Multiplication by complex scalar failed"
@@ -100,6 +108,15 @@ if __name__ == "__main__" :
     a *= b
     print a,"should be",t
     assert a == t, "Multiplication by inner product failed"
+    print "This should raise an AssertionError"
+    v2 = (3, 4, 5)
+    a = Vector_3(2., 3., 4.)
+    try :
+        a = a * v2
+    except AssertionError,e :
+        print "AssertionError exception was raised %s" % e
+    print a
+    
     
     
     
