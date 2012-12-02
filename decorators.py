@@ -35,12 +35,14 @@ static method"""
 if __name__ == "__main__" :
     a_very_complicated_function( 1, 2, 3 )
     j = Jeffs_class()
-    j.class_method( 6 )
+    j.class_method( 6 )             # This is pythonic
 
     Jeffs_class.static_method ( 14 )
 
     try :
-        Jeffs_class.class_method( 22.3 )
+        Jeffs_class.class_method( 22.3 )  # This throws an error because it is a
+                                          # class method but it is not called on
+                                          # an instance
     except TypeError, e :
         print "TypeError exception was raised",e
     Jeffs_class.class_method(j, 12.5 )   # DO NOT DO THIS - IT IS NOT "pythonic"
