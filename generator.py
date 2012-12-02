@@ -11,18 +11,33 @@ it is done iterating"""
         self.counter=start
         self.end=end
 
+    def a_very_complicated_function(self, x) :
+        """This is a very complicated method that does something you probably
+won't understand.  For every imput x, it returns an output"""
+        return x+1
+            
     def generate(self) :
+        """This method returns the next value in the series.  It limites the
+series to a certain number of values.  Note that this method invokes a
+very complicated function"""
         while self.counter < self.end :
             yield self.counter
-            self.counter+=1
+            self.counter = self.a_very_complicated_function(self.counter)
         raise StopIteration
 
-def generate(start, end) :
+def generate_1(start, end) :
     """This function demonstrates a generator built as a function"""
     counter = start
     while end > counter :
         yield counter
         counter+=1
+
+def generate_2() :
+    yield "Hewey"
+    yield "Lewey"
+    yield "Dewey"
+
+        
 
 # Here is an example from the Python documentation
 # http://docs.python.org/2/reference/expressions.html#yieldexpr
@@ -47,23 +62,39 @@ if __name__ == "__main__" :
         print i
 
     print "Using a generator function"
-    for i in generate(2,5) :
+    for i in generate_1(2,5) :
         print i
 
-    
-    generator_obj = echo(1)
-    print generator_obj.next()
+    print "Running the generator function 'echo()'"
+    echo_obj = echo(1)
+    print echo_obj.next()
     print "Next line should be 'None'"
-    print generator_obj.next()
+    print echo_obj.next()
     print "Next line should be 2"
-    print generator_obj.send(2)
-    print generator_obj.next()    
+    print echo_obj.send(2)
+    print echo_obj.next()    
     try :
-        generator_obj.throw(TypeError, "spam")
+        echo_obj.throw(TypeError, "spam")
     except TypeError,e :
         print "The generator object threw a TypeError exception:",e
-    print generator_obj.next()
-    generator_obj.close()
+    print echo_obj.next()
+    echo_obj.close()
 
+    print "The attributes of generate_2()"
+    print dir(generate_2)
+    g = generate_2()
+    print "The attributes of g"
+    print dir(g)
+    print "3 calls to generate_2()"
+    print g.next()
+    print g.next()
+    print g.next()
+    try :
+        print g.next()
+    except StopIteration,e :
+        print "StopIteration was raised",e
+    else :
+        print "Stop Iteration was *not* raised"
 
-
+        
+        
