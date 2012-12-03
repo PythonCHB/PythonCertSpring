@@ -1,54 +1,25 @@
-"""
-More list comprehension explanations and examples
-"""
+#! /usr/bin/env python
+#
+# demonstration of list comprehension vs. generator comprehension in a loop 
+import math
 
-from route import puget
-from phones import phones, physics_dept
+for i in [x for x in range(100) if math.sqrt(x) % 1.0 == 0 ] :
+    print i,
+print
 
-print phones
+for i in (x for x in range(100) if math.sqrt(x) % 1.0 == 0 ) :
+    print i,
+print
 
-# use a loop to build up a list from a source, filter, and pattern:
-def physics_people():
-    names = []
-    for (name, phone) in phones: # phones is the source
-        if physics_dept(phone):  # physics_deptn(phone) is the filter
-            names.append(name)   # name is the pattern
-    return names
+S = [x for x in range(100) if math.sqrt(x) % 1.0 == 0 ]
+G = (x for x in range(100) if math.sqrt(x) % 1.0 == 0 )
 
-print physics_people()
+print type(S)
+for i in S :
+    print i,
+print
 
-# a list comprehension expresses the same thing in one expression
-#     [ pattern for     item      in source if filter ]
-print [ name    for (name, phone) in phones if physics_dept(phone) ]
-
-# the pattern can be elaborate
-print [ "%s's phone is %s" % (name,phone)
-        for (name, phone) in phones if physics_dept(phone) ]
-
-
-# note the difference between filter and conditional expr. in pattern
-
-def odd(i): return i%2 # 1 (true) when i is odd, 0 (false) when even
-
-print [ (i, 'odd') for i in range(5) if odd(i) ] # filter
-
-print [ (i, 'odd' if odd(i) else 'even') for i in range(5) ] # pattern
-
-
-# map pattern: apply a function to each element in the source
-
-print [ odd(i) for i in range(5) ]
-
-# built-in map function is an alternative
-
-print map(odd, range(5)) # 
-
-# filter pattern: use a filter (Boolean function) to select elements from source
-
-print [ i for i in range(5) if odd(i) ]
-
-# built-in filter function is an alternative
-
-print filter(odd, range(5)) 
-
-
+print type(G)
+for i in G :
+    print i,
+print
