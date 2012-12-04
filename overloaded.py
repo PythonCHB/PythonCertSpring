@@ -44,7 +44,7 @@ scaling if v is a float, int, or complex"""
 
     def __rmul__( self, v ):
         """Just like __mul__ only the arguments are reversed.  The combination
-of __rmul__ and __mul__ make addition commutative"""
+of __rmul__ and __mul__ make multiplication commutative"""
         return self.__mul__(v)
     
     def __eq__ ( self, v ) :
@@ -69,7 +69,7 @@ if __name__ == "__main__" :
     assert r == Vector_3(3., 4., 5.), "First Equality or 2 operand vector addition failed"
     two = Vector_3(2.0, 1.0, 7.0 )
     r = one + two
-    print r,"should be [6.0, 5.0, 12.0]"
+    print r,"should be [5.0, 5.0, 12.0]"
     assert r == Vector_3(5.0, 5.0, 12.0 ), "Second Equality or 2 operand vector addition failed"
     r += Vector_3(1., 2., -3.0)
     print r,"should be [6.0, 7.0, 9.0]"

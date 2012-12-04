@@ -43,13 +43,13 @@ if __name__ == "__main__" :
     print
 
     print "Run AnyIter with safe set to false and the list is not exchausted"
-    a = AnyIter(range(10), safe=False )
-    i = iter(a)
+    i = AnyIter(range(10), safe=False )
+#    i = iter(a)
     for j in range(1,5) :
         print j,":",i.next()
 
     print "Run AnyIter with safe set to false and the list is exhausted"
-    i = iter(a)
+#    i = iter(a)
     try :
         i.next(14)
         print j,":",i.next()
@@ -59,8 +59,8 @@ if __name__ == "__main__" :
         print "StopIteration was *not* raised"
         
     print "Run AnyIter with safe set to True and the list is exhausted"
-    a = AnyIter(range(10), safe=True)
-    i = iter(a)
+    i = AnyIter(range(10), safe=True)
+#    i = iter(a)
     print i.next(14)
 
     

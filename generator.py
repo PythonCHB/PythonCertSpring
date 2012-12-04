@@ -16,7 +16,7 @@ it is done iterating"""
 won't understand.  For every imput x, it returns an output"""
         return x+1
             
-    def generate(self) :
+    def jeff_generate(self) :
         """This method returns the next value in the series.  It limites the
 series to a certain number of values.  Note that this method invokes a
 very complicated function"""
@@ -25,14 +25,14 @@ very complicated function"""
             self.counter = self.a_very_complicated_function(self.counter)
         raise StopIteration
 
-def generate_1(start, end) :
+def jeff_generate_1(start, end) :
     """This function demonstrates a generator built as a function"""
     counter = start
     while end > counter :
         yield counter
         counter+=1
 
-def generate_2() :
+def jeff_generate_2() :
     yield "Hewey"
     yield "Lewey"
     yield "Dewey"
@@ -58,11 +58,11 @@ def echo(value=None):
 if __name__ == "__main__" :
     j = Jeffs_generator(8,4)
     print "Using a generator function defined in a class"
-    for i in j.generate() :
+    for i in j.jeff_generate() :
         print i
 
     print "Using a generator function"
-    for i in generate_1(2,5) :
+    for i in jeff_generate_1(2,5) :
         print i
 
     print "Running the generator function 'echo()'"
@@ -80,12 +80,12 @@ if __name__ == "__main__" :
     print echo_obj.next()
     echo_obj.close()
 
-    print "The attributes of generate_2()"
-    print dir(generate_2)
-    g = generate_2()
+    print "The attributes of jeff_generate_2()"
+    print dir(jeff_generate_2)
+    g = jeff_generate_2()
     print "The attributes of g"
     print dir(g)
-    print "3 calls to generate_2()"
+    print "3 calls to jeff_generate_2()"
     print g.next()
     print g.next()
     print g.next()
