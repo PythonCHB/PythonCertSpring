@@ -1,0 +1,34 @@
+﻿     Here's the text for a slide. If I have time, I'd also like to show Pageant so we only have to type a key passphrase once.
+
+
+
+     How to:
+
+          * generate a private/public key pair
+
+          * send the public key to the server
+
+          * use nano and paste it in from the Windows clipboard
+
+          * put it into a new .ssh/authorized_keys, or
+
+          * add it to the other keys already there
+
+ 
+
+     Use PuTTY and PuTTYgen available from:
+
+          http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+
+ 
+
+     Follow these instructions:
+
+          http://www.howtoforge.com/ssh_key_based_logins_putty
+
+
+
+     The non-Windows users won't need any of this. So I have a fun exercise I'd like for them to try, which is to use a 3D tuple to code a Dept. of Trans. classification system described at:
+
+          http://www.fhwa.dot.gov/publications/research/safety/04100/04.cfm
+
