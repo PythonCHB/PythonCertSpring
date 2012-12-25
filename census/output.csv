@@ -1,0 +1,131 @@
+GEO.id,Id,0100000US
+GEO.id2,Id2,
+GEO.display-label,Geography,United States
+HC01_EST_VC01,Households; Estimate; Total,114991725
+HC01_MOE_VC01,Households; Margin of Error; Total,179541
+HC02_EST_VC01,Families; Estimate; Total,76084006
+HC02_MOE_VC01,Families; Margin of Error; Total,144469
+HC03_EST_VC01,Married-couple families; Estimate; Total,55519648
+HC03_MOE_VC01,Married-couple families; Margin of Error; Total,157000
+HC04_EST_VC01,Nonfamily households; Estimate; Total,38907719
+HC04_MOE_VC01,Nonfamily households; Margin of Error; Total,111894
+HC01_EST_VC02,"Households; Estimate; Less than $10,000",7.8
+HC01_MOE_VC02,"Households; Margin of Error; Less than $10,000",0.1
+HC02_EST_VC02,"Families; Estimate; Less than $10,000",5.1
+HC02_MOE_VC02,"Families; Margin of Error; Less than $10,000",0.1
+HC03_EST_VC02,"Married-couple families; Estimate; Less than $10,000",1.8
+HC03_MOE_VC02,"Married-couple families; Margin of Error; Less than $10,000",0.1
+HC04_EST_VC02,"Nonfamily households; Estimate; Less than $10,000",14.6
+HC04_MOE_VC02,"Nonfamily households; Margin of Error; Less than $10,000",0.1
+HC01_EST_VC03,"Households; Estimate; $10,000 to $14,999",5.8
+HC01_MOE_VC03,"Households; Margin of Error; $10,000 to $14,999",0.1
+HC02_EST_VC03,"Families; Estimate; $10,000 to $14,999",3.5
+HC02_MOE_VC03,"Families; Margin of Error; $10,000 to $14,999",0.1
+HC03_EST_VC03,"Married-couple families; Estimate; $10,000 to $14,999",1.8
+HC03_MOE_VC03,"Married-couple families; Margin of Error; $10,000 to $14,999",0.1
+HC04_EST_VC03,"Nonfamily households; Estimate; $10,000 to $14,999",10.8
+HC04_MOE_VC03,"Nonfamily households; Margin of Error; $10,000 to $14,999",0.1
+HC01_EST_VC04,"Households; Estimate; $15,000 to $24,999",11.4
+HC01_MOE_VC04,"Households; Margin of Error; $15,000 to $24,999",0.1
+HC02_EST_VC04,"Families; Estimate; $15,000 to $24,999",8.8
+HC02_MOE_VC04,"Families; Margin of Error; $15,000 to $24,999",0.1
+HC03_EST_VC04,"Married-couple families; Estimate; $15,000 to $24,999",6.0
+HC03_MOE_VC04,"Married-couple families; Margin of Error; $15,000 to $24,999",0.1
+HC04_EST_VC04,"Nonfamily households; Estimate; $15,000 to $24,999",17.2
+HC04_MOE_VC04,"Nonfamily households; Margin of Error; $15,000 to $24,999",0.1
+HC01_EST_VC05,"Households; Estimate; $25,000 to $34,999",10.6
+HC01_MOE_VC05,"Households; Margin of Error; $25,000 to $34,999",0.1
+HC02_EST_VC05,"Families; Estimate; $25,000 to $34,999",9.4
+HC02_MOE_VC05,"Families; Margin of Error; $25,000 to $34,999",0.1
+HC03_EST_VC05,"Married-couple families; Estimate; $25,000 to $34,999",7.7
+HC03_MOE_VC05,"Married-couple families; Margin of Error; $25,000 to $34,999",0.1
+HC04_EST_VC05,"Nonfamily households; Estimate; $25,000 to $34,999",13.0
+HC04_MOE_VC05,"Nonfamily households; Margin of Error; $25,000 to $34,999",0.1
+HC01_EST_VC06,"Households; Estimate; $35,000 to $49,999",13.9
+HC01_MOE_VC06,"Households; Margin of Error; $35,000 to $49,999",0.1
+HC02_EST_VC06,"Families; Estimate; $35,000 to $49,999",13.5
+HC02_MOE_VC06,"Families; Margin of Error; $35,000 to $49,999",0.1
+HC03_EST_VC06,"Married-couple families; Estimate; $35,000 to $49,999",12.6
+HC03_MOE_VC06,"Married-couple families; Margin of Error; $35,000 to $49,999",0.1
+HC04_EST_VC06,"Nonfamily households; Estimate; $35,000 to $49,999",14.4
+HC04_MOE_VC06,"Nonfamily households; Margin of Error; $35,000 to $49,999",0.1
+HC01_EST_VC07,"Households; Estimate; $50,000 to $74,999",18.0
+HC01_MOE_VC07,"Households; Margin of Error; $50,000 to $74,999",0.1
+HC02_EST_VC07,"Families; Estimate; $50,000 to $74,999",19.3
+HC02_MOE_VC07,"Families; Margin of Error; $50,000 to $74,999",0.1
+HC03_EST_VC07,"Married-couple families; Estimate; $50,000 to $74,999",20.5
+HC03_MOE_VC07,"Married-couple families; Margin of Error; $50,000 to $74,999",0.1
+HC04_EST_VC07,"Nonfamily households; Estimate; $50,000 to $74,999",14.6
+HC04_MOE_VC07,"Nonfamily households; Margin of Error; $50,000 to $74,999",0.1
+HC01_EST_VC08,"Households; Estimate; $75,000 to $99,999",11.7
+HC01_MOE_VC08,"Households; Margin of Error; $75,000 to $99,999",0.1
+HC02_EST_VC08,"Families; Estimate; $75,000 to $99,999",13.9
+HC02_MOE_VC08,"Families; Margin of Error; $75,000 to $99,999",0.1
+HC03_EST_VC08,"Married-couple families; Estimate; $75,000 to $99,999",16.2
+HC03_MOE_VC08,"Married-couple families; Margin of Error; $75,000 to $99,999",0.1
+HC04_EST_VC08,"Nonfamily households; Estimate; $75,000 to $99,999",6.9
+HC04_MOE_VC08,"Nonfamily households; Margin of Error; $75,000 to $99,999",0.1
+HC01_EST_VC09,"Households; Estimate; $100,000 to $149,999",12.1
+HC01_MOE_VC09,"Households; Margin of Error; $100,000 to $149,999",0.1
+HC02_EST_VC09,"Families; Estimate; $100,000 to $149,999",15.1
+HC02_MOE_VC09,"Families; Margin of Error; $100,000 to $149,999",0.1
+HC03_EST_VC09,"Married-couple families; Estimate; $100,000 to $149,999",18.7
+HC03_MOE_VC09,"Married-couple families; Margin of Error; $100,000 to $149,999",0.1
+HC04_EST_VC09,"Nonfamily households; Estimate; $100,000 to $149,999",5.3
+HC04_MOE_VC09,"Nonfamily households; Margin of Error; $100,000 to $149,999",0.1
+HC01_EST_VC10,"Households; Estimate; $150,000 to $199,999",4.4
+HC01_MOE_VC10,"Households; Margin of Error; $150,000 to $199,999",0.1
+HC02_EST_VC10,"Families; Estimate; $150,000 to $199,999",5.7
+HC02_MOE_VC10,"Families; Margin of Error; $150,000 to $199,999",0.1
+HC03_EST_VC10,"Married-couple families; Estimate; $150,000 to $199,999",7.3
+HC03_MOE_VC10,"Married-couple families; Margin of Error; $150,000 to $199,999",0.1
+HC04_EST_VC10,"Nonfamily households; Estimate; $150,000 to $199,999",1.6
+HC04_MOE_VC10,"Nonfamily households; Margin of Error; $150,000 to $199,999",0.1
+HC01_EST_VC11,"Households; Estimate; $200,000 or more",4.3
+HC01_MOE_VC11,"Households; Margin of Error; $200,000 or more",0.1
+HC02_EST_VC11,"Families; Estimate; $200,000 or more",5.6
+HC02_MOE_VC11,"Families; Margin of Error; $200,000 or more",0.1
+HC03_EST_VC11,"Married-couple families; Estimate; $200,000 or more",7.3
+HC03_MOE_VC11,"Married-couple families; Margin of Error; $200,000 or more",0.1
+HC04_EST_VC11,"Nonfamily households; Estimate; $200,000 or more",1.5
+HC04_MOE_VC11,"Nonfamily households; Margin of Error; $200,000 or more",0.1
+HC01_EST_VC13,Households; Estimate; Median income (dollars),50502
+HC01_MOE_VC13,Households; Margin of Error; Median income (dollars),73
+HC02_EST_VC13,Families; Estimate; Median income (dollars),61455
+HC02_MOE_VC13,Families; Margin of Error; Median income (dollars),109
+HC03_EST_VC13,Married-couple families; Estimate; Median income (dollars),74392
+HC03_MOE_VC13,Married-couple families; Margin of Error; Median income (dollars),129
+HC04_EST_VC13,Nonfamily households; Estimate; Median income (dollars),30500
+HC04_MOE_VC13,Nonfamily households; Margin of Error; Median income (dollars),86
+HC01_EST_VC15,Households; Estimate; Mean income (dollars),69821
+HC01_MOE_VC15,Households; Margin of Error; Mean income (dollars),101
+HC02_EST_VC15,Families; Estimate; Mean income (dollars),81375
+HC02_MOE_VC15,Families; Margin of Error; Mean income (dollars),141
+HC03_EST_VC15,Married-couple families; Estimate; Mean income (dollars),95235
+HC03_MOE_VC15,Married-couple families; Margin of Error; Mean income (dollars),174
+HC04_EST_VC15,Nonfamily households; Estimate; Mean income (dollars),44404
+HC04_MOE_VC15,Nonfamily households; Margin of Error; Mean income (dollars),140
+HC01_EST_VC18,Households; Estimate; PERCENT IMPUTED - Household income in the past 12 months,29.0
+HC01_MOE_VC18,Households; Margin of Error; PERCENT IMPUTED - Household income in the past 12 months,
+HC02_EST_VC18,Families; Estimate; PERCENT IMPUTED - Household income in the past 12 months,
+HC02_MOE_VC18,Families; Margin of Error; PERCENT IMPUTED - Household income in the past 12 months,
+HC03_EST_VC18,Married-couple families; Estimate; PERCENT IMPUTED - Household income in the past 12 months,
+HC03_MOE_VC18,Married-couple families; Margin of Error; PERCENT IMPUTED - Household income in the past 12 months,
+HC04_EST_VC18,Nonfamily households; Estimate; PERCENT IMPUTED - Household income in the past 12 months,
+HC04_MOE_VC18,Nonfamily households; Margin of Error; PERCENT IMPUTED - Household income in the past 12 months,
+HC01_EST_VC19,Households; Estimate; PERCENT IMPUTED - Family income in the past 12 months,
+HC01_MOE_VC19,Households; Margin of Error; PERCENT IMPUTED - Family income in the past 12 months,
+HC02_EST_VC19,Families; Estimate; PERCENT IMPUTED - Family income in the past 12 months,29.5
+HC02_MOE_VC19,Families; Margin of Error; PERCENT IMPUTED - Family income in the past 12 months,
+HC03_EST_VC19,Married-couple families; Estimate; PERCENT IMPUTED - Family income in the past 12 months,
+HC03_MOE_VC19,Married-couple families; Margin of Error; PERCENT IMPUTED - Family income in the past 12 months,
+HC04_EST_VC19,Nonfamily households; Estimate; PERCENT IMPUTED - Family income in the past 12 months,
+HC04_MOE_VC19,Nonfamily households; Margin of Error; PERCENT IMPUTED - Family income in the past 12 months,
+HC01_EST_VC20,Households; Estimate; PERCENT IMPUTED - Nonfamily income in the past 12 months,
+HC01_MOE_VC20,Households; Margin of Error; PERCENT IMPUTED - Nonfamily income in the past 12 months,
+HC02_EST_VC20,Families; Estimate; PERCENT IMPUTED - Nonfamily income in the past 12 months,
+HC02_MOE_VC20,Families; Margin of Error; PERCENT IMPUTED - Nonfamily income in the past 12 months,
+HC03_EST_VC20,Married-couple families; Estimate; PERCENT IMPUTED - Nonfamily income in the past 12 months,
+HC03_MOE_VC20,Married-couple families; Margin of Error; PERCENT IMPUTED - Nonfamily income in the past 12 months,
+HC04_EST_VC20,Nonfamily households; Estimate; PERCENT IMPUTED - Nonfamily income in the past 12 months,26.3
+HC04_MOE_VC20,Nonfamily households; Margin of Error; PERCENT IMPUTED - Nonfamily income in the past 12 months,
