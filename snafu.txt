@@ -1,0 +1,66 @@
+python snafy.py
+
+then c 0.16.32 note that the program throws a float division by 0 exception but does not throw an assertion error.  Also, the program exits when float divide by zero exception, compared to
+
+python -m pdb snafu.py
+0 16 32
+
+Try different coefficients
+python -m pdb snafu.py
+1,4,3
+
+Throws AssertionError at line 23
+l
+w
+
+Set a breakpoint at line 15 in function discriminant
+
+b 15
+
+Note that the breakpoint isn't taken
+
+ipython snafu.py
+b 15
+1,4,3
+The breakpoint is taken
+w
+print r
+print A,B,C
+
+Arguments A,B,C are reversed.
+diff snafu.py snafu_1.py
+
+ipython snafu_1.py
+1,4,3
+Throws AssertionError in test_function.  Why?
+
+
+ipython snafu_2.py
+b 15
+1,4,3
+
+python -m pdb snafu_2.py
+b 15
+1,4,3
+
+python -m pdb snafu_2.py
+b 14
+0,16,32
+
+
+ipython snafu_2.py
+b 14
+0,16,32
+
+
+
+
+
+
+
+
+
+
+
+
+
