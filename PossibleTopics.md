@@ -15,30 +15,27 @@ Chris:
     - C API
     - cytpes
     - Cython
- * Advanced OO: 
+    
+ * Advanced OO: mixins, metaclasses, `__new__`, super()
 
 Possible:
     wxPython GUIs
 
-    UNIX system administration automation using python
-
-    Parallel processing using OpenMPI (I may be able to get some time on Google Compute Engine for you - it never hurts to ask)
-
-    Some of the material from the book Think Complexity that you gave me.
-
-    Software Configuration management using git
-
     An in depth look at some of the modules in the standard library, see
 
     http://docs.python.org/2/library/index.html
+    
+    Assorted advanced topics:
+      lambda functions
+      the with statement
+      iterators, generators
+      decorators
 
-    Python 3.x, including how to convert from 2.x to 3.x using 2to3
+    Persistance/Serialization: Pickle, CSV, JSON, XML....
 
-    Lambda functions
+    Testing: unit testing, unittest, nose, pytest
 
-    The with statement
-
-    The Pyramid Web framework
-
-    Remote Procedure calling; PyRPC, JSONRPC, ???
+    Profiling
+    
+    
 
