@@ -7,6 +7,7 @@
 
 
 import Deck
+import pdb; pdb.set_trace()
 
 def main() :
     deck = Deck.Deck()

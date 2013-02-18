@@ -6,7 +6,8 @@
 # for a user-defined type called World. You can import it like this:
 # 
 # from World import World
-# This version of the import statement imports the World class from the World module. The following code creates a World object and calls the mainloop method, which waits for the user.
+# This version of the import statement imports the World class from the World
+# module. The following code creates a World object and calls the mainloop method, which waits for the user.
 # world = World()
 # world.mainloop()
 # A window should appear with a title bar and an empty square. We will use this

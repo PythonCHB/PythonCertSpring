@@ -10,6 +10,7 @@ ali=u" علي اصغر‎"
 	
 sheshech=u"현륜식"
 
+unknown=u" 昨晩の障害について"
 
 def decode_unicode(s) :
     """This function decodes a unicode string, character by character"""
@@ -20,6 +21,7 @@ def decode_unicode(s) :
 decode_unicode(sarah)
 decode_unicode(ali)
 decode_unicode(sheshech)
+decode_unicode(unknown)
 
 
 
