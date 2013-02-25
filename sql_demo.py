@@ -17,6 +17,11 @@ def print_users_by_state(state):
     for row in cursor.fetchall():
         print row[0],row[1],row[2],row[3]
 
+def print_db():
+    cursor.execute("""SELECT first_name, last_name, city, state FROM customer;""")
+    for row in cursor.fetchall():
+        print row[0],row[1],row[2],row[3]
+
 def get_credentials(db) :
     """This function opens the credentials file, which is under the control of the system
 administrator.  The software engineer cannot see it"""
@@ -99,6 +104,46 @@ This version is better because it sanitizes the input customer_number"""
     else :
         print "The update succeeded"
 
+def update_database_even_better ( new_city, new_state, zipcode, customer_number ) :
+    """This subroutine does an even better job of updating the database than update_database_better
+because it checks all arguments"""
+    try :
+        sql_str_arg_filter ( new_city )
+        sql_str_arg_filter ( new_state )
+        sql_zipcode_arg_filter ( zipcode )
+    except ValueError, e :
+        print "The check on the args caused a ValueError exception.  %s" % \
+        customer_number
+        raise
+    except sql.ProgrammingError,e :
+        print "The update failed"
+        raise
+    else :
+        print "The update succeeded"
+
+
+def sql_str_arg_filter( s ) :
+    """This subroutine verifies that string s contains only the characters
+[A-Za-z0-9].  In particular, the characters ", ', and ; are filtered out, however
+any effort to manipulate the database in an illicit way are prevented.  If this
+subroutine detects an illegal character, then it raises ValueError.  The subroutine
+always returns None"""
+    import re
+    illicit_match_set = """[^A-Za-z0-9]"""  # This matches any char except legal ones
+    r = re.search(illicit_match_set, s, flags=0)
+    if r != None :
+        raise ValueError
+
+def sql_zipcode_arg_filter ( z ) :
+    """This function validates zipcodes.  A zipcode can be a 5 digit number, or a 5 digit
+number, a hyphen, and a 4 digit number.  If this subroutine detects an illegal character, then
+it raises ValueError.  The subroutine always returns None"""
+
+# match a 5 digit number with an optional hyphen followed by a 4 digit number
+    licit_match_set = """([0-9]{5})(-([0-9]{4}))?"""
+    r = re.search(licit_match_set, z, flags=0 )
+    if r==None :
+        raise ValueError
 
 argv1 = str.lower(sys.argv[1])
 if argv1 == "sqlite3" :
@@ -165,13 +210,38 @@ if len(sys.argv) == 3 and sys.argv[2]=="evil" :
     try :
         update_database_better ( new_city, new_state, zipcode, customer_number + evil )
     except sql.ProgrammingError,e :
-        print "The SQL injection attack failed"
+        print "The SQL injection attack failed by update_database_better"
     except ValueError,e :
-        print "The SQL injection attack was prevented"
+        print "The SQL injection attack was prevented by update_database_better"
     else :
-        print "The SQL injection attack succeeded"
+        print "The SQL injection attack succeeded by update_database_better"
 
     print_users_by_state("FL")
-                       
+    new_state = "ME"
+    try :
+        update_database_better ( new_city, new_state + evil, zipcode, customer_number )
+    except sql.ProgrammingError,e :
+        print "The SQL injection attack failed by update_database_better"
+    except ValueError,e :
+        print "The SQL injection attack was prevented by update_database_better"
+    else :
+        print "The SQL injection attack succeeded by update_database_better"
+
+    print_users_by_state("ME")
+    
+
+    new_state = "WY"
+    try :
+        update_database_even_better ( new_city, new_state + evil, zipcode, customer_number )
+    except sql.ProgrammingError,e :
+        print "The SQL injection attack failed by update_database_even_better"
+    except ValueError,e :
+        print "The SQL injection attack was prevented by update_database_even_better"
+    else :
+        print "The SQL injection attack succeeded by update_database_even_better"
+
+    print_db()
+
+    
 connection.close()
 
