@@ -44,51 +44,51 @@ The University of Washington is committed to providing access and reasonable acc
 
 Week 1
 March 26th
-Unit Testing
-Chris
+Unit Testing: unitest, nose, pytest
+-- Chris
 
 Week 2
 April 2nd
 The python debugger pdb
-Jeff
+-- Jeff
 
 Week 3
 April 9th
-Advanced OO
-Chris
+Advanced OO: unitest, nose, pytest
+-- Chris
 
 Week 4
 April 16th
 Relational databases, SQL
-Jeff
+-- Jeff
 
 Week 5
 April 23rd
 Non relational databases
-Jeff
+-- Jeff
 
 Week 6
 April 30th
-Numerical Computation
-Chris
+Numerical Computation: numpy, scipy, matplotlib
+-- Chris
 
 Week 7
-May 7th
+May 7th 
 Threading / Multiprocessing
-Jeff
+-- Jeff
 
 Week 8
 May 14th
 Performance / Profiling
-Chris
+-- Chris
 
 Week 9
 May 21st
 Student Presentations
-both
+-- Jeff and Chris
 
 Week 10
 May 28th
 Student Presentations
-both
+-- Jeff and Chris
 
