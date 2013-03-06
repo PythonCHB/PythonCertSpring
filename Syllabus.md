@@ -41,10 +41,7 @@ The University of Washington is committed to providing access and reasonable acc
 
 # Schedule
 
-Date
-Topic
-Instructor
-Assignment
+
 Week 1
 March 26th
 Unit Testing
