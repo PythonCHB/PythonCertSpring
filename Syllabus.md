@@ -54,7 +54,7 @@ The python debugger pdb
 
 Week 3
 April 9th
-Advanced OO: unitest, nose, pytest
+Advanced OO: super(), mixins, meta classes, etc. 
 -- Chris
 
 Week 4
