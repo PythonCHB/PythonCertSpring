@@ -32,15 +32,7 @@ Students are required to attend 8 out 10 classes, and complete a significant sof
 
 Courses in this program are arranged sequentially.  To advance to the next course in this program, students are required to earn a grade of Successful Completion (SC) in this course. Students must successfully complete all courses in the program to receive a certificate of completion.
 
-## Student Resources
-The following link includes student handbooks, services, and policies, and other important information: http://www.pce.uw.edu/resource.aspx .
-
-## Disability Accommodation
-The University of Washington is committed to providing access and reasonable accommodation in its services, programs, activities, education and employment for individuals with disabilities. For information or to request disability accommodation contact the Disability Services Office at 206.543.6450/V, 206.543.6452/TTY, 206.685.7264 (FAX), or e-mail at dso@u.washington.edu.
-
-
 # Schedule
-
 
 Week 1
 March 26th
@@ -92,3 +84,8 @@ May 28th
 Student Presentations
 -- Jeff and Chris
 
+## Student Resources
+The following link includes student handbooks, services, and policies, and other important information: http://www.pce.uw.edu/resource.aspx .
+
+## Disability Accommodation
+The University of Washington is committed to providing access and reasonable accommodation in its services, programs, activities, education and employment for individuals with disabilities. For information or to request disability accommodation contact the Disability Services Office at 206.543.6450/V, 206.543.6452/TTY, 206.685.7264 (FAX), or e-mail at dso@u.washington.edu.
