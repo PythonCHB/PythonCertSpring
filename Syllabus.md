@@ -142,7 +142,7 @@ Student Presentations
 ### Iterators and generators
 
 ### Decorators
-(writing your own, not just using them)
+(writing your own, not just using them...)
 
 ### Lambda functions
 
