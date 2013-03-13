@@ -42,53 +42,73 @@ The University of Washington is committed to providing access and reasonable acc
 # Schedule
 
 
-Week 1
+### Week 1
 March 26th
+
 Unit Testing: unitest, nose, pytest
+
 -- Chris
 
-Week 2
+### Week 2
 April 2nd
+
 The python debugger pdb
+
 -- Jeff
 
-Week 3
+### Week 3
 April 9th
-Advanced OO: super(), mixins, meta classes, etc. 
+
+Advanced OO: `__new()__`, `super()`, mixins, meta classes, etc. 
+
 -- Chris
 
-Week 4
+### Week 4
+
 April 16th
+
 Relational databases, SQL
+
 -- Jeff
 
-Week 5
+### Week 5
 April 23rd
+
 Non relational databases
+
 -- Jeff
 
-Week 6
+## Week 6
 April 30th
+
 Numerical Computation: numpy, scipy, matplotlib
+
 -- Chris
 
-Week 7
+## Week 7
 May 7th 
 Threading / Multiprocessing
+
 -- Jeff
 
-Week 8
+## Week 8
 May 14th
+
 Performance / Profiling
+
 -- Chris
 
-Week 9
+## Week 9
 May 21st
+
 Student Presentations
+
 -- Jeff and Chris
 
-Week 10
+## Week 10
 May 28th
+
 Student Presentations
+
 -- Jeff and Chris
 
