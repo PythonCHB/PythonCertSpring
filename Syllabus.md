@@ -132,6 +132,33 @@ Student Presentations
 
 -- Jeff and Chris
 
+## Possible Additional Topics:
+
+### Leveraging C libraries / writing extensions:
+ C API
+ ctypes
+ cython
+
+### Iterators and generators
+
+### Decorators
+(writing your own, not just using them)
+
+### Lambda functions
+
+### Context managers, the with statement
+
+### Persistence / Serialization:
+pickle, shelve, JSON, CSV, XML, BSDdb
+
+### Desktop GUIs:
+tkInter
+wxPython
+pyGTK
+pyQT / pySide
+
+
+
 ## Student Resources
 The following link includes student handbooks, services, and policies, and other important information: http://www.pce.uw.edu/resource.aspx .
 
