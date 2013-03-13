@@ -32,56 +32,104 @@ Students are required to attend 8 out 10 classes, and complete a significant sof
 
 Courses in this program are arranged sequentially.  To advance to the next course in this program, students are required to earn a grade of Successful Completion (SC) in this course. Students must successfully complete all courses in the program to receive a certificate of completion.
 
+
+## The class project:
+
+Each student will develop a substantial project throught the class. It can be an individual project, or a group project iwth a small group from the class (3-4 students). We suggest that you consier a group project -- it will give you a chance to pracice developing with others, as well as give you a built-on way to get code review, folks to bounce ideas off of, etc.
+
+### Requirements:
+
+The project can be anyting done primarily in Python: command line utility, desktop GUI, web application, web service, numerical model, smart phone app, you name it. 
+
+The projects should be large enough to take everyone in the group about 8-10 hours a week in addition to class time, but small enough that you can get it to a useful state in 8-9 weeks of the class.
+
+Each project group will be expected to present their work in one of the last two classes. The presentations should be focused on the software design, rather than the problem solved (though, of course, we'll want to know what problem you solved...)
+
+We will expect you to use a Revision Control system (likley github), and emply unit testing.
+
+*Please have your project selected and be prepared to start right in on it on day one!*
+
+## Typical class:
+
+Each class will typically begin with a lecture and in-class excercises about the lecture topic, totally 1- 1-1/2 hours. 
+
+The remaining class time will be spent workign on your projects in consultation with the instructors.
+
+In addition, as we work with you on your projects, we will highlight for the class interesting problems and their solutions that come up in class.
+
+
+
 # Schedule
 
-Week 1
+
+### Week 1
 March 26th
+
 Unit Testing: unitest, nose, pytest
+
 -- Chris
 
-Week 2
+### Week 2
 April 2nd
+
 The python debugger pdb
+
 -- Jeff
 
-Week 3
+### Week 3
 April 9th
-Advanced OO: super(), mixins, meta classes, etc. 
+
+Advanced OO: `__new()__`, `super()`, mixins, meta classes, etc. 
+
 -- Chris
 
-Week 4
+### Week 4
+
 April 16th
+
 Relational databases, SQL
+
 -- Jeff
 
-Week 5
+### Week 5
 April 23rd
+
 Non relational databases
+
 -- Jeff
 
-Week 6
+### Week 6
 April 30th
+
 Numerical Computation: numpy, scipy, matplotlib
+
 -- Chris
 
-Week 7
+### Week 7
 May 7th 
 Threading / Multiprocessing
+
 -- Jeff
 
-Week 8
+### Week 8
 May 14th
+
 Performance / Profiling
+
 -- Chris
 
-Week 9
+### Week 9
 May 21st
+
 Student Presentations
+
 -- Jeff and Chris
 
-Week 10
+### Week 10
 May 28th
+
 Student Presentations
+
 -- Jeff and Chris
 
 ## Student Resources
