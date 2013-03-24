@@ -8,6 +8,13 @@ import redis
 import time
 import urllib2
 import socket   # because we might handle a socket timeout exception
+import pydot    # python library to generate graphs
+import sys
+
+if len(sys.argv) > 1 :
+    max_num_of_links = int(sys.argv[1])
+else:
+    max_num_of_links = 100   # reasonable default value
 
 VISITED_LIST = "redis_demo_bs_spider_visited_list"  # keyname of the visited list
 TO_VISIT_SET = "redis_demo_bs_spider_to_visit_set"  # keyname of the set of pages
@@ -26,13 +33,13 @@ r_server.delete(TO_VISIT_SET )
 # operation.  Start at commercialventvac.com, which is well connected.
 r_server.sadd(TO_VISIT_SET, "http://www.commercialventvac.com")
 start_time = time.time()
-while time.time() < start_time + 120.0:  # 15.0 seconds
+for link_cnt in range(0,max_num_of_links):
 # Removes and returns a random element from the set value stored at key.
     this_page = r_server.spop(TO_VISIT_SET)
     print "**** Crawling %s visited %d " % ( this_page, r_server.llen( VISITED_LIST ))
     try:
         response = urllib2.urlopen(this_page, timeout=15)    # timeout is in seconds
-    except (urllib2.URLError, socket.timeout, ValueError),e:
+    except (urllib2.URLError, socket.timeout, urllib2.HTTPError, ValueError),e:
         print "The URL %s failed due to %s - skipping" % ( this_page, e)
         continue
     
@@ -60,13 +67,22 @@ while time.time() < start_time + 120.0:  # 15.0 seconds
             r_server.sadd(TO_VISIT_SET, url)
             r_server.sadd(this_page, url)
             
-
+end_time = time.time()
+g = pydot.Dot(graph_type='digraph')        # digraph => directed graph
 while r_server.llen(VISITED_LIST) > 0:
 # Get the next URL in the list of URLs that we visited  
     url = r_server.lpop(VISITED_LIST)
+    source_node = pydot.Node(url)
+    g.add_node( source_node )
 # is the set of links that URL points to empty?
     while r_server.scard(url) > 0 :
         link = r_server.spop(url)
         print "%s => %s"% ( url, link )
-    
-
+        destination_node = pydot.Node(link)
+        g.add_node(destination_node)
+        g.add_edge(pydot.Edge(source_node, destination_node))
+g.write_png('example2_graph.png')
+g.write_dot('example2_graph.dot')
+execution_time = end_time - start_time
+print "Execution time was %f to collect %d links or %f links/second" % (execution_time,
+                max_num_of_links, max_num_of_links/execution_time)
