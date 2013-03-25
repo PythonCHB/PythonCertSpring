@@ -4,7 +4,7 @@
 \title[Python Certificate: System Development]{System Development with Python: Week 8}
 \author{Christopher Barker}
 \institute{UW Continuing Education}
-\date{March 26, 2013}
+\date{May 14, 2013}
 
 \usepackage{listings}
 \usepackage{hyperref}
@@ -24,7 +24,7 @@
 \end{frame}
 
 
-\section{Profiling}
+\section{Timing}
 
 % ---------------------------------------------
 \begin{frame}[fragile]{Performance Testing}
@@ -113,9 +113,10 @@ In [53]: %timeit timing.primes_stupid(5)
 \url{http://ipython.org/ipython-doc/dev/interactive/tutorial.html}
 \end{frame} 
 
+\section{Profiling}
 
 % ---------------------------------------------
-\begin{frame}[fragile]{profiling}
+\begin{frame}[fragile]{Profiling}
 
 {\Large A profiler is a tool that describes the run time performance of a
 program, providing a variety of statistics}
@@ -131,7 +132,6 @@ python -m cProfile profile_example.py
 \end{verbatim}
 {\Large spews some stats}
 
-(demo)
 
 \vfill
 \url{http://docs.python.org/library/profile.html}
@@ -242,9 +242,10 @@ profile_dump%
 
 \end{frame} 
 
+\section{Performance Tuning}
 
 % ---------------------------------------------
-\begin{frame}[fragile]{performance tips}
+\begin{frame}[fragile]{Performance Tips}
 
 \vfill
 {\Large Some common python performance issues:}
@@ -274,92 +275,51 @@ profile_dump%
 
 \end{frame}
 
-\section{Package Structure}
-
-%-------------------------------
-\begin{frame}[fragile]{Package Structure}
-
-\vfill
-{\Large You'll want to set up your project with good package structure}
-
-\vfill
-{\Large \verb|python setup.py develop|}
-
-\vfill
-
-\url{http://guide.python-distribute.org/}
-
-\end{frame}
-
 
 %-------------------------------
 \begin{frame}[fragile]{Wrap up}
 
 \vfill
-{\Large Hopefully you've got a bit of an idea how to do\\[0.1in]
-        unit testing in Python.}
-
+{\Large I hope you have an idea how to profile and time your code.}
 \vfill
-{\Large And will now start doing it.}
-
+{\Large Try it on a part of your project}
 \vfill
-{\Large And have an idea how to profile and time your code.}
 
 \end{frame}
 
 %-------------------------------
-\begin{frame}[fragile]{Next Week:}
+\begin{frame}{Next Week:}
 
 \vfill
-{\LARGE The python debugger pdb
+{\LARGE Student Presentations}
 
-\vfill
-{\Large  -- Jeff}
-
-\vfill
-{\Large And of course, your projects...}
 
 \vfill
 
 \end{frame}
 
-\begin{frame}[fragile]{Package Structure}
-
-\begin{itemize}
-    \item Set up package structure
-    \item Profile your class project
-    \item Use timeit to test the slowest part of the code
-    \item See if you can make it faster
-\end{itemize}
-
-\end{frame}
-
-%-------------------------------
+% -------------------------------
 \begin{frame}[fragile]{Homework}
 
-For the entire quarter, your homework is to work on your projects
+\vfill
+\Large{Profile your project}
 
-For next week:
+\vfill
+\Large{Performance tune part of it}
 
-\begin{itemize}
-    \item Set up the package structure
-    \item Put it in gitHub (or some RCS)
-    \item Map out the design
-    \item Determine major third party packages you will need.
-    \item Write a few unit tests (even if they all fail!)
-\end{itemize}
+\vfill
+\Large{Get ready to present}
+
+\vfill
 
 \end{frame}
 
 %-------------------------------
 \begin{frame}[fragile]{Project Time!}
 
-\begin{itemize}
-    \item Do you have a project? 
-    \item Do you have a team?
-    \item Do you know what modules you'll need?
-    \item Let's get to work!
-\end{itemize}
+\vfill
+\Large{Map out what you're going to present}
+\vfill
 
 \end{frame}
 
