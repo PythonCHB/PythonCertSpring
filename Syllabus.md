@@ -35,11 +35,11 @@ Courses in this program are arranged sequentially.  To advance to the next cours
 
 ## The class project:
 
-Each student will develop a substantial project throught the class. It can be an individual project, or a group project iwth a small group from the class (3-4 students). We suggest that you consier a group project -- it will give you a chance to pracice developing with others, as well as give you a built-on way to get code review, folks to bounce ideas off of, etc.
+Each student will develop a substantial project throughout the class. It can be an individual project, or a group project with a small group from the class (3-4 students). We suggest that you consider a group project -- it will give you a chance to practice developing with others, as well as give you a built-on way to get code review, folks to bounce ideas off of, etc.
 
 ### Requirements:
 
-The project can be anyting done primarily in Python: command line utility, desktop GUI, web application, web service, numerical model, smart phone app, you name it. 
+The project can be anything done primarily in Python: command line utility, desktop GUI, web application, web service, numerical model, smart phone app, you name it. 
 
 The projects should be large enough to take everyone in the group about 8-10 hours a week in addition to class time, but small enough that you can get it to a useful state in 8-9 weeks of the class.
 
@@ -47,7 +47,7 @@ Each project group will be expected to present their work in one of the last two
 
 We will expect you to use a Revision Control System (likely github), and employ unit testing.
 
-You should set it up with good package strucure -- ready to share and/or deploy.
+You should set it up with good package structure -- ready to share and/or deploy.
 
 Write some docs: Sphinx!
 
@@ -59,9 +59,9 @@ Use PyChecker and/or PyLint and/or PyFlakes
 
 ## Typical class:
 
-Each class will typically begin with a lecture and in-class excercises about the lecture topic, totally 1 -- 1-1/2 hours. 
+Each class will typically begin with a lecture and in-class exercises about the lecture topic, totally 1 -- 1-1/2 hours. 
 
-The remaining class time will be spent workign on your projects in consultation with the instructors.
+The remaining class time will be spent working on your projects in consultation with the instructors.
 
 In addition, as we work with you on your projects, we will highlight for the class interesting problems and their solutions that come up in class.
 
