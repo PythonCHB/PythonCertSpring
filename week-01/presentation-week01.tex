@@ -33,8 +33,9 @@
 \vfill
 \begin{itemize}
   \item Lecture
-  \item Exercises
-  \item Lab Time
+  \item Labs
+  \item Summary
+  \item Project time
 \end{itemize}
 }
 
@@ -129,7 +130,7 @@ they are fit for use}
 {\Large \vspace{0.3in} -- Literate programming}
 
 \vfill
-{\Large \vspace{0.3in} -- Verify examples in in docs}
+{\Large \vspace{0.3in} -- Verify examples in the docs}
 
 \vfill
 \url{http://docs.python.org/library/doctest.html}
@@ -186,14 +187,16 @@ documentation.''
 % ---------------------------------------------
 \begin{frame}[fragile]{running doctests}
 
-{\large In \verb|__name__ == "__main__"| block:}
+{\Large In \verb|__name__ == "__main__"| block:}
 
+\vfill
 \begin{verbatim}
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
 \end{verbatim}
 
+\vfill
 {\large (Tests the current module) }
 
 
@@ -206,7 +209,7 @@ if __name__ == "__main__":
 \begin{frame}[fragile]{running doctests}
 
 \vfill
-{\large In an external file:}
+{\Large In an external file:}
 
 \begin{verbatim}
     doctest.testfile("name_of_test_file.txt")
@@ -269,22 +272,46 @@ if __name__ == "__main__":
 \end{frame} 
 
 %-------------------------------
-\begin{frame}[fragile]{pep8}
+\begin{frame}[fragile]{Coding Style}
+
+{\Large Coding style really helps readability}
+
+Keep it consistent within your project
+
+\vfill
+
+{\Large Options:}
+\begin{itemize}
+  \item Your company style guide
+
+  \item PEP 8 \\
+        \url{http://www.python.org/dev/peps/pep-0008/}
+
+  \item Another Established Style (Google's is pretty good) \\
+        \url{http://google-styleguide.googlecode.com/svn/trunk/pyguide.html}
+\end{itemize}
+
+\end{frame} 
+
+%-------------------------------
+\begin{frame}[fragile]{Coding Style}
+
 
 {\LARGE￼\verb|pep8.py|}
 
 \vfill
-{\Large Tells you when you have code which doesn't follow PEP 8}
+{\Large Tells you when you have code \\
+        that doesn't follow PEP 8}
 
 \vfill
-\begin{verbatim}
-pip install pep8
-\end{verbatim}
+{\large \verb| pip install pep8 | }
 
 \vfill
 \url{http://pypi.python.org/pypi/pep8/}
 
 \end{frame} 
+
+
 
 %-------------------------------
 \begin{frame}[fragile]{LAB}
@@ -294,7 +321,7 @@ pip install pep8
 \begin{itemize}
   \item doctest
     \begin{itemize}
-       \item Add doctests to the Circle class we've done in the last few classes.
+       \item Add doctests to the Circle class in the code dir
        \item Run it from the \verb|if __name__ == "__main__"| clause\\
              (\verb|code\circle.py|)
     \end{itemize}
@@ -428,7 +455,7 @@ if __name__ == '__main__':
 {\Large Google: ``python unittest tutorial''}
 
 \vfill
-{\Large I learned from this one:}\\[0.1in]
+{\Large I first learned from this one:}\\[0.1in]
 \url{http://www.diveintopython.net/unit_testing/index.html}
 
 \end{frame} 
@@ -439,7 +466,7 @@ if __name__ == '__main__':
 {\Large Due to its Java heritage, unittest is kind of verbose}
 
 \vfill
-{\Large also no test discovery}\\
+{\Large Also no test discovery}\\
 \hspace{0.2in}(though unittest2 does add that...)
 
 \vfill
@@ -603,7 +630,7 @@ def test_sample_too_large():
 {\Large \verb|__exit__()| is run after your block of code}
 
 \vfill
-{\Large Can be used to setup/clenup before and after: open/closing files, db connections, etc}
+{\Large Can be used to setup/cleanup before and after: open/closing files, db connections, etc}
 \end{frame} 
 
 \begin{frame}[fragile]{A Diversion }
@@ -669,6 +696,28 @@ def test_eval(input, expected):
 \url{http://nedbatchelder.com/code/coverage/}
 \end{frame}
 
+% --------------------------
+\begin{frame}[fragile]{Coding Bat}
+
+{\LARGE Coding Bat:}
+
+\url{http://codingbat.com/python}
+
+\vfill
+{\Large Quicky little code excercises}
+
+\vfill
+{\Large Tells you what unit tests to write:}
+
+\url{http://codingbat.com/prob/p118406}
+
+\vfill
+{\Large We'll use them for our lab}
+
+\vfill
+{\large ...and you might want to do a few for practice anyway...}
+
+\end{frame}
 
 %-------------------------------
 \begin{frame}[fragile]{LAB}
@@ -696,272 +745,215 @@ def test_eval(input, expected):
 
 \end{frame}
 
-\section{Profiling}
+\section{Packaging Your Stuff}
 
-% ---------------------------------------------
-\begin{frame}[fragile]{Performance Testing}
+\begin{frame}[fragile]{Distributing}
 
-{\Large ``Premature optimization is the root of all evil''}\\[0.1in]
-{\large \hspace{0.5in} -- Donald Knuth}
+{\LARGE What if you need to distribute you own code?}
+
+\vfill
+{\Large Scripts}
+
+\vfill
+{\Large Libraries }
+
+\vfill
+{\Large Applications }
+\vfill
 
 \end{frame} 
 
-% ---------------------------------------------
-\begin{frame}[fragile]{Profiling/timing}
+\begin{frame}[fragile]{Scripts}
 
 \vfill
-{\Large You can't optimize your code without knowing where the bottlenecks are.}
+{\LARGE Often you can just copy, share, or check in the script to source
+control and call it good.}
 
 \vfill
-{\Large Smarter people than me have said they they are almost always wrong
-when they try to logically determine where the slow code is. (I know I am)}
+{\large (But only if it's a single file, and doesn't need anything non-standard) }
+\end{frame} 
+
+\begin{frame}[fragile]{Scripts}
 
 \vfill
-{\Large ... and how to speed it up}
+{\LARGE ￼When the script needs more than just the stdlib (or your company standard environment)}
+
+\vfill
+{\LARGE You have an application, not a script}
+
+\vfill
 
 \end{frame} 
 
-% ---------------------------------------------
-\begin{frame}[fragile]{time.clock()}
+\begin{frame}[fragile]{Libraries}
 
-{\Large The really easy way:}
+\vfill
+{\LARGE When you read the distutils docs, it's usually libraries they're talking about}
+
+
+\vfill
+{\LARGE Scripts + library is the same...}
+
+
+\vfill
+(\url{http://docs.python.org/distutils/})
+\end{frame} 
+
+\begin{frame}[fragile]{distutils}
+
+\vfill
+{\LARGE \verb|distutils| makes it easy to do the easy stuff:}
+
+\vfill
+{\Large Distribute and install to multiple platforms, etc.}
+
+\vfill
+{\Large Even binaries, installers and compiled packages}
+
+\vfill
+{\Large (Except dependencies)}
+
+\vfill
+(\url{http://docs.python.org/distutils/})
+\end{frame} 
+
+\begin{frame}[fragile]{distutils basics}
+
+\vfill
+{\Large It's all in the \verb|setup.py file|:}
 
 \begin{verbatim}
-import time
-
-start = time.clock()
-  ... do_some_stuff ...
-print "It took %f seconds to run"%(time.clock - start)
+from distutils.core import setup
+setup(name='Distutils',
+      version='1.0',
+      description='Python Distribution Utilities',
+      author='Greg Ward',
+      author_email='gward@python.net',
+      url='http://www.python.org/sigs/distutils-sig/',
+      packages=['distutils', 'distutils.command'],
+     )
 \end{verbatim}
-
-{\Large It works, it's easy, and it gives a gross approximation}
-
 \vfill
-(use \verb|time.clock()|, rather than \verb|time.time()|)
-
+(\url{http://docs.python.org/distutils/})
 \end{frame} 
 
-% ---------------------------------------------
-\begin{frame}[fragile]{timeit}
+\begin{frame}[fragile]{distutils basics}
 
-{\Large The good way:}
+{\Large Once your setup.py is written, you can:}
 
 \begin{verbatim}
-import timeit
+python setup.py ...
 
-timeit.timeit( statement, setup=some_stuff)
-
+build         build everything needed to install
+install       install everything from build directory
+sdist         create a source distribution
+              (tarball, zip file, etc.)
+bdist         create a built (binary) distribution
+bdist_rpm     create an RPM distribution
+bdist_wininst create an executable installer for MS Windows
+upload        upload binary package to PyPI
 \end{verbatim}
 
-{\Large It's kind of a pain, but gives meaningful results.}
-
-(can also be called on the command line)
-
-\vfill
-\url{http://docs.python.org/library/timeit.html}
-\vfill
-(\verb|code/timing.py|)
 \end{frame} 
 
-% ---------------------------------------------
-\begin{frame}[fragile]{\%timeit}
+%----------------------------------------------
+\begin{frame}[fragile]{More Complex Packaging}
 
-{\Large The easy and good way:}
-
-\vfill
-{\LARGE \verb|ipython|:}
-\begin{verbatim}
-
-In [52]: import timing
-
-In [53]: %timeit timing.primes_stupid(5)
-100000 loops, best of 3: 10.9 us per loop
-
-\end{verbatim}
-
-{\Large Takes care of the setup/namespace stuff for you}
+{\Large For a complex package:}
 
 \vfill
-\url{http://ipython.org/ipython-doc/dev/interactive/tutorial.html}
+{\Large You want to use a well structured setup:}
+
+\vfill
+\url{http://guide.python-distribute.org/creation.html}
+\vfill
 \end{frame} 
 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{profiling}
-
-{\Large A profiler is a tool that describes the run time performance of a
-program, providing a variety of statistics}
-
-\vfill
-{\Large Helpful when you don't yet know where your bottlenecks are}
-
-\vfill
-{\Large The python profiler}
-
-\begin{verbatim}
-python -m cProfile profile_example.py  
-\end{verbatim}
-{\Large spews some stats}
-
-(demo)
-
-\vfill
-\url{http://docs.python.org/library/profile.html}
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{python profiler}
-
-{\Large What you get:}
-
-\begin{description}
-  \item[ncalls] the number of calls.
-  \item[tottime] the total time spent in the given function (and excluding time made in calls to sub-functions),
-  \item[percall] the quotient of tottime divided by ncalls
-  \item[cumtime] the total time spent in this and all subfunctions (from invocation till exit). This figure is accurate even for recursive functions.
-  \item[percall] the quotient of cumtime divided by primitive calls
-\end{description}
-(demo: \verb|python -m cProfile profile_example.py|)
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{python profiler}
-
-{\Large You can also dump to a file:}
-
-\vfill
-{\verb|$ python -m cProfile -o profile_dump profile_example.py|}
-
-\vfill
-{\large This gives you a binary file you can examine with \verb|pstats|:}
-
-\vfill
-{demo: \verb|$ python -m pstats|}
-
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{pstats}
-
-{\Large Running \verb|pstats|}
-{\small
-\begin{verbatim}
-$
-$ python -m pstats
-Welcome to the profile statistics browser.
-% read profile_dump
-profile_dump% stats
-Wed Aug 29 16:21:39 2012    profile_dump
-
-         51403 function calls in 0.032 seconds
-
-   Random listing order was used
-
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-    51200    0.006    0.000    0.006    0.000 {method 'append' of 'list' objects}
-        1    0.000    0.000    0.032    0.032 profile_example.py:9(<module>)
-        1    0.001    0.001    0.032    0.032 profile_example.py:28(main)
-      100    0.022    0.000    0.027    0.000 profile_example.py:11(odd_numbers)
-      100    0.003    0.000    0.031    0.000 profile_example.py:19(sum_odd_numbers)
-        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
-profile_dump% 
-\end{verbatim}
-}
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{pstats commands}
-
-{\Large Commands:}
-
-\begin{description}
-  \item[help] help on pstats or particular command
-  \item[stats] print the profile statistics
-  \item[sort] sort by various data fields
-  \item[strip] strips the leading path info from file names
-  \item[callers] Print callers statistics
-  \item[callees] Print callees statistics
-  \item[quit] quits
-\end{description}
-{\large Each has options to customize output}
-
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{automating profile stats}
-
-{\Large \verb|cProfile| and \verb|pstats| are also modules}
-
-\vfill
-{\Large So you can script collection of profiles and stats}
-
-\vfill
-\url{http://docs.python.org/library/profile.html}
-
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{``Run Snake Run''}
-
-\vfill
-{\Large For a visual look at your profiling resluts:}
-
-\vfill
-\url{http://www.vrplumber.com/programming/runsnakerun/}
-
-\vfill
-(pretty cool stuff!)
-
-\end{frame} 
-
-
-% ---------------------------------------------
-\begin{frame}[fragile]{performance tips}
-
-\vfill
-{\Large Some common python performance issues:}
-
-\vfill
-\url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips/}
-
-\vfill
-(some nifty profiling tools described there, too)
-
-\end{frame} 
-
-%-------------------------------
-\begin{frame}[fragile]{LAB}
-
-{\Large Profiling lab}
-\begin{itemize}
-  \item run \verb|timeit| on some code of yours (or timing.py, or..)
-  \item run iPython's \%timeit on the same code.
-  \item try to make the factorial code in timing.py faster, and time the difference.
-  \item write some code that tests one of the performance issues in:\\
-        {\small \url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips} }\\
-        use one of the \verb|timeit|s to see if you can make a difference.
-  \item try the profile tutorial at:\\
-        {\small \url{http://pysnippet.blogspot.com/2009/12/profiling-your-python-code.html} }
-\end{itemize}
-
-\end{frame}
-
-\section{Package Structure}
-
-%-------------------------------
+%----------------------------------------------
 \begin{frame}[fragile]{Package Structure}
 
-\vfill
-{\Large You'll want to set up your project with good package structure}
-
-\vfill
-{\Large \verb|python setup.py develop|}
-
-\vfill
-
-\url{http://guide.python-distribute.org/}
+\begin{verbatim}
+ProjectName/
+    scripts/
+    CHANGES.txt
+    docs/
+    LICENSE.txt
+    setup.py
+    project_package/
+       __init__.py
+      module1.py
+      module2.py
+    tests/
+      test_module1.py
+      test_module2.py
+\end{verbatim}
 
 \end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]{develop mode}
+
+{\Large While you are developing your package, Installing it is a pain.}
+
+\vfill
+{\Large But you want your code to be able to import, etc. as though it were installed.}
+
+\vfill
+{\Large \verb|setup.py develop|
+\vfill
+installs links to your code, rather than copies
+   -- so it looks like it's installed, but it's using the original source}
+
+\vfill
+{\Large You need \verb|distribute| (or \verb|setuptools|) to use it.}
+\vfill
+\end{frame} 
+
+%----------------------------------------------
+\begin{frame}[fragile]{Applications}
+
+{\Large For a complete application:}
+\begin{itemize}
+  \item Web apps
+  \item GUI apps
+\end{itemize}
+
+{\Large Multiple options:}
+\begin{itemize}
+  \item Virtualenv + RCS
+  \item zc.buildout ( \url{http://www.buildout.org/} )
+  \item System packages (rpm, deb, ...)
+  \item Bundles...
+\end{itemize}
+
+\end{frame} 
+
+%----------------------------------------------
+\begin{frame}[fragile]{Bundles}
+
+{\Large
+Bundles are Python + all your code + plus all the dependencies --
+all in one single ``bundle'' 
+
+\vfill
+Most popular on Windows and OS-X
+}
+\begin{verbatim}
+  py2exe
+  py2app
+  pyinstaller
+ ...
+\end{verbatim}
+
+{\Large User doesn't even have to know it's python }
+
+\vfill
+Examples: \\
+\hspace{0.5in} \url{http://www.bitpim.org/} \\
+\hspace{0.5in} \url{http://response.restoration.noaa.gov/nucos}
+
+\end{frame} 
+
 
 
 %-------------------------------
@@ -975,7 +967,7 @@ profile_dump%
 {\Large And will now start doing it.}
 
 \vfill
-{\Large And have an idea how to profile and time your code.}
+{\Large And an idea how to set up your package...}
 
 \end{frame}
 
@@ -983,7 +975,7 @@ profile_dump%
 \begin{frame}[fragile]{Next Week:}
 
 \vfill
-{\LARGE The python debugger pdb
+{\LARGE The python debugger pdb}
 
 \vfill
 {\Large  -- Jeff}
@@ -992,17 +984,6 @@ profile_dump%
 {\Large And of course, your projects...}
 
 \vfill
-
-\end{frame}
-
-\begin{frame}[fragile]{Package Structure}
-
-\begin{itemize}
-    \item Set up package structure
-    \item Profile your class project
-    \item Use timeit to test the slowest part of the code
-    \item See if you can make it faster
-\end{itemize}
 
 \end{frame}
 

@@ -49,6 +49,8 @@ We will expect you to use a Revision Control System (likely github), and employ 
 
 You should set it up with good package strucure -- ready to share and/or deploy.
 
+Write some docs: Sphinx!
+
 Confirm to PEP8 (unless you have a company style instead)
 
 Use PyChecker and/or PyLint and/or PyFlakes
