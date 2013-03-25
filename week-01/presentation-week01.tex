@@ -1,7 +1,7 @@
 \documentclass{beamer}
 %\usepackage[latin1]{inputenc}
 \usetheme{Warsaw}
-\title[Intro to Python: Week 1]{Python Certificate: System Development with Python}
+\title[Python Certificate: System Development]{System Development with Python: Week 1}
 \author{Christopher Barker}
 \institute{UW Continuing Education}
 \date{March 26, 2013}
@@ -33,7 +33,7 @@
 \vfill
 \begin{itemize}
   \item Lecture
-  \item Excercises
+  \item Exercises
   \item Lab Time
 \end{itemize}
 }
@@ -50,7 +50,7 @@
 \begin{frame}[fragile]{Testing}
 
 \vfill
-{\Large I don't need to tell you why testing is important}
+{\Large I hope I don't need to tell you why testing is important}
 
 \vfill
 {\Large I'll focus on testing your Python code -- not another system}
@@ -69,7 +69,7 @@
 \begin{frame}[fragile]{Python Testing Taxonomy}
 
 \begin{enumerate}
-  \item   Unit Testing Tools
+  \item    Unit Testing Tools
   \item    Mock Testing Tools
   \item    Fuzz Testing Tools
   \item    Web Testing Tools
@@ -104,7 +104,7 @@ non-functional areas of a system after changes}
 {\LARGE Unit Testing:}
 
 \vfill
-{\Large unit testing is a method by which individual units of source code,
+{\Large Unit testing is a method by which individual units of source code,
 sets of one or more computer program modules together with associated control
 data, usage procedures, and operating procedures, are tested to determine if
 they are fit for use}
@@ -140,15 +140,19 @@ they are fit for use}
 % ---------------------------------------------
 \begin{frame}[fragile]{doctest example}
 
+
 \begin{verbatim}
-def get(self):
-    """ get() -> return TestClass's associated value.
-    >>> x = _TestClass(-42)
-    >>> print x.get()
-    -42
+def get_the_answer():
     """
-    return self.val
+    get_the_answer() -> return the answer to everything
+    
+    >>> print get_the_answer()
+    42
+    """
+    return 42
 \end{verbatim}
+
+(\verb|code/the_answer.py|)
 
 \vfill
 {\Large An exact dump of the command line output}
@@ -270,7 +274,7 @@ if __name__ == "__main__":
 {\LARGE￼\verb|pep8.py|}
 
 \vfill
-{\Large tells you when you have code which doesn't follow PEP 8}
+{\Large Tells you when you have code which doesn't follow PEP 8}
 
 \vfill
 \begin{verbatim}
@@ -303,21 +307,6 @@ pip install pep8
 
 \end{itemize}
 
-\end{frame}
-
-%-------------------------------
-\begin{frame}{Lightning Talk}
-
-{\centering
-
-\vfill
-{\LARGE Lightning Talk:  }
-
-\vfill
-{\Huge Chris}
-
-\vfill
-}
 \end{frame}
 
 \section{Unit Testing}
@@ -912,6 +901,21 @@ profile_dump%
 \end{frame} 
 
 % ---------------------------------------------
+\begin{frame}[fragile]{``Run Snake Run''}
+
+\vfill
+{\Large For a visual look at your profiling resluts:}
+
+\vfill
+\url{http://www.vrplumber.com/programming/runsnakerun/}
+
+\vfill
+(pretty cool stuff!)
+
+\end{frame} 
+
+
+% ---------------------------------------------
 \begin{frame}[fragile]{performance tips}
 
 \vfill
@@ -942,6 +946,22 @@ profile_dump%
 
 \end{frame}
 
+\section{Package Structure}
+
+%-------------------------------
+\begin{frame}[fragile]{Package Structure}
+
+\vfill
+{\Large You'll want to set up your project with good package structure}
+
+\vfill
+{\Large \verb|python setup.py develop|}
+
+\vfill
+
+\url{http://guide.python-distribute.org/}
+
+\end{frame}
 
 
 %-------------------------------
@@ -963,27 +983,54 @@ profile_dump%
 \begin{frame}[fragile]{Next Week:}
 
 \vfill
-{\Large Votes are in:}
+{\LARGE The python debugger pdb
 
 \vfill
-{\Large 4 votes for persistence: 0 for Extending with C}
+{\Large  -- Jeff}
 
 \vfill
-{\LARGE Persistence it is}
+{\Large And of course, your projects...}
 
 \vfill
 
 \end{frame}
 
+\begin{frame}[fragile]{Package Structure}
+
+\begin{itemize}
+    \item Set up package structure
+    \item Profile your class project
+    \item Use timeit to test the slowest part of the code
+    \item See if you can make it faster
+\end{itemize}
+
+\end{frame}
 
 %-------------------------------
 \begin{frame}[fragile]{Homework}
 
+For the entire quarter, your homework is to work on your projects
+
+For next week:
+
 \begin{itemize}
-    \item Write some unit tests for your class project
-    \item Profile your class project
-    \item Use timeit to test the slowest part of the code
-    \item See if you can make it faster
+    \item Set up the package structure
+    \item Put it in gitHub (or some RCS)
+    \item Map out the design
+    \item Determine major third party packages you will need.
+    \item Write a few unit tests (even if they all fail!)
+\end{itemize}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Project Time!}
+
+\begin{itemize}
+    \item Do you have a project? 
+    \item Do you have a team?
+    \item Do you know what modules you'll need?
+    \item Let's get to work!
 \end{itemize}
 
 \end{frame}
