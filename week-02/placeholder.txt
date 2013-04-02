@@ -1,1 +1,4 @@
-Slides are at https://docs.google.com/presentation/d/1BNrdSU1fcYsMhCy-Zi0Opf7WSnPZTtiVFwop8F1gSQY/pub?start=false&loop=false&delayms=3000
+Slides on pdb, the python debugger, are at https://docs.google.com/presentation/d/1BNrdSU1fcYsMhCy-Zi0Opf7WSnPZTtiVFwop8F1gSQY/pub?start=false&loop=false&delayms=3000
+The slides on lambda functions are at https://docs.google.com/presentation/d/1GMMrDXzYFMFRn9ufrVUGb0vSBGO7VkV6GLAdu46CVzA/pub?start=false&loop=false&delayms=3000
+
+
