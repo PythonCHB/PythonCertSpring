@@ -1,0 +1,7 @@
+The Challenge:
+
+Write a function that returns a list of n functions, such that each one, when called, will return the input value, incremented by an increaseing number.
+
+not clear? here's what you should get:
+
+the_list = function_builder(4)

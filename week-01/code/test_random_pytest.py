@@ -15,7 +15,7 @@ def test_shuffle():
     random.shuffle(seq)
     seq.sort()
     print "seq:", seq
-    assert seq == range(10)
+    assert seq == range(8)
 
 def test_shuffle_immutable():
     pytest.raises(TypeError, random.shuffle,  (1,2,3) )

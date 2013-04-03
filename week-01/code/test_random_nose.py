@@ -13,6 +13,7 @@ def test_shuffle():
     # make sure the shuffled sequence does not lose any elements
     random.shuffle(seq)
     seq.sort()
+    print seq
     assert seq == range(10)
 
 @nose.tools.raises(TypeError)
