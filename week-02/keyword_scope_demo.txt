@@ -1,0 +1,44 @@
+# we define a variable in the global scope
+In [28]: a = 5
+
+# use that variable in a fucntion
+In [29]: def add(x):
+   ....:     return x + a
+
+# call the function -- a is used.
+In [30]: add(3)
+Out[30]: 8
+
+# change a
+In [31]: a = 12
+
+# now what?
+In [32]: add(3)
+Out[32]: 15
+# the new a is used
+
+# but what if I don't want the results to depend on what a gets re-set to.
+# but I don't want a constant, either.
+
+# set a keyword argument:
+In [34]: def add(x, a=a):
+    return x + a
+   ....: 
+
+# try it:
+In [35]: add(3)
+Out[35]: 15
+# it used the last a value
+
+# reset a
+In [36]: a = 100
+
+# try it
+In [37]: add(3)
+Out[37]: 15
+
+# still using that earlier value!
+
+## Lesson: the keyword arguments are evaluted _when the function is defined_, NOT when it is called.
+
+
