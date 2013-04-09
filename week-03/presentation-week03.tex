@@ -495,6 +495,123 @@ For a low-level look:\\
 \section{Advanced-OO}
 
 % ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What happens when a class instance is created?}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __init__(self, arg1, arg2):
+        self.arg1 = arg1
+        self.arg2 = arg2
+        .....
+\end{verbatim}
+\vfill
+
+\begin{itemize}
+  \item A new instance is created
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What if you need to do something before creation?}
+
+\vfill
+{\Large Enter: \verb|__new__|}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return cls()
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\large \verb|__new__| is a static method -- but it must be called with a class object as the first argument. And it should return a class instance: }
+
+\vfill
+\begin{verbatim}
+class Class(superclass):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return superclass.__new__(cls)
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large When would  you need to use it:}
+
+\begin{itemize}
+  \item subclassing an immutable type:\\
+   -- It's too late to change it once you get to \verb|__init__|
+
+  \item When \verb|__init__| not called:
+  \begin{itemize}
+    \item unpickling
+    \item copying
+  \end{itemize}
+
+  {\large You may need to put some code in \verb|__new__| to make sure things go right} 
+
+\end{itemize}
+
+\vfill
+{\large More detail here:}
+\url{http://www.python.org/download/releases/2.2/descrintro/#__new__}
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\large Demo: \verb|code/__new__/new_example.py|}
+
+\vfill
+{\Large Write a subclass of int that will always be an even number: round the input to the closest even number}
+
+\vfill
+{\large \verb|code/__new__/even_int.py|}
+
+\vfill
+\end{frame}
+
+
+% ---------------------------------------------
 \begin{frame}[fragile]{multiple inheritance}
 
 {\Large Multiple inheritance:\\
@@ -632,8 +749,11 @@ also, what if we had a bunch of references to superclass?
 \vfill
 {\LARGE Relational databases, SQL}
 
-\vfill
 {\Large  -- Jeff}
+
+\vfill
+{\Large  If we have time: super() and  metaclasses}
+
 
 \vfill
 {\Large And of course, your projects...}
