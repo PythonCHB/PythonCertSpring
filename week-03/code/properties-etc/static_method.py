@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 
 """
-examples of static and class methods
+examples of a static method
 """
 
 class C(object):
 
-    def a_static_method(a, b):
+    @staticmethod
+    def add(a, b):
         print "in a_static_method"
         return a+b
-    a_static_method = staticmethod(a_static_method)
     
 if __name__ == "__main__":
 
-    print C.a_static_method(3,4)
+    # called from the class object
+    print C.add(3,4)
     
+    # called  from a class instance
     c = C()
-    
-    print c.a_static_method(4,5)
+    print c.add(4,5)
     
     

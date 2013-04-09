@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import math
-
 import pytest
 
 """
@@ -13,8 +11,8 @@ designed to be run with py.test
 
 """
 
-from circle_properties import Circle
-#from circle_properties_solution import Circle
+#from circle_properties import Circle
+from circle_properties_solution import Circle
 
 
 def test_basic():
@@ -90,7 +88,4 @@ def test_from_diameter():
     c = Circle.from_diameter(6.0)
     assert c.radius == 3.0
 
-def test_circumference():
-    c = Circle.circumference(3.0)
-    assert c == math.pi * 3.0**2
 

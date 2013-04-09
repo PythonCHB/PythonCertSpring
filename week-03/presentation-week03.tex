@@ -50,12 +50,17 @@
 \vfill
 \small{
 \begin{verbatim}
->>> print "%f, %f"%(fp, complex)
-------------------------------------------
-NameError                                 
+In [85]: fp, complex
+Out[85]: (3.14, (3+4j))
+
+In [86]: print "%f, %f"%(fp, complex)
+--------------------------------------------
+TypeError          Traceback (most recent call last)
+<ipython-input-86-a9786f6eb207> in <module>()
 ----> 1 print "%f, %f"%(fp, complex)
 
-NameError: name 'fp' is not defined
+TypeError: float argument required, not complex
+
 \end{verbatim}
 }
 
@@ -81,6 +86,30 @@ NameError: name 'fp' is not defined
 If not, open: \verb'code\link_to_lambda_slides.html'
 
 \end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\Large When are keyword arguments defined?}
+
+\vfill
+{\large (demo in iPython notebook)}
+
+\vfill
+\begin{itemize}
+  \item Write a function that returns a list of n functions,
+such that each one, when called, will return the input value,
+incremented by an increaseing number.
+
+  \item you should use a for loop, lambda, and a keyword argument
+\end{itemize}
+
+\vfill
+\verb|code/lambda_keyword.py| \\
+\verb|code/test_lambda_keyword.py| \\
+
+\end{frame}
+
 
 \section{Decorators}
 
@@ -146,120 +175,6 @@ g = f(g)
 
 \end{frame} 
 
-% ---------------------------------------------
-\begin{frame}[fragile]{Decorators}
-
-{\LARGE demo:
-
-\vfill
-\begin{verbatim}
-code\decorators\DecoratorDemo.py
-\end{verbatim}
-
-}
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{Decorator  examples}
-
-{\LARGE Examples from the stdlib:}
-
-\vfill
-{\Large Does this structure:}
-
-\vfill
-\begin{verbatim}
-def g:
-    pass
-g = f(g)
-\end{verbatim}
-
-\vfill
-
-{\Large look familiar ?}
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{Decorator examples}
-
-{\LARGE \verb|staticmethod()|}
-
-\vfill
-\begin{verbatim}
-￼class C(object):
-    def add(a, b):
-        return a + b
-    add = staticmethod(add)
-\end{verbatim}
-
-\vfill
-
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{Decorator examples}
-
-{\LARGE \verb|staticmethod()|}
-
-\vfill
-{\Large Decorator form:}
-\begin{verbatim}
-￼class C(object):
-    @staticmethod
-    def add(a, b):
-        return a + b
-\end{verbatim}
-
-\vfill
-
-{\LARGE ( and \verb|classmethod| )}
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{examples}
-
-{\LARGE \verb|property()|}
-
-\vfill
-\begin{verbatim}
-￼￼class C(object):
-    def __init__(self):
-        self._x = None
-    def getx(self):
-        return self._x
-    def setx(self, value):
-        self._x = value
-    def delx(self):
-        del self._x
-    x = property(getx, setx, delx,
-                 "I'm the 'x' property.")
-\end{verbatim}
-
-\vfill
-becomes...
-\end{frame} 
-
-% ---------------------------------------------
-\begin{frame}[fragile]{Decorator examples}
-
-\begin{verbatim}
-class C(object):
-    def __init__(self):
-        self._x = None
-    @property
-    def x(self):
-        return self._x
-    @x.setter
-    def x(self, value):
-        self._x = value
-    @x.deleter
-    def x(self):
-        del self._x
-\end{verbatim}
-
-\vfill
-Puts the info close to where it is used
-\end{frame} 
 
 % ---------------------------------------------
 \begin{frame}[fragile]{examples}
@@ -300,29 +215,34 @@ so you don't need to think about what your view is returning...
 
 \end{frame} 
 
-
 % ---------------------------------------------
-\begin{frame}[fragile]{decorators...}
+\begin{frame}[fragile]{Writing Decorators}
 
-{\Large For this class:}
-
-\vfill
-{\Large Mostly want to you to know how to use decorators that someone else has written}
+{\LARGE But how to you write one?}
 
 \vfill
-{\Large Have a basic idea what they do when you do use them}
+{\Large
+demo in iPython notebook
 
 \vfill
-{\large A nice intro (and talks about closures...):}\\
+\begin{verbatim}
+code\decorators\DecoratorDemo.py
+\end{verbatim}
+}
+
+\vfill
+{\large For more detail: (and talks about closures...):}\\
+
 \url{http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/}
 
 \end{frame} 
+
 
 %-------------------------------
 \begin{frame}[fragile]{LAB}
 
 \begin{itemize}
-  \item Write a decorator that can be used to wrap any function that returns a string in a \verb|<p>| element -- auto-generation of simple html.\\
+  \item Write a decorator that can be used to wrap any function that returns a string in a \verb|<p>| element -- auto-generation of simple html.
  (\verb|p_wrapper.py|)      
 
   \item Try using a class to make a decorator that will wrap a
@@ -339,9 +259,6 @@ so you don't need to think about what your view is returning...
 
 \end{frame}
 
-
-
-\section{Advanced-OO}
 
 \section{Properties}
 
@@ -380,14 +297,13 @@ In [8]: c.x = 8
 
 
 \begin{frame}[fragile]{Getter and Setters?}
-
 \begin{verbatim}
 class C(object):
     def get_x(self):
         return self.x
     def set_x(self, x):
         self.x = x
->>> c = C()
+>>> c = C(5)
 >>> c.get_x()
 >>> 5
 >>> c.set_x(8)
@@ -418,66 +334,90 @@ class C(object):
 (\verb|properties_sample.py| )
 \end{frame} 
 
-
 \begin{frame}[fragile]{properties}
 
-{ \Large When (and if) you need them: }
+{ \Large Properties with decorator syntax: }
 
 \begin{verbatim}
 class C(object):
-    def getx(self):
+    @property
+    def x(self):
         return self._x
-    def setx(self, value):
+    @x.setter
+    def x(self, value):
         self._x = value
-    def delx(self):
+    @x.deleter    
+    def x(self):
         del self._x
-    x = property(getx, setx, delx, "docstring")
 \end{verbatim}
 {\Large Interface is still like simple attribute access}
-(\verb|properties_sample.py| )
+(\verb|properties_dec_sample.py| )
+\end{frame} 
+
+
+
+\begin{frame}[fragile]{staticmethod}
+
+{ \Large A method that doesn't get self: }
+
+\begin{verbatim}
+class C(object):
+    @staticmethod
+    def add(a, b):
+        return a + b
+\end{verbatim}
+
+\vfill
+{\Large When you don't need self -- function doesn't need any data from the instance}
+
+\vfill
+{\Large Used when it makes logical sense to group things in a class namespace}
+
 \end{frame} 
 
 \begin{frame}[fragile]{staticmethod}
 
-{ \Large A method that doesn't get self! }
+{ \Large Can be called from either the class object or an instance }
 
 \begin{verbatim}
-class C(object):
-    def add(a, b):
-        return a + b
-    add = staticmethod(add)
->>> C.add(3,4)
+>>> type(C)
+type
+>>>C.add(3,4)
+in a_static_method
 7
->>> c = C()
->>> c.add(2, 2)
-4
+>>> type(c)
+__main__.C
+>>> c.add(2,3)
+in a_static_method
+5
 \end{verbatim}
-{\Large When you don't need self -- can be used from either an instance or the class itself}
+
+
 
 \vfill
-see: \verb|static_method.py|
+see: \verb|properties-etc/static_method.py|
 \end{frame} 
+
 
 \begin{frame}[fragile]{classmethod}
 
-{ \Large Method gets the class object, rather than an instance the first argument}
+{ \Large Method gets the class object, rather than an instance, as the first argument:}
 
 \begin{verbatim}
 class C(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    def a_class_method(klass, y):
+    @classmethod
+    def a_class_method(cls, x):
         print "in a_class_method", klass
-        return klass( y, y**2 )
-    a_class_method = classmethod(a_class_method)
+        return cls( x, x**2 )
 \end{verbatim}
-{\Large When you need the class object rather than an instance -- plays well with subclassing}
-\vfill
-see: \verb|class_method.py|
+{\Large When you need the class object rather than an instance}
+
 \end{frame} 
 
-\begin{frame}[fragile]{dict.fromkeys()}
+\begin{frame}[fragile]{classmethod}
 
 { \Large \verb|classmethod| often used for alternate constructors:}
 
@@ -492,6 +432,9 @@ sequence element #0 to a sequence
 {1: None, 2: None, 3: None}
 \end{verbatim}
 
+{\Large -- plays well with subclassing}
+\vfill
+see: \verb|properties-etc/class_method.py|
 \end{frame} 
 
 \begin{frame}[fragile]{dict.fromkeys()}
@@ -516,6 +459,110 @@ For a low-level look:\\
 
 \end{frame} 
 
+
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+\begin{itemize}
+  \item Write a \verb|Circle| class with decorator syntax for properties:
+  \begin{itemize}
+  \item instantiate with a radius: \verb|c = Circle(4)|
+  \item use a property for the diameter: get and settable:\\
+        \verb|d = c.diameter| \\
+        \verb|c.diameter = 5|
+  \item use a property for the area: only gettable\\
+        \verb|a = c.area| \\
+        \verb|a.area = 5 => AttributeError|
+  \end{itemize}
+  
+  \item add a \verb|classmethod| for an alternate contructor:\\
+     \verb|c = Circle.from_diameter(d)|
+
+  \item add a \verb|staticmethod| that computes the circumference of a circle from the radius:\\
+     \verb|circ = Circle.circumference(r)|
+
+
+\end{itemize}
+
+
+\vfill
+(\verb|circle_properties.py| and \verb|test_circle_properties.py|)
+
+\end{frame}
+
+
+\section{Advanced-OO}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+{\Large Multiple inheritance:\\
+\hspace{0.2in} Pulling from more than one class}
+
+\vfill
+\begin{verbatim}
+class Combined(Super1, Super2, Super3):
+    def __init__(self, something, something else):
+        Super1.__init__(self, ......)        
+        Super2.__init__(self, ......)        
+        Super3.__init__(self, ......)        
+\end{verbatim}
+(calls to the super class \verb|__init__| are optional -- case dependent)
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+\vfill
+{\Large Method Resolution Order -- left to right}
+
+\begin{enumerate}
+  \item Is it an instance attribute ?
+  \item Is it a class attribute ?
+  \item Is it a superclass attribute ?
+  \begin{enumerate}
+     \item is the it an attribute of the left-most superclass?
+     \item is the it an attribute of the next superclass?
+     \item ....
+  \end{enumerate}
+  \item Is it a super-superclass attribute ?
+  \item ...also left to right...
+\end{enumerate}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{mix-ins}
+
+{\Large Why would you want to do this?}
+
+\vfill
+{\Large Hierarchies are not always simple:}
+\vfill
+\begin{itemize}
+  \item Animal
+  \begin{itemize}
+    \item Mammal
+    \begin{itemize}
+      \item GiveBirth()
+    \end{itemize}
+    \item Bird
+    \begin{itemize}
+      \item LayEggs()
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\vfill
+{\Large Where do you put a Platypus or an Armadillo?}
+
+\vfill
+{\Large Real World Example: \verb|FloatCanvas|}
+\end{frame} 
+
+
+%--------------------------------
 \begin{frame}[fragile]{super}
 
 {\Large getting the superclass:}
@@ -552,30 +599,10 @@ also, what if we had a bunch of references to superclass?
 {\Large ``super() considered super!'' by Raymond Hettinger }
 \vfill
 \url{http://rhettinger.wordpress.com/2011/05/26/super-considered-super/}
-\vfill
- maybe use super() for your html subclassing...
 \end{frame} 
 
 
-%-------------------------------
-\begin{frame}[fragile]{LAB}
 
-\begin{itemize}
-  \item Write a \verb|Circle| class with decorator syntax for properties:
-  \begin{itemize}
-  \item instantiate with a radius: \verb|c = Circle(4)|
-  \item use a property for the diameter: get and settable:\\
-        \verb|d = c.diameter| \\
-        \verb|c.diameter = 5|
-  \item use a property for the area: only gettable\\
-        \verb|a = c.area| \\
-        \verb|a.area = 5 => AttributeError|
-  \end{itemize}
-        (\verb|circle_properties.py| and \verb|test_circle_properties.py|)
-  \vspace{0.5in}
-\end{itemize}
-
-\end{frame}
 
 %\section{Initializing classes}
 
@@ -590,7 +617,7 @@ also, what if we had a bunch of references to superclass?
 \begin{frame}[fragile]{Wrap up}
 
 \vfill
-{\Large A better understanding of the underpinnings of OO in Python?}
+{\Large Some nifty features of OO in Python}
 
 \vfill
 {\Large Do you see a use for any of this in your projects?}

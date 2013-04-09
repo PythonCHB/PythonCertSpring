@@ -8,15 +8,15 @@ class C(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        
-    def a_class_method(klass, y):
+    
+    @classmethod
+    def a_class_method(cls, x):
         print "in a_class_method", klass
-        return klass( y, y**2 )
-    a_class_method = classmethod(a_class_method)
+        return cls( x, x**2 )
 
+#plays well with subclassing:
 class C2(C):
     pass
-    
     
 if __name__ == "__main__":
 

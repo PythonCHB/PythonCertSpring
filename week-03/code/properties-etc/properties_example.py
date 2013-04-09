@@ -15,7 +15,9 @@ class C(object):
     x = property(getx, setx, delx, "docstring")
 
 if __name__ == "__main__":
-    c = C
+    c = C()
     c.x = 5
     print c.x
-    
+    c.x = 3
+    print c.x
+

@@ -11,7 +11,15 @@ import math
 class Circle(object):
     def __init__(self, radius):
         self.radius = radius
+
+    @classmethod
+    def from_diameter(cls, diameter):
+        return cls(diameter/2.0)
     
+    @staticmethod
+    def circumference(radius):
+        return math.pi*radius*radius
+
     @property
     def diameter(self):
         return self.radius * 2
