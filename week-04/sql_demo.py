@@ -8,13 +8,13 @@
 # tables CONTAINS records
 # records CONTAINS fields
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a422994179d76e2bafb29a8f2803b368fb5fcfe8
 import datetime
 import sys
 import string
+# Import either sqlite3 or MySQL making the decision at runtime via command line argument
+# import sqlite3 as sql
+# import MySQLdb as sql
+
 
 def print_users_by_state(state):
     cursor.execute("""SELECT first_name, last_name, city, state FROM customer where state="%s";"""%state)
