@@ -11,6 +11,10 @@
 import datetime
 import sys
 import string
+# Import either sqlite3 or MySQL making the decision at runtime via command line argument
+# import sqlite3 as sql
+# import MySQLdb as sql
+
 
 def print_users_by_state(state):
     cursor.execute("""SELECT first_name, last_name, city, state FROM customer where state="%s";"""%state)
