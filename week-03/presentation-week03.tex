@@ -1,0 +1,778 @@
+\documentclass{beamer}
+%\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+\title[Python Certificate: System Development]{Week 3: Advanced OO and Special Topics}
+\author{Christopher Barker}
+\institute{UW Continuing Education}
+\date{March 26, 2013}
+
+\usepackage{listings}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ---------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------
+\begin{frame}
+\frametitle{Table of Contents}
+%\tableofcontents[currentsection]
+  \tableofcontents
+\end{frame}
+
+
+\begin{frame}[fragile]{A diversion...}
+
+\Large{A number of you are already using \verb|iPython|}
+
+\vfill
+\Large{It's a very useful tool}
+
+\vfill
+\Large{And the \verb|iPython| notebook is even cooler .. paticularly for in-class demos.}
+
+\vfill
+\Large{So I'll use it some today:}
+
+\vfill
+\url{http://ipython.org/ipython-doc/dev/interactive/htmlnotebook.html}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{String formating...}
+
+\Large{A handy note about something that came up in last week's debugging excercise:}
+
+\vfill
+\small{
+\begin{verbatim}
+In [85]: fp, complex
+Out[85]: (3.14, (3+4j))
+
+In [86]: print "%f, %f"%(fp, complex)
+--------------------------------------------
+TypeError          Traceback (most recent call last)
+<ipython-input-86-a9786f6eb207> in <module>()
+----> 1 print "%f, %f"%(fp, complex)
+
+TypeError: float argument required, not complex
+
+\end{verbatim}
+}
+
+\vfill
+\large{(Demo in the iPython notebook...)}
+
+\end{frame}
+
+
+\section{lambda}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{lambda}
+
+\vfill
+\Large{We didn't get to it last class, so let's do it now:}
+
+\vfill
+\url{https://docs.google.com/presentation/d/1GMMrDXzYFMFRn9ufrVUGb0vSBGO7VkV6GLAdu46CVzA/pub?start=false&loop=false&delayms=3000}
+
+(that should be clickable...)
+\vfill
+If not, open: \verb'code\link_to_lambda_slides.html'
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\Large When are keyword arguments defined?}
+
+\vfill
+{\large (demo in iPython notebook)}
+
+\vfill
+\begin{itemize}
+  \item Write a function that returns a list of n functions,
+such that each one, when called, will return the input value,
+incremented by an increaseing number.
+
+  \item you should use a for loop, lambda, and a keyword argument
+\end{itemize}
+
+\vfill
+\verb|code/lambda_keyword.py| \\
+\verb|code/test_lambda_keyword.py| \\
+
+\end{frame}
+
+
+\section{Decorators}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Decorators}
+
+{\LARGE Decorators are wrappers around functions}
+
+\vfill
+{\LARGE They let you add code before and after the execution of a function}
+
+\vfill
+{\LARGE Creating a custom version of that function}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Decorators}
+
+{\LARGE Syntax:}
+
+\vfill
+\begin{verbatim}
+@logged
+def add(a, b):
+    """add() adds things"""
+    return a + b
+\end{verbatim}
+
+\vfill
+{\Large Demo and Motivation: \\
+ \verb|code\decorators\basicmath.py| }
+
+\vfill
+PEP: \url{http://www.python.org/dev/peps/pep-0318/}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Decorators}
+
+{\LARGE \verb|@| decorator operator is an abbreviation:}
+
+\vfill
+\begin{verbatim}
+@f
+def g:
+    pass
+\end{verbatim}
+
+\vfill
+same as
+
+\vfill
+\begin{verbatim}
+def g:
+    pass
+g = f(g)
+\end{verbatim}
+
+\vfill
+{\Large ``Syntactic Sugar'' -- but really quite nice}
+
+\end{frame} 
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{examples}
+
+{\LARGE CherryPy}
+
+\vfill
+\begin{verbatim}
+import cherrypy
+class HelloWorld(object):
+    @cherrypy.expose
+    def index(self):
+        return "Hello World!"
+cherrypy.quickstart(HelloWorld())
+\end{verbatim}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{examples}
+
+{\LARGE Pyramid}
+
+\vfill
+\begin{verbatim}
+
+@template
+def A_view_function(request)
+   .....
+@json
+def A_view_function(request)
+   ......
+
+
+\end{verbatim}
+
+so you don't need to think about what your view is returning...
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Writing Decorators}
+
+{\LARGE But how to you write one?}
+
+\vfill
+{\Large
+demo in iPython notebook
+
+\vfill
+\begin{verbatim}
+code\decorators\DecoratorDemo.py
+\end{verbatim}
+}
+
+\vfill
+{\large For more detail: (and talks about closures...):}\\
+
+\url{http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/}
+
+\end{frame} 
+
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+\begin{itemize}
+  \item Write a decorator that can be used to wrap any function that returns a string in a \verb|<p>| element -- auto-generation of simple html.
+ (\verb|p_wrapper.py|)      
+
+  \item Try using a class to make a decorator that will wrap a
+   specified tag around a function that returns a string:
+   \begin{verbatim}
+   @tag_wrapper('h1')
+   def func2(x, y=4, z=2):
+       return "the sum of %s and %s and %s is %s"%(x, y, z, x+y+z)
+
+   >>> print func2(3,4)
+   <h1>the sum of 3 and 4 and 2 is 9</h1>
+   \end{verbatim}
+\end{itemize}
+
+\end{frame}
+
+
+\section{Properties}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Accessing Attributes}
+
+{\Large One of the strengths of Python is lack of clutter}
+
+\vfill
+{\Large Simple attributes:}
+
+\begin{verbatim}
+In [5]: class C(object):
+        def __init__(self):
+                self.x = 5
+In [6]: c = C()
+In [7]: c.x
+Out[7]: 5
+In [8]: c.x = 8
+\end{verbatim}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Getter and Setters?}
+
+{\Large What if you need to add behavior later?}
+
+\begin{itemize}
+  \item do some calculation
+  \item check data validity
+  \item keep things in sync
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Getter and Setters?}
+\begin{verbatim}
+class C(object):
+    def get_x(self):
+        return self.x
+    def set_x(self, x):
+        self.x = x
+>>> c = C(5)
+>>> c.get_x()
+>>> 5
+>>> c.set_x(8)
+>>> c.get_x()
+>>> 8
+\end{verbatim}
+{\Large Ugly and verbose -- Java?}
+
+\url{http://dirtsimple.org/2004/12/python-is-not-java.html}
+
+\end{frame} 
+
+\begin{frame}[fragile]{properties}
+
+{ \Large When (and if) you need them: }
+
+\begin{verbatim}
+class C(object):
+    def getx(self):
+        return self._x
+    def setx(self, value):
+        self._x = value
+    def delx(self):
+        del self._x
+    x = property(getx, setx, delx, "docstring")
+\end{verbatim}
+{\Large Interface is still like simple attribute access}
+(\verb|properties_sample.py| )
+\end{frame} 
+
+\begin{frame}[fragile]{properties}
+
+{ \Large Properties with decorator syntax: }
+
+\begin{verbatim}
+class C(object):
+    @property
+    def x(self):
+        return self._x
+    @x.setter
+    def x(self, value):
+        self._x = value
+    @x.deleter    
+    def x(self):
+        del self._x
+\end{verbatim}
+{\Large Interface is still like simple attribute access}
+(\verb|properties_dec_sample.py| )
+\end{frame} 
+
+
+
+\begin{frame}[fragile]{staticmethod}
+
+{ \Large A method that doesn't get self: }
+
+\begin{verbatim}
+class C(object):
+    @staticmethod
+    def add(a, b):
+        return a + b
+\end{verbatim}
+
+\vfill
+{\Large When you don't need self -- function doesn't need any data from the instance}
+
+\vfill
+{\Large Used when it makes logical sense to group things in a class namespace}
+
+\end{frame} 
+
+\begin{frame}[fragile]{staticmethod}
+
+{ \Large Can be called from either the class object or an instance }
+
+\begin{verbatim}
+>>> type(C)
+type
+>>>C.add(3,4)
+in a_static_method
+7
+>>> type(c)
+__main__.C
+>>> c.add(2,3)
+in a_static_method
+5
+\end{verbatim}
+
+
+
+\vfill
+see: \verb|properties-etc/static_method.py|
+\end{frame} 
+
+
+\begin{frame}[fragile]{classmethod}
+
+{ \Large Method gets the class object, rather than an instance, as the first argument:}
+
+\begin{verbatim}
+class C(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    @classmethod
+    def a_class_method(cls, x):
+        print "in a_class_method", klass
+        return cls( x, x**2 )
+\end{verbatim}
+{\Large When you need the class object rather than an instance}
+
+\end{frame} 
+
+\begin{frame}[fragile]{classmethod}
+
+{ \Large \verb|classmethod| often used for alternate constructors:}
+
+\begin{verbatim}
+>>> d = dict([1,2,3])
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot convert dictionary update
+sequence element #0 to a sequence
+>>> d = dict.fromkeys([1,2,3])
+>>> d
+{1: None, 2: None, 3: None}
+\end{verbatim}
+
+{\Large -- plays well with subclassing}
+\vfill
+see: \verb|properties-etc/class_method.py|
+\end{frame} 
+
+\begin{frame}[fragile]{dict.fromkeys()}
+
+\begin{verbatim}
+￼class Dict: ...
+    def fromkeys(klass, iterable, value=None):
+        "Emulate dict_fromkeys() in dictobject.c"
+        d = klass()
+        for key in iterable:
+            d[key] = value
+        return d
+    fromkeys = classmethod(fromkeys)
+\end{verbatim}
+
+\vfill
+{\Large See also datetime.datetime.now(), etc....}
+
+\vfill
+For a low-level look:\\
+\url{http://docs.python.org/howto/descriptor.html}
+
+\end{frame} 
+
+
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+\begin{itemize}
+  \item Write a \verb|Circle| class with decorator syntax for properties:
+  \begin{itemize}
+  \item instantiate with a radius: \verb|c = Circle(4)|
+  \item use a property for the diameter: get and settable:\\
+        \verb|d = c.diameter| \\
+        \verb|c.diameter = 5|
+  \item use a property for the area: only gettable\\
+        \verb|a = c.area| \\
+        \verb|a.area = 5 => AttributeError|
+  \end{itemize}
+  
+  \item add a \verb|classmethod| for an alternate contructor:\\
+     \verb|c = Circle.from_diameter(d)|
+
+  \item add a \verb|staticmethod| that computes the circumference of a circle from the radius:\\
+     \verb|circ = Circle.circumference(r)|
+
+
+\end{itemize}
+
+
+\vfill
+(\verb|circle_properties.py| and \verb|test_circle_properties.py|)
+
+\end{frame}
+
+
+\section{Advanced-OO}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What happens when a class instance is created?}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __init__(self, arg1, arg2):
+        self.arg1 = arg1
+        self.arg2 = arg2
+        .....
+\end{verbatim}
+\vfill
+
+\begin{itemize}
+  \item A new instance is created
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What if you need to do something before creation?}
+
+\vfill
+{\Large Enter: \verb|__new__|}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return cls()
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\large \verb|__new__| is a static method -- but it must be called with a class object as the first argument. And it should return a class instance: }
+
+\vfill
+\begin{verbatim}
+class Class(superclass):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return superclass.__new__(cls)
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large When would  you need to use it:}
+
+\begin{itemize}
+  \item subclassing an immutable type:\\
+   -- It's too late to change it once you get to \verb|__init__|
+
+  \item When \verb|__init__| not called:
+  \begin{itemize}
+    \item unpickling
+    \item copying
+  \end{itemize}
+
+  {\large You may need to put some code in \verb|__new__| to make sure things go right} 
+
+\end{itemize}
+
+\vfill
+{\large More detail here:}
+\url{http://www.python.org/download/releases/2.2/descrintro/#__new__}
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\large Demo: \verb|code/__new__/new_example.py|}
+
+\vfill
+{\Large Write a subclass of int that will always be an even number: round the input to the closest even number}
+
+\vfill
+{\large \verb|code/__new__/even_int.py|}
+
+\vfill
+\end{frame}
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+{\Large Multiple inheritance:\\
+\hspace{0.2in} Pulling from more than one class}
+
+\vfill
+\begin{verbatim}
+class Combined(Super1, Super2, Super3):
+    def __init__(self, something, something else):
+        Super1.__init__(self, ......)        
+        Super2.__init__(self, ......)        
+        Super3.__init__(self, ......)        
+\end{verbatim}
+(calls to the super class \verb|__init__| are optional -- case dependent)
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+\vfill
+{\Large Method Resolution Order -- left to right}
+
+\begin{enumerate}
+  \item Is it an instance attribute ?
+  \item Is it a class attribute ?
+  \item Is it a superclass attribute ?
+  \begin{enumerate}
+     \item is the it an attribute of the left-most superclass?
+     \item is the it an attribute of the next superclass?
+     \item ....
+  \end{enumerate}
+  \item Is it a super-superclass attribute ?
+  \item ...also left to right...
+\end{enumerate}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{mix-ins}
+
+{\Large Why would you want to do this?}
+
+\vfill
+{\Large Hierarchies are not always simple:}
+\vfill
+\begin{itemize}
+  \item Animal
+  \begin{itemize}
+    \item Mammal
+    \begin{itemize}
+      \item GiveBirth()
+    \end{itemize}
+    \item Bird
+    \begin{itemize}
+      \item LayEggs()
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\vfill
+{\Large Where do you put a Platypus or an Armadillo?}
+
+\vfill
+{\Large Real World Example: \verb|FloatCanvas|}
+\end{frame} 
+
+
+%--------------------------------
+\begin{frame}[fragile]{super}
+
+{\Large getting the superclass:}
+\begin{verbatim}
+￼class SafeVehicle(Vehicle):
+    """
+    Safe Vehicle subclass of Vehicle base class...
+    """
+    def __init__(self, position=0, velocity=0, icon='S'):
+        Vehicle.__init__(self, position, velocity, icon)
+\end{verbatim}
+
+{\Large
+\vfill
+not DRY
+\vfill
+also, what if we had a bunch of references to superclass?
+}
+\end{frame} 
+
+\begin{frame}[fragile]{super}
+
+{\Large getting the superclass:}
+\begin{verbatim}
+￼class SafeVehicle(Vehicle):
+    """
+    Safe Vehicle subclass of Vehicle base class
+    """
+    def __init__(self, position=0, velocity=0, icon='S'):
+        super(SafeVehicle, self).__init__(position, velocity, icon)
+\end{verbatim}
+
+\vfill
+{\Large ``super() considered super!'' by Raymond Hettinger }
+\vfill
+\url{http://rhettinger.wordpress.com/2011/05/26/super-considered-super/}
+\end{frame} 
+
+
+
+
+%\section{Initializing classes}
+
+%\section{super()}
+
+%\section{mix-ins}
+
+%\section{meta-classes}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Wrap up}
+
+\vfill
+{\Large Some nifty features of OO in Python}
+
+\vfill
+{\Large Do you see a use for any of this in your projects?}
+
+\vfill
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Next Week:}
+
+\vfill
+{\LARGE Relational databases, SQL}
+
+{\Large  -- Jeff}
+
+\vfill
+{\Large  If we have time: super() and  metaclasses}
+
+
+\vfill
+{\Large And of course, your projects...}
+
+\vfill
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Project Time!}
+
+\begin{itemize}
+    \item Have you got your structure in place? 
+    \item Are your goals clear?
+    \item Anyone want a public code review?
+    \item Let's get to work!
+\end{itemize}
+
+\end{frame}
+
+\end{document}
+ 

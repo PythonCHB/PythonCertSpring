@@ -4,7 +4,8 @@
 unit tests for the lambda_keyword excercise
 """
 
-from lambda_keyword_solution import function_builder
+from lambda_keyword import function_builder
+#from lambda_keyword_solution import function_builder
 
 def test_length():
 	"""

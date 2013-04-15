@@ -11,6 +11,19 @@ def func():
 
 func()
 
+Advanced:
+
+Try using a class to make a decorator that will wrap a
+specified tag around a function that returns a string -- i.e:
+
+@tag_wrapper('h1')
+def func2(x, y=4, z=2):
+    return "the sum of %s and %s and %s is %s"%(x, y, z, x+y+z)
+
+>>> print func2(3,4)
+<h1>the sum of 3 and 4 and 2 is 9</h1>
+
+
 """
 
 # the simple decorator
@@ -20,6 +33,8 @@ def p_wrapper(f):
     fill in decorator here
     """
     pass
+
+
 
 # give it a try:
 if __name__ == "__main__":
@@ -61,4 +76,19 @@ if __name__ == "__main__":
     print func2(3)
     print func2(3, 5)
     print func2(3, 5, 7)
+
+
+    # ## and try the class version:
+
+    # @tag_wrapper('h1')
+    # def func2(x, y=4, z=2):
+    #     return "the sum of %s and %s and %s is %s"%(x, y, z, x+y+z)
+
+    # print func2(3,4)
+
+    # @tag_wrapper('div')
+    # def func2(x, y=4, z=2):
+    #     return "the sum of %s and %s and %s is %s"%(x, y, z, x+y+z)
+
+    # print func2(5,6,7)
 
