@@ -86,6 +86,8 @@ def update_database( new_city, new_state, zipcode, customer_number ) :
         raise
     else :
         print "The update succeeded"
+    finally :  
+        connection.commit()
 
 
 
@@ -107,6 +109,9 @@ This version is better because it sanitizes the input customer_number"""
         raise
     else :
         print "The update succeeded"
+    finally :  
+        connection.commit()
+
 
 def update_database_even_better ( new_city, new_state, zipcode, customer_number ) :
     """This subroutine does an even better job of updating the database than update_database_better
@@ -124,6 +129,8 @@ because it checks all arguments"""
         raise
     else :
         print "The update succeeded"
+    finally :  
+        connection.commit()
 
 
 def sql_str_arg_filter( s ) :
@@ -148,21 +155,28 @@ it raises ValueError.  The subroutine always returns None"""
     r = re.search(licit_match_set, z, flags=0 )
     if r==None :
         raise ValueError
-
-argv1 = str.lower(sys.argv[1])
-if argv1 == "sqlite3" :
-    import sqlite3 as sql
-    connection = sql.connect('business.db')
-elif argv1 == "mysql" :
-    import MySQLdb as sql
-    DB = 'business'
-    (host, user, password ) = get_credentials(DB)
-    connection = sql.connect(host=host, user=user, passwd=password, db=DB)
-else :
+def usage():
     print "Usage is \npython %s sqlite3\nor\npython %s mysql\n" % ( sys.argv[0],
-                                                                    sys.argv[0] )
+                                                                        sys.argv[0] )
+    prunt "Append 'evil' if you want to see an SQL injection attack"
     sys.exit(1)
-    
+
+if len(sys.argv>1):
+    argv1 = str.lower(sys.argv[1])
+    if argv1 == "sqlite3" :
+        import sqlite3 as sql
+        connection = sql.connect('business.db')
+    elif argv1 == "mysql" :
+        import MySQLdb as sql
+        DB = 'business'
+# Credentials are stored in a file under the control of the sysadmin.  The application developer
+# can't see the system passwords.  The sysadmin can't see the code.
+        (host, user, password ) = get_credentials(DB)
+        connection = sql.connect(host=host, user=user, passwd=password, db=DB)
+    else :
+        usage()
+else:
+    usage()
 cursor = connection.cursor()
 
 # Since we are starting from scratch, delete the table if it already exists.
