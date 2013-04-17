@@ -158,10 +158,10 @@ it raises ValueError.  The subroutine always returns None"""
 def usage():
     print "Usage is \npython %s sqlite3\nor\npython %s mysql\n" % ( sys.argv[0],
                                                                         sys.argv[0] )
-    prunt "Append 'evil' if you want to see an SQL injection attack"
+    print "Append 'evil' if you want to see an SQL injection attack"
     sys.exit(1)
 
-if len(sys.argv>1):
+if len(sys.argv)>1:
     argv1 = str.lower(sys.argv[1])
     if argv1 == "sqlite3" :
         import sqlite3 as sql
