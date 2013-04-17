@@ -12,6 +12,7 @@ import datetime
 import sys
 import string
 # Import either sqlite3 or MySQL making the decision at runtime via command line argument
+
 # import sqlite3 as sql
 # import MySQLdb as sql
 
@@ -160,6 +161,7 @@ def usage():
                                                                         sys.argv[0] )
     print "Append 'evil' if you want to see an SQL injection attack"
     sys.exit(1)
+
 
 if len(sys.argv)>1:
     argv1 = str.lower(sys.argv[1])

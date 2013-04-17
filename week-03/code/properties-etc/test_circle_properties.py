@@ -92,5 +92,4 @@ def test_from_diameter():
 
 def test_circumference():
     c = Circle.circumference(3.0)
-    assert c == math.pi * 3.0**2
-
+    assert c == math.pi * 3.0 * 2

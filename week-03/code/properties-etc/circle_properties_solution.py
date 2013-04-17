@@ -18,7 +18,7 @@ class Circle(object):
     
     @staticmethod
     def circumference(radius):
-        return math.pi*radius*radius
+        return math.pi * 2 * radius
 
     @property
     def diameter(self):
