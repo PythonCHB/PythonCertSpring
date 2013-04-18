@@ -33,6 +33,7 @@ unpredictable"""
 def test_persistence ( r_server, save=True ):
     # Generate a random string, and see if it is preserved across database calls    
     value = str(random.random())
+    print "value is %s" % value
 
     r_server.set('foo', value)
     if save :
@@ -51,6 +52,7 @@ def test_persistence ( r_server, save=True ):
         except redis.exceptions.ConnectionError:
             print "The daemon isn't accepting connections yet - wait"
         else:
+            print "results of the get is %s" % results
             break
     assert results == value, """The value was *not* preserved across daemon
 restarts.  save is %s""" % str(save)
