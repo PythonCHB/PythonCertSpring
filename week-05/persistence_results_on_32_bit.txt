@@ -1,0 +1,19 @@
+jeffs@jeffs-Latitude-D620 ~/PythonCDB/week-05 $ redis-server --version
+Redis server v=2.6.10 sha=00000000:0 malloc=jemalloc-3.2.0 bits=32
+jeffs@jeffs-Latitude-D620 ~/PythonCDB/week-05 $ sudo python test_redis_persistence.py 
+value is 0.337110851943
+Shutting down the server after saving state
+Stopping redis-server: redis-server.
+Starting redis-server: redis-server.
+Waiting for the daemon to start
+results of the get is 0.337110851943
+The value was preserved across daemon restart. save is True
+value is 0.358144326697
+Shutting down the server without saving state first
+Stopping redis-server: redis-server.
+Starting redis-server: redis-server.
+Waiting for the daemon to start
+results of the get is 0.358144326697
+The value was preserved across daemon restart. save is False
+jeffs@jeffs-Latitude-D620 ~/PythonCDB/week-05 $ md5sum /etc/redis/redis.conf
+1da5e8e7dbb36488d6380222cbd053d7  /etc/redis/redis.conf
