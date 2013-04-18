@@ -1,0 +1,20 @@
+jeffs@jeffs-desktop:~/python/teaching$ redis-server --version
+Redis server v=2.6.10 sha=00000000:0 malloc=jemalloc-3.2.0 bits=64
+jeffs@jeffs-desktop:~/python/teaching$ sudo python test_redis_persistence.py
+value is 0.280306238938
+Shutting down the server after saving state
+Stopping redis-server: redis-server.
+Starting redis-server: redis-server.
+Waiting for the daemon to start
+results of the get is 0.280306238938
+The value was preserved across daemon restart. save is True
+value is 0.0186679373777
+Shutting down the server without saving state first
+Stopping redis-server: redis-server.
+Starting redis-server: redis-server.
+Waiting for the daemon to start
+results of the get is 0.280306238938
+The value was not persisted when the state of the database was not saved
+jeffs@jeffs-desktop:~/python/teaching$ md5sum /etc/redis/redis.conf 
+1da5e8e7dbb36488d6380222cbd053d7  /etc/redis/redis.conf
+jeffs@jeffs-desktop:~/python/teaching$ 
