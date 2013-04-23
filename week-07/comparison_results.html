@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <title>Multithreading vs. Multiprocessing execution times comparison</title>
+  </head>
+  <body>
+    <h1>Comparison of performance using multithreaded vs multiprocessing<br>
+    </h1>
+    <table border="1" cellpadding="2" cellspacing="2" width="100%">
+      <tbody>
+        <tr>
+          <td valign="top"># of iterations<br>
+          </td>
+          <td valign="top">execution time (seconds) threaded<br>
+          </td>
+          <td valign="top">execution time (seconds) multiprocesses<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">200000000<br>
+          </td>
+          <td valign="top">42.1</td>
+          <td valign="top">7.74</td>
+        </tr>
+        <tr>
+          <td valign="top">400000000</td>
+          <td valign="top">56.2</td>
+          <td valign="top">15.6<br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">700000000<br>
+          </td>
+          <td valign="top">69.3</td>
+          <td valign="top">26.5</td>
+        </tr>
+        <tr>
+          <td valign="top">1300000000 (single threaded)<br>
+          </td>
+          <td valign="top">49.3<br>
+          </td>
+          <td valign="top">48.7<br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <pre>jeffs@jeffs-desktop:~/PythonCertSpring/week-07$ python mtrun3.py <br>starting at: Tue Apr 23 15:23:51 2013<br>start loop 0 at: Tue Apr 23 15:23:51 2013<br>start loop 1start loop 2 at: Tue Apr 23 15:23:51 2013
+&nbsp;at: Tue Apr 23 15:23:51 2013<br>loop 1 done at: Tue Apr 23 15:24:33 2013 Elapsed time is 42.105129 seconds<br>loop 0 done at: Tue Apr 23 15:24:47 2013 Elapsed time is 56.186746 seconds<br>loop 2 done at: Tue Apr 23 15:25:00 2013 Elapsed time is 69.339135 seconds<br>all DONE at: Tue Apr 23 15:25:00 2013 Elapsed time is 69.345841 seconds<br>start a single thread at: Tue Apr 23 15:25:00 2013 PID is&nbsp; 7906<br>done at: Tue Apr 23 15:25:49 2013 elapsed time is 49.341978 seconds<br>jeffs@jeffs-desktop:~/PythonCertSpring/week-07$ python mprun3.py <br>starting at: Tue Apr 23 15:28:15 2013 PID is 7923<br>start loop 0 at: Tue Apr 23 15:28:15 2013 PID is&nbsp; 7924<br>start loop 1 at: Tue Apr 23 15:28:15 2013 PID is&nbsp; 7925<br>start loop 2 at: Tue Apr 23 15:28:15 2013 PID is&nbsp; 7926<br>loop 1 done at: Tue Apr 23 15:28:23 2013 Elapsed time is 7.737115 seconds<br>loop 0 done at: Tue Apr 23 15:28:31 2013 Elapsed time is 15.584738 seconds<br>loop 2 done at: Tue Apr 23 15:28:42 2013 Elapsed time is 26.527979 seconds<br>Multiprocessing all DONE at: Tue Apr 23 15:28:42 2013 elapsed time is 26.530449 seconds<br>start a single process at: Tue Apr 23 15:28:42 2013 PID is&nbsp; 7923<br>done at: Tue Apr 23 15:29:30 2013 elapsed time is 48.690228 seconds<br>jeffs@jeffs-desktop:~/PythonCertSpring/week-07$ </pre>
+    <br>
+  </body>
+</html>
