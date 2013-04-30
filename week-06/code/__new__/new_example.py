@@ -31,3 +31,10 @@ class CapitalString(str):
         print "in CapitalString.__new__"
         return str.__new__(cls, in_string.title() )
 
+# try it:
+if __name__ == "__main__":
+    print CapitalString("this is a string")
+
+
+
+

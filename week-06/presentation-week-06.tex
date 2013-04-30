@@ -1,0 +1,599 @@
+\documentclass{beamer}
+%\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+\title[Python Certificate: System Development]{Week 6: Advanced OO -- Numpy}
+\author{Christopher Barker}
+\institute{UW Continuing Education}
+\date{April  30, 2013}
+
+\usepackage{listings}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ---------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------
+\begin{frame}
+\frametitle{Table of Contents}
+%\tableofcontents[currentsection]
+  \tableofcontents
+\end{frame}
+
+
+\begin{frame}[fragile]{Some updates:}
+
+\Large{Some folks have asked to learn about Desktop GUIs}
+
+\vfill
+\Large{And the class is smaller than it may have been}
+
+\vfill
+\Large{So: week 9 will be Desktop GUIS with wxPython}
+
+\vfill
+\Large{And we'll do all the student presentations on week 10: May 28th}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{BlueBox VMs}
+
+\Large{Does anyone still need their BlueBox VMs?}
+
+
+\vfill
+\large{ ( Conor and Tyler, you're all set) }
+
+\end{frame}
+
+\section{Advanced-OO}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What happens when a class instance is created?}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __init__(self, arg1, arg2):
+        self.arg1 = arg1
+        self.arg2 = arg2
+        .....
+\end{verbatim}
+\vfill
+
+\begin{itemize}
+  \item A new instance is created
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What if you need to do something before creation?}
+
+\vfill
+{\Large Enter: \verb|__new__|}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return cls()
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\large \verb|__new__| is a static method -- but it must be called with a class object as the first argument. And it should return a class instance: }
+
+\vfill
+\begin{verbatim}
+class Class(superclass):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return superclass.__new__(cls)
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large When would  you need to use it:}
+
+\begin{itemize}
+  \item subclassing an immutable type:\\
+   -- It's too late to change it once you get to \verb|__init__|
+
+  \item When \verb|__init__| not called:
+  \begin{itemize}
+    \item unpickling
+    \item copying
+  \end{itemize}
+
+  {\large You may need to put some code in \verb|__new__| to make sure things go right} 
+
+\end{itemize}
+
+\vfill
+{\large More detail here:}
+\url{http://www.python.org/download/releases/2.2/descrintro/#__new__}
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\large Demo: \verb|code/__new__/new_example.py|}
+
+\vfill
+{\Large Write a subclass of int that will always be an even number: round the input to the closest even number}
+
+\vfill
+{\large \verb|code/__new__/even_int.py|}
+
+\vfill
+\end{frame}
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+{\Large Multiple inheritance:\\
+\hspace{0.2in} Pulling from more than one class}
+
+\vfill
+\begin{verbatim}
+class Combined(Super1, Super2, Super3):
+    def __init__(self, something, something else):
+        Super1.__init__(self, ......)        
+        Super2.__init__(self, ......)        
+        Super3.__init__(self, ......)        
+\end{verbatim}
+(calls to the super classes \verb|__init__| are optional -- case dependent)
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+\vfill
+{\Large Method Resolution Order -- left to right}
+
+\begin{enumerate}
+  \item Is it an instance attribute ?
+  \item Is it a class attribute ?
+  \item Is it a superclass attribute ?
+  \begin{enumerate}
+     \item is it an attribute of the left-most superclass?
+     \item is it an attribute of the next superclass?
+     \item ....
+  \end{enumerate}
+  \item Is it a super-superclass attribute ?
+  \item ...also left to right...
+\end{enumerate}
+
+\vfill
+{\large ( This can get complicated...more on that later...)}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{mix-ins}
+
+{\Large Why would you want to do this?}
+
+\vfill
+{\Large Hierarchies are not always simple:}
+\vfill
+\begin{itemize}
+  \item Animal
+  \begin{itemize}
+    \item Mammal
+    \begin{itemize}
+      \item GiveBirth()
+    \end{itemize}
+    \item Bird
+    \begin{itemize}
+      \item LayEggs()
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\vfill
+{\Large Where do you put a Platypus or an Armadillo?}
+
+\vfill
+{\Large Real World Example: \verb|wxPython FloatCanvas|}
+\end{frame} 
+
+
+%--------------------------------
+\begin{frame}[fragile]{super}
+
+{\Large getting the superclass:}
+\begin{verbatim}
+￼class SafeVehicle(Vehicle):
+    """
+    Safe Vehicle subclass of Vehicle base class...
+    """
+    def __init__(self, position=0, velocity=0, icon='S'):
+        Vehicle.__init__(self, position, velocity, icon)
+\end{verbatim}
+
+{\Large
+\vfill
+not DRY
+\vfill
+also, what if we had a bunch of references to superclass?
+}
+\end{frame} 
+
+\begin{frame}[fragile]{super}
+
+{\Large getting the superclass:}
+\begin{verbatim}
+￼class SafeVehicle(Vehicle):
+    """
+    Safe Vehicle subclass of Vehicle base class
+    """
+    def __init__(self, position=0, velocity=0, icon='S'):
+        super(SafeVehicle, self).__init__(position, velocity, icon)
+\end{verbatim}
+
+\vfill
+{\Large but super is about more than just DRY...}
+
+\vfill
+{\Large Remember the method resolution order?}
+\end{frame} 
+
+
+\begin{frame}[fragile]{What does super() do?}
+
+\vfill
+{\Large \verb|super| returns a \\
+``proxy object that delegates method calls''}
+
+\vfill
+{\Large It's not returning the object itself -- but you can call methods on it}
+
+\vfill
+{\Large It runs through the method resolution order (MRO) to find the method you call.}
+
+\vfill
+{\Large Key point: the MRO is determined \emph{at run time} }
+
+\vfill
+\url{http://docs.python.org/2/library/functions.html#super}
+
+\end{frame} 
+
+\begin{frame}[fragile]{What does super() do?}
+
+\vfill
+{\Large Not the same as calling one superclass method...}
+
+\vfill
+{\Large \verb|super()| will call all the sibling superclass methods}
+
+\begin{verbatim}
+class D(C, B, A):
+    def __init__(self):
+       super(D, self).__init__()
+\end{verbatim}
+same as
+\begin{verbatim}
+class D(C, B, A):
+    def __init__(self):
+       C.__init__()
+       B.__init__()
+       A.__init__()
+\end{verbatim}
+
+{\Large you may not want that...}
+
+\end{frame} 
+
+
+
+\begin{frame}[fragile]{super}
+
+{\Large Two seminal articles about \verb|super()|:}
+
+\vfill
+{\LARGE ``Super Considered Harmful''}\\[0.1in]
+{\Large \hspace{0.5in}-- James Knight }
+
+\vfill
+\url{https://fuhm.net/super-harmful/}
+
+
+\vfill
+{\LARGE ``super() considered super!''}\\[0.1in]
+{\Large  \hspace{0.5in}--  Raymond Hettinger }
+
+\vfill
+\url{http://rhettinger.wordpress.com/2011/05/26/super-considered-super/}
+\vfill
+
+{\large (Both worth reading....)}
+\end{frame} 
+
+\begin{frame}[fragile]{super issues...}
+
+{\Large Both actually say similar things:}
+
+\begin{itemize}
+  \item The method being called by super() needs to exist
+  \item Every occurrence of the method needs to use super():\\
+        Use it consistently, and document that you use it, as it is part of the external interface for your class, like it or not.
+  \item The caller and callee need to have a matching argument signature:
+  \begin{itemize}
+     \item Never call super with anything but the exact arguments you received, unless you really know what you're doing.
+     \item When you use it on methods whose acceptable arguments can be altered on a subclass via addition of more optional arguments, always accept *args, **kwargs, and call super like \verb|super(MyClass, self).method(args_declared, *args, **kwargs)|.
+  \end{itemize}
+
+\end{itemize}
+
+\end{frame} 
+
+%\section{meta-classes}
+
+%-------------------------------
+\begin{frame}[fragile]{Wrap Up}
+
+{\LARGE Thinking OO in Python:}
+
+\vfill
+{\large Think about what makes sense for your code:}
+\begin{itemize}
+  \item {\large Code re-use}
+  \item {\large Clean APIs}
+  \item {\large ... }
+\end{itemize}
+
+\vfill
+{\large Don't be a slave to what OO is \emph{supposed} to look like. }
+
+\vfill
+{\large Let OO work for you, not \emph{create} work for you}
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Wrap Up}
+
+{\Large OO in Python:}
+
+\vfill
+{\Large The Art of Subclassing}: Raymond Hettinger
+
+\vfill
+{\small \url{http://pyvideo.org/video/879/the-art-of-subclassing}}
+
+\vfill
+''classes are for code re-use -- not creating taxonomies''
+
+\vfill
+{\Large Stop Writing Classes}: Jack Diederich
+
+\vfill
+{\small \url{http://pyvideo.org/video/880/stop-writing-classes}}
+
+\vfill
+``If your class has only two methods -- and one of them is \verb|__init__|
+-- you don't need a class ''
+\end{frame}
+
+
+\section{numpy}
+
+%---------------------------
+\begin{frame}[fragile]{numpy}
+
+\vfill
+\begin{center}
+{\LARGE numpy}
+
+\vfill
+{\Large Not just for lots of numbers!\\[0.1in]
+(but it's great for that!)}
+\end{center}
+\vfill
+\url{http://www.numpy.org/}
+\end{frame} 
+
+
+\begin{frame}[fragile]{what is numpy?}
+
+{\Large An N-Dimensional array object}
+
+\vfill
+{\Large A whole pile of tools for operations on/with that object.}
+
+\vfill
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Why numpy?}
+
+{\Large Classic answer: Lots of numbers}
+
+\vfill
+\begin{itemize}
+  \item Faster
+  \item Less memory
+  \item More data types
+\end{itemize}
+
+\vfill
+{\Large Even if you don't have lot of numbers:}
+\begin{itemize}
+  \item N-d array slicing
+  \item Vector operations
+  \item Flexible data types
+\end{itemize}
+
+\end{frame} 
+
+% %----------------------------------
+\begin{frame}[fragile]{why numpy?}
+
+{\Large Wrapper for a block of memory:}
+
+\begin{itemize}
+  \item Interfacing with C libs
+  \item PyOpenGL
+  \item GDAL
+  \item NetCDF4
+  \item Shapely
+\end{itemize}
+
+{\Large Image processing:}
+\begin{itemize}
+  \item PIL
+  \item WxImage
+  \item ndimage
+\end{itemize}
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Whatis an nd array?}
+\begin{itemize}
+  \item N-dimensional (up to 32!)
+  \item Homogeneous array:
+  \begin{itemize}
+    \item Every element is the same type\\
+          (but that type can be a pyObject)
+    \item Int, float, char -- more exotic types
+  \end{itemize}
+  \item ``rank'' – number of dimensions
+  \item Strided data:
+  \begin{itemize}
+    \item Describes how to index into block of memory
+    \item PEP 3118 -- Revising the buffer protocol
+  \end{itemize}
+\end{itemize}
+
+\vfill
+{\large demo: \verb|structure.py|}
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Built-in Data Types}
+
+\begin{itemize}
+  \item Signed and unsigned Integers\\
+        8, 16, 32, 64 bits
+  \item Floating Point\\
+        32, 64, 96, 128 bits (not all platforms)
+  \item Complex\\
+        64, 128, 192, 256 bits
+  \item String and unicode\\
+        Static length 
+  \item Bool \\
+        8 bit
+  \item Python Object \\
+        Really a pointer
+\end{itemize}
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Compund dtypes}
+
+\begin{itemize}
+  \item Can define any combination of other types \\
+        Still Homogenous:  Array of structs.
+  \item Can name the fields
+  \item Can be like a database table
+  \item Useful for reading binary data
+\end{itemize}
+
+\vfill
+{\Large ---demo---}
+
+\end{frame} 
+
+% %----------------------------------
+% \begin{frame}[fragile]{numpy}
+
+% \end{frame} 
+
+% %----------------------------------
+% \begin{frame}[fragile]{numpy}
+
+% \end{frame} 
+
+% %----------------------------------
+% \begin{frame}[fragile]{numpy}
+
+% \end{frame} 
+
+% %----------------------------------
+% \begin{frame}[fragile]{numpy}
+
+% \end{frame} 
+
+% %----------------------------------
+% \begin{frame}[fragile]{numpy}
+
+% \end{frame} 
+
+
+
+%-------------------------------
+\begin{frame}[fragile]{Next Week:}
+
+\vfill
+{\LARGE Threading / Multiprocessing}\\[0.2in]
+{\Large  \hspace{0.5in} -- Jeff}
+
+
+\vfill
+{\Large And of course, your projects...}
+
+\vfill
+
+\end{frame}
+
+
+\end{document}
+ 

@@ -2,13 +2,18 @@
 
 """
 Using new to create an always-positive even integer
+
+rounds the input to the nearest even integer.
+
+will even convert a string to an int...
+
 """
 
 ##subclassing an int
 
 class EvenInt(int):
     """
-    A string class that is always capitalized...
+    An integer that is always even
     """
     def __new__(cls, val):
         print "in EvenInt.__new__", val

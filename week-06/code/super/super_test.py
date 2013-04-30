@@ -33,3 +33,6 @@ print s_a
 s_b = super(B, d)
 print s_b
 
+print D.__mro__
+
+

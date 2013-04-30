@@ -2,6 +2,11 @@
 
 """
 Using new to create an always-positive even integer
+
+rounds the input to the nearest even integer.
+
+will even convert a string to an int...
+
 """
 
 ##subclassing an int
