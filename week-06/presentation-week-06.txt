@@ -1,0 +1,336 @@
+\documentclass{beamer}
+%\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+\title[Python Certificate: System Development]{Week 6: Advanced OO -- Numpy}
+\author{Christopher Barker}
+\institute{UW Continuing Education}
+\date{April  30, 2013}
+
+\usepackage{listings}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ---------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------
+\begin{frame}
+\frametitle{Table of Contents}
+%\tableofcontents[currentsection]
+  \tableofcontents
+\end{frame}
+
+
+\begin{frame}[fragile]{Some updates:}
+
+\Large{Some folks have asked to learn about Desktop GUIs}
+
+\vfill
+\Large{And the class is smaller than it may have been}
+
+\vfill
+\Large{So: week 9 will be Desktop GUIS with wxPython}
+
+\vfill
+\Large{And we'll do all the student presentations on week 10: May 28th}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{BlueBox VMs}
+
+\Large{Does anyone still need their BlueBox VMs?}
+
+
+\vfill
+\large{ ( Conor and Tyler, you're all set) }
+
+\end{frame}
+
+\section{Advanced-OO}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What happens when a class instance is created?}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __init__(self, arg1, arg2):
+        self.arg1 = arg1
+        self.arg2 = arg2
+        .....
+\end{verbatim}
+\vfill
+
+\begin{itemize}
+  \item A new instance is created
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large What if you need to do something before creation?}
+
+\vfill
+{\Large Enter: \verb|__new__|}
+
+\vfill
+\begin{verbatim}
+class Class(object):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return cls()
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\large \verb|__new__| is a static method -- but it must be called with a class object as the first argument. And it should return a class instance: }
+
+\vfill
+\begin{verbatim}
+class Class(superclass):
+    def __new__(cls, arg1, arg2):
+        some_code_here
+        return superclass.__new__(cls)
+        .....
+\end{verbatim}
+
+\vfill
+\begin{itemize}
+  \item \verb|__new__| is called: it returns a new instance
+  \item The code in \verb|__new__| is run to pre-initialize
+  \item \verb|__init__| is called
+  \item The code in \verb|__init__| is run to initialize the instance
+\end{itemize}
+\vfill
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{class creation}
+
+{\Large When would  you need to use it:}
+
+\begin{itemize}
+  \item subclassing an immutable type:\\
+   -- It's too late to change it once you get to \verb|__init__|
+
+  \item When \verb|__init__| not called:
+  \begin{itemize}
+    \item unpickling
+    \item copying
+  \end{itemize}
+
+  {\large You may need to put some code in \verb|__new__| to make sure things go right} 
+
+\end{itemize}
+
+\vfill
+{\large More detail here:}
+\url{http://www.python.org/download/releases/2.2/descrintro/#__new__}
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\large Demo: \verb|code/__new__/new_example.py|}
+
+\vfill
+{\Large Write a subclass of int that will always be an even number: round the input to the closest even number}
+
+\vfill
+{\large \verb|code/__new__/even_int.py|}
+
+\vfill
+\end{frame}
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+{\Large Multiple inheritance:\\
+\hspace{0.2in} Pulling from more than one class}
+
+\vfill
+\begin{verbatim}
+class Combined(Super1, Super2, Super3):
+    def __init__(self, something, something else):
+        Super1.__init__(self, ......)        
+        Super2.__init__(self, ......)        
+        Super3.__init__(self, ......)        
+\end{verbatim}
+(calls to the super class \verb|__init__| are optional -- case dependent)
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{multiple inheritance}
+
+\vfill
+{\Large Method Resolution Order -- left to right}
+
+\begin{enumerate}
+  \item Is it an instance attribute ?
+  \item Is it a class attribute ?
+  \item Is it a superclass attribute ?
+  \begin{enumerate}
+     \item is the it an attribute of the left-most superclass?
+     \item is the it an attribute of the next superclass?
+     \item ....
+  \end{enumerate}
+  \item Is it a super-superclass attribute ?
+  \item ...also left to right...
+\end{enumerate}
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{mix-ins}
+
+{\Large Why would you want to do this?}
+
+\vfill
+{\Large Hierarchies are not always simple:}
+\vfill
+\begin{itemize}
+  \item Animal
+  \begin{itemize}
+    \item Mammal
+    \begin{itemize}
+      \item GiveBirth()
+    \end{itemize}
+    \item Bird
+    \begin{itemize}
+      \item LayEggs()
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\vfill
+{\Large Where do you put a Platypus or an Armadillo?}
+
+\vfill
+{\Large Real World Example: \verb|FloatCanvas|}
+\end{frame} 
+
+
+%--------------------------------
+\begin{frame}[fragile]{super}
+
+{\Large getting the superclass:}
+\begin{verbatim}
+￼class SafeVehicle(Vehicle):
+    """
+    Safe Vehicle subclass of Vehicle base class...
+    """
+    def __init__(self, position=0, velocity=0, icon='S'):
+        Vehicle.__init__(self, position, velocity, icon)
+\end{verbatim}
+
+{\Large
+\vfill
+not DRY
+\vfill
+also, what if we had a bunch of references to superclass?
+}
+\end{frame} 
+
+\begin{frame}[fragile]{super}
+
+{\Large getting the superclass:}
+\begin{verbatim}
+￼class SafeVehicle(Vehicle):
+    """
+    Safe Vehicle subclass of Vehicle base class
+    """
+    def __init__(self, position=0, velocity=0, icon='S'):
+        super(SafeVehicle, self).__init__(position, velocity, icon)
+\end{verbatim}
+
+\vfill
+{\Large ``super() considered super!'' by Raymond Hettinger }
+\vfill
+\url{http://rhettinger.wordpress.com/2011/05/26/super-considered-super/}
+\end{frame} 
+
+
+
+
+%\section{Initializing classes}
+
+%\section{super()}
+
+%\section{mix-ins}
+
+%\section{meta-classes}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Wrap up}
+
+\vfill
+{\Large Some nifty features of OO in Python}
+
+\vfill
+{\Large Do you see a use for any of this in your projects?}
+
+\vfill
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Next Week:}
+
+\vfill
+{\LARGE Relational databases, SQL}
+
+{\Large  -- Jeff}
+
+\vfill
+{\Large  If we have time: super() and  metaclasses}
+
+
+\vfill
+{\Large And of course, your projects...}
+
+\vfill
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Project Time!}
+
+\begin{itemize}
+    \item Have you got your structure in place? 
+    \item Are your goals clear?
+    \item Anyone want a public code review?
+    \item Let's get to work!
+\end{itemize}
+
+\end{frame}
+
+\end{document}
+ 
