@@ -43,7 +43,7 @@ import random
 import wx
 import numpy as np
 
-class PuzzleGrid:
+class PuzzleGrid(object):
     def __init__(self):
         self.Grid = np.zeros((9,9), np.uint8)
         Boxes = []
@@ -142,7 +142,7 @@ class PuzzleGrid:
         return "".join(msg)
 
 
-class Grid:
+class Grid(object):
     def __init__(self, w, h):
         size = min(w,h)
         self.d = d = (size - 20) / 9
@@ -397,19 +397,21 @@ class MainFrame(wx.Frame):
                           version = "1.0",
                           description="This is a simple Sudoku puzzle program, written in Python, designed to demonstrate some features of the wxPython and numpy packages",
                           urls = ["http://www.seapig.org/SudukoGameBoard",
-                                  "mailto:Chris.Barker@noaa.gov"],
+                                  "mailto:PythonCHB@gmail.com"],
                           licence=licence,
                           developers = ["Chris Barker"])
         dlg.ShowModal()
         dlg.Destroy()
 
         
-## this is a bunch of puzzles I found here:
+## these are a bunch of puzzles I found here:
 ##    http://mapleta.maths.uwa.edu.au/~gordon/sudokumin.php
+##
 ## there are a LOT there, this is just a few of them
 ##
 ## they are licenced under a Creative Commons Attribution 2.5 License.    
 ##    http://creativecommons.org/licenses/by/2.5/
+
 Puzzles = """000000010400000000020000000000050407008000300001090000300400200050100000000806000
 000000010400000000020000000000050604008000300001090000300400200050100000000807000
 000000012000035000000600070700000300000400800100000000000120000080000040050000600
