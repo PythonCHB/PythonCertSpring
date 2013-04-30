@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # basic array methods:
 from start import *
 

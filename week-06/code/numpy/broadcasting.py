@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+
 # intro to broadcasting:
 from start import *
 

@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+
 """
 Yet another Sudoku Puzzle program.
 
-This one does not provide puzzles, nor does it help you solve them.
+This one does not help you solve puzzles.
 
 However, it does display them, and will highlight the appropriate row, column,
 or box if there is an error in the puzzle at any time, as you add numbers, etc.
@@ -20,9 +21,10 @@ The whole puzzle is a 9x9 array
 
 These all share the same memory
 
-  -Chris.Barker@noaa.gov
+  -Chris Barker: PythonCHB@gmail.com
 
 """
+
 licence="""This code is released under the creative commons Public Domain dedication:
 
 I have dedicated this work to the public domain by waiving all of my rights to
@@ -33,6 +35,8 @@ You can copy, modify, distribute and perform the work, even for commercial
 purposes, all without asking permission
 
 http://creativecommons.org/publicdomain/zero/1.0/
+
+(that being said,it would be nice to give me credit where credit is due...)
 """
 
 import random
@@ -57,7 +61,7 @@ class PuzzleGrid:
     
     def Solved(self):
         """
-        returns True is the puzzle is solved, False otherwise
+        returns True if the puzzle is solved, False otherwise
         """
         raise NotImplementedError
     

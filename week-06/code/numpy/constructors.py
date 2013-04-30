@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # data types
 from start import *
 

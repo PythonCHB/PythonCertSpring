@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Object arrays:
 from start import *
 

@@ -539,6 +539,7 @@ class D(C, B, A):
 %----------------------------------
 \begin{frame}[fragile]{Compund dtypes}
 
+{\Large
 \begin{itemize}
   \item Can define any combination of other types \\
         Still Homogenous:  Array of structs.
@@ -546,34 +547,157 @@ class D(C, B, A):
   \item Can be like a database table
   \item Useful for reading binary data
 \end{itemize}
+}
 
 \vfill
-{\Large ---demo---}
+{\Large demo: \verb|dtypes.py|}
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Array Constructors:}
+
+{\Large From scratch:}
+
+\verb|ones(), zeros(), empty(), arange(), linspace(), logspace()|
+
+( Default dtype: np.float64 )
+
+
+\vfill
+{\Large From sequences:}
+
+\verb|array(), asarray()|
+
+( Build from any sequence )
+
+\vfill
+{\Large  From binary data:}
+\verb|fromstring(), frombuffer(), fromfile()|
+
+\vfill
+{\Large Assorted linear algebra standards:}
+\verb|eye(), diag(), etc.| 
+
+\vfill
+{\large demo: \verb|constructors.py|}
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Broadcasting:}
+
+{\Large Element-wise operations among two different rank arrays:}
+
+\vfill
+{\Large Simple case: scalar and array:}
+
+\begin{verbatim}
+In [37]: a
+Out[37]: array([1, 2, 3])
+
+In [38]: a*3
+Out[38]: array([3, 6, 9])
+\end{verbatim}
+
+{\Large Great for functions of more than one variable on a grid}
+
+\vfill
+{\large demo: \verb|broadcasting.py|}
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Working with compiled code:}
+
+{\Large Wrapper around a C pointer to a block of data}
+
+\begin{itemize}
+  \item Some code can't be vectorized
+  \item Interface with existing libraries
+\end{itemize}
+
+\vfill
+{\Large Tools:}
+\begin{itemize}
+  \item C API: you don't want to do that!
+  \item Cython: typed arrays
+  \item Ctypes 
+  \item SWIG: numpy.i 
+  \item Boost: boost array
+  \item f2py
+\end{itemize}
+
+\vfill
+Example of numpy+cython: \url{http://wiki.cython.org/examples/mandelbrot}
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{numpy persistance:}
+
+{\Large \verb|.tofile() / fromfile()|}\\
+ -- Just the raw bytes, no metadata
+
+\vfill
+{\Large pickle }
+
+\vfill
+{\Large \verb|savez()| -- numpy zip format}\\
+Compact: binary dump plus metadata
+
+\vfill
+{\Large netcdf}
+
+\vfill
+{\Large Hdf}
+\begin{itemize}
+  \item Pyhdf
+  \item pytables
+\end{itemize}
+
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Other stuff:}
+
+\begin{itemize}
+  \item Masked arrays
+  \item Memory-mapped files
+  \item Set operations: unique, etc
+  \item Random numbers
+  \item Polynomials
+  \item FFT
+  \item Sorting and searching
+  \item Linear Algebra
+  \item Statistics
+\end{itemize}
+
+{\large (And all of scipy!)}
+
+\end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{numpy docs:}
+
+\url{www.numpy.org}\\
+   -- Numpy reference Downloads, etc
+
+\vfill
+\url{www.scipy.org}\\
+   -- lots of docs
+
+\vfill
+{\large Scipy cookbook}\\
+\url{http://www.scipy.org/Cookbook}
+
+\vfill
+{\large ``The Numpy Book''}\\
+\url{http://www.tramy.us/numpybook.pdf}
+
 
 \end{frame} 
 
 % %----------------------------------
-% \begin{frame}[fragile]{numpy}
-
-% \end{frame} 
-
-% %----------------------------------
-% \begin{frame}[fragile]{numpy}
-
-% \end{frame} 
-
-% %----------------------------------
-% \begin{frame}[fragile]{numpy}
-
-% \end{frame} 
-
-% %----------------------------------
-% \begin{frame}[fragile]{numpy}
-
-% \end{frame} 
-
-% %----------------------------------
-% \begin{frame}[fragile]{numpy}
+% \begin{frame}[fragile]{Other stuff:}
 
 % \end{frame} 
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 script to start up demo for numpy talk
 """

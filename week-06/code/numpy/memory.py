@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 from start import *
 
 print "size of empty list:"
