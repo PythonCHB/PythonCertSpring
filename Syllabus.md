@@ -86,7 +86,7 @@ The python debugger pdb
 ### Week 3
 April 9th
 
-Advanced OO: `__new()__`, `super()`, mixins, meta classes, etc. 
+Special topics: lambda, decorators, properties...
 
 -- Chris
 
@@ -108,7 +108,9 @@ Non relational databases
 ### Week 6
 April 30th
 
-Numerical Computation: numpy, scipy, matplotlib
+Advanced OO: `__new()__`, `super()`, mixins, meta classes, etc. 
+
+Intro to Numerical Computation: numpy (scipy, matplotlib)
 
 -- Chris
 
@@ -128,7 +130,7 @@ Performance / Profiling
 ### Week 9
 May 21st
 
-Student Presentations
+Desktop GUIs: wxPython
 
 -- Jeff and Chris
 
