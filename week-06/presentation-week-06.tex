@@ -46,7 +46,7 @@
 
 
 \vfill
-\large{ ( Conor and Tyler, you're all set) }
+\large{ ( Conor, you're all set) }
 
 \end{frame}
 
@@ -461,6 +461,7 @@ class D(C, B, A):
   \item More data types
 \end{itemize}
 
+
 \vfill
 {\Large Even if you don't have lot of numbers:}
 \begin{itemize}
@@ -494,7 +495,7 @@ class D(C, B, A):
 \end{frame} 
 
 %----------------------------------
-\begin{frame}[fragile]{Whatis an nd array?}
+\begin{frame}[fragile]{What is an nd array?}
 \begin{itemize}
   \item N-dimensional (up to 32!)
   \item Homogeneous array:
@@ -512,7 +513,7 @@ class D(C, B, A):
 \end{itemize}
 
 \vfill
-{\large demo: \verb|structure.py|}
+{\large demos: \verb|memory.py| and \verb|structure.py|}
 
 \end{frame} 
 
@@ -533,6 +534,9 @@ class D(C, B, A):
   \item Python Object \\
         Really a pointer
 \end{itemize}
+
+\vfill
+{\large demo: \verb|object.py|}
 
 \end{frame} 
 
@@ -604,6 +608,30 @@ Out[38]: array([3, 6, 9])
 \vfill
 {\large demo: \verb|broadcasting.py|}
 \end{frame} 
+
+%----------------------------------
+\begin{frame}[fragile]{Slicing -- views:}
+
+{\Large a slice is a ``view'' on the array:\\
+new object, but shares memory:}
+
+\begin{verbatim}
+In [12]: a = np.array((1,2,3,4))
+In [13]: b = a[:]
+# for lists -- [:] means copy -- not for arrays!
+In [15]: a is b
+Out[15]: False
+# it's new array, but...
+In [16]: b[2] = 5
+In [17]: a
+Out[17]: array([1, 2, 5, 4])
+# a and b share data
+\end{verbatim}
+
+\vfill
+{\large demo: \verb|slice.py|}
+\end{frame} 
+
 
 %----------------------------------
 \begin{frame}[fragile]{Working with compiled code:}

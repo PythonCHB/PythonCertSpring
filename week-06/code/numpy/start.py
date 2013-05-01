@@ -7,14 +7,14 @@ script to start up demo for numpy talk
 import numpy as np
 import sys
 
-def print_info(a):
-    print "a:"
+def print_info(a, name="arr"):
+    print name, ":"
     print a
-    print "a.shape:", a.shape
-    print "a.dtype:", a.dtype
-    print "a.itemsize", a.itemsize
-    print "a.ndim:", a.ndim
-    print "a.strides", a.strides
-    print "a.flags:\n", a.flags
+    print "%s.shape:"%name, a.shape
+    print "%s.dtype:"%name, a.dtype
+    print "%s.itemsize"%name, a.itemsize
+    print "%s.ndim:"%name, a.ndim
+    print "%s.strides"%name, a.strides
+    print "%s.flags:\n"%name, a.flags
     
 
