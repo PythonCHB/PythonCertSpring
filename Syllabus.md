@@ -108,9 +108,9 @@ Non relational databases
 ### Week 6
 April 30th
 
-Advanced OO: `__new()__`, `super()`, mixins, meta classes, etc. 
+Advanced OO: `__new()__`, `super()`, mixins, etc. 
 
-Intro to Numerical Computation: numpy (scipy, matplotlib)
+Intro to Numerical Computation: numpy
 
 -- Chris
 
