@@ -43,6 +43,10 @@ def reader(queue, loops):
         sleep(randint(2, 5))
 
 def mutex_print( string ):
+    """If you have multiple threads printing at random, then the output looks
+awful.  Using a lock around a print statement insures that only one thread can
+print at any time.  All other threads that wish to print block when they try to
+acquire the lock, until the thread that blocks the lock releases it"""
     print_lock.acquire()
     print string
     print_lock.release()
