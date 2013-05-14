@@ -20,9 +20,13 @@ class EvenInt(int):
         val = round(float(val) / 2) * 2
         print val
         return int.__new__(cls, val )
-
+        #return int(val)
 
 ## And some tests -- try with py.test or nosetests...
+
+def test_instance1():
+    i = EvenInt(3)
+    assert isinstance(i, EvenInt)
 
 def test_subclass():
     assert issubclass(EvenInt, int)

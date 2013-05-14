@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Using new to create an always-positive even integer
+Using new to create an even integer
 
 rounds the input to the nearest even integer.
 

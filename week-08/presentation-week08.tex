@@ -24,7 +24,7 @@
 \end{frame}
 
 
-\section{Timing}
+\section{Introduction}
 
 % ---------------------------------------------
 \begin{frame}[fragile]{Performance Testing}
@@ -33,6 +33,43 @@
 {\large \hspace{0.5in} -- Donald Knuth}
 
 \end{frame} 
+
+\begin{frame}[fragile]{Optimizing}
+
+{\Large Optimizing procedure:}
+
+\begin{enumerate}
+  \item Get it right.
+  \item Test it's right.
+  \item Profile if slow.
+  \item Optimise (the bits that matter)
+  \item Repeat from 2 (until it's good enough)
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Optimizing}
+
+{\Large Anecdote:}
+
+
+\vfill
+{\large I once optimized a portion of the start-up routine for a oil spill modeling project -- numpy+custom C extensions}
+
+\vfill
+{\large The portion I worked on I sped up by a factor of 100}
+
+\vfill
+{\large That made the start-up time twice as fast}
+
+\vfill
+{\large But the start up took 20 seconds (was 40), and the whole run took hours.}
+
+\vfill
+{\large It was a total waste of my time (though I learned a lot)}
+
+\end{frame}
+
 
 % ---------------------------------------------
 \begin{frame}[fragile]{Profiling/timing}
@@ -47,7 +84,16 @@ when they try to logically determine where the slow code is. (I know I am)}
 \vfill
 {\Large ... and how to speed it up}
 
+\vfill
+{\Large Profiling: finding where the bottlenecks are}
+
+\vfill
+{\Large Timing: Comparing differnet implimentations}
+
 \end{frame} 
+
+
+\section{Timing}
 
 % ---------------------------------------------
 \begin{frame}[fragile]{time.clock()}
@@ -65,7 +111,7 @@ print "It took %f seconds to run"%(time.clock - start)
 {\Large It works, it's easy, and it gives a gross approximation}
 
 \vfill
-(use \verb|time.clock()|, rather than \verb|time.time()|)
+(use \verb|time.clock()|, rather than \verb|time.time()|, unless you want to time netwoek access, etc.)
 
 \end{frame} 
 
@@ -94,10 +140,10 @@ timeit.timeit( statement, setup=some_stuff)
 % ---------------------------------------------
 \begin{frame}[fragile]{\%timeit}
 
-{\Large The easy and good way:}
+{\Large The easy {\bf and} good way:}
 
 \vfill
-{\LARGE \verb|ipython|:}
+{\LARGE \verb|iPython|:}
 \begin{verbatim}
 
 In [52]: import timing
@@ -107,11 +153,29 @@ In [53]: %timeit timing.primes_stupid(5)
 
 \end{verbatim}
 
-{\Large Takes care of the setup/namespace stuff for you}
+{\Large Takes care of the setup/namespace and number of iterations for you}
+
+\vfill
+(demo)
 
 \vfill
 \url{http://ipython.org/ipython-doc/dev/interactive/tutorial.html}
 \end{frame} 
+
+
+% ---------------------------------------------
+\begin{frame}[fragile]{timing}
+
+{\LARGE NOTE:}
+
+\vfill
+{\Large All these timing methods depend a lot on hardware, system load, etc.}
+
+
+\vfill
+{\Large So really only good for relative timing -- comparing one method to another -- on the same machine, under same load.}
+
+\end{frame}
 
 \section{Profiling}
 
@@ -242,7 +306,64 @@ profile_dump%
 
 \end{frame} 
 
+%-------------------------------
+\begin{frame}[fragile]{line profiler}
+
+\vfill
+{\large \verb|$ pip install line_profile|}
+
+\vfill
+{\large decorate the function you want to profile:}
+
+\begin{verbatim}
+@profile
+def primes_stupid(N):
+    ...
+\end{verbatim}
+
+\vfill
+{\large decorate the function you want to profile:}
+
+{\large \verb|$ kernprof.py -l -v line_prof_example.py|}
+
+
+\vfill
+\url{http://pythonhosted.org/line_profiler/}
+
+\vfill
+\url{http://www.huyng.com/posts/python-performance-analysis/}
+
+\end{frame}
+
+
 \section{Performance Tuning}
+
+% ---------------------------------------------
+
+\begin{frame}[fragile]{``big O'' notation}
+
+\vfill
+{\Large Computer scientists describe the efficency of an algorithm in ``big O'' notation.}
+
+\vfill
+{\Large It describes how much longer a algorithm takes as a function of how much data it is working with}
+
+\vfill
+\begin{description}
+  \item[O(1)] time stays the same regardless of how much data (adding to dicts)
+  \item[O(n)] goes up linearly with number of items\\
+              (searching lists)
+  \item[$O(n^2)$] goes up quadratically with number of items\\
+  \item[$O(log(n))$] goes up with the log of how many items\\
+                     (bisection search)
+\end{description}
+
+Choosing the right data structure / algorithm is key.
+
+\url{http://wiki.python.org/moin/TimeComplexity}
+
+\end{frame} 
+
 
 % ---------------------------------------------
 \begin{frame}[fragile]{Performance Tips}
@@ -250,11 +371,71 @@ profile_dump%
 \vfill
 {\Large Some common python performance issues:}
 
+\begin{itemize}
+  \item function calls can be slow(ish) -- sometimes worth in-lining.
+  \item looking up names -- particular global ones:\\
+        can be worth making local copies
+  \item looping: list comps, maps, etc {\bf can} be faster.
+\end{itemize}
+
 \vfill
 \url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips/}
 
 \vfill
 (some nifty profiling tools described there, too)
+
+\end{frame} 
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Memory}
+
+\vfill
+{\LARGE Don't forget memory:}
+
+\vfill
+{\Large Processors are fast}
+
+\vfill
+{\Large It often takes longer to push the memory around than do the computation}
+
+\vfill
+{\Large So keep in in mind for big data sets:}
+\begin{itemize}
+   \item Use efficient data structures: \verb|array.array|, numpy
+   \item use generators, rather than lists: \verb|xrange|, etc.
+   \item only suck in the data you need from datbases, etc.  
+\end{itemize}
+
+
+\vfill
+\url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips/}
+
+and:
+
+\url{http://www.python.org/doc/essays/list2str.html}
+
+\end{frame} 
+
+%-------------------------------
+\begin{frame}[fragile]{for loops redux...}
+
+{\LARGE Are for loops really slow?}
+
+\vfill
+{\Large From Linkedin Discussion:}
+
+\vfill
+{\large For loop is extremely slow}
+
+I retrieved 2 million lines of data from the database (each line has two columns), and i would like to restructure the tuple-format data to a dict,
+
+it's really unacceptable in case i use a for loop, it takes a lot of memory and very very slow.
+
+finally after long time searching for the solution in the network, i replace the for loop with a map + lambda. i think it's hundreds of times faster.
+
+
+\vfill
+demo: \verb|for_loop_test.ipynb|
 
 \end{frame} 
 
@@ -265,7 +446,7 @@ profile_dump%
 \begin{itemize}
   \item run \verb|timeit| on some code of yours (or timing.py, or..)
   \item run iPython's \%timeit on the same code.
-  \item try to make the factorial code in timing.py faster, and time the difference.
+  \item try to make the primes code in timing.py faster, and time the difference.
   \item write some code that tests one of the performance issues in:\\
         {\small \url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips} }\\
         use one of the \verb|timeit|s to see if you can make a difference.

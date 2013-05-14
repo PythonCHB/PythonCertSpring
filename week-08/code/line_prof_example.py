@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 
 """
-timing example
+timing example -- set up for running with line_profiler
+
+$ pip install line_profiler
+
+$ kernprof.py -l -v line_prof_example.py 
+
 """
 
 @profile
@@ -21,16 +26,7 @@ def primes_stupid(N):
 
     return primes
 
-if __name__ == "__main__":
-    # import timeit
-
-
-    # print "running the timer on primes_stupid:"
-    # run_time = timeit.timeit("primes_stupid(100)",
-    #                          setup="from __main__ import primes_stupid",
-    #                          number=500) # default: 1000000
-    # print "it took: %f seconds"%run_time
-    primes_stupid(100)
+primes_stupid(100)
 
 
 
