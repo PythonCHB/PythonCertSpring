@@ -1,4 +1,4 @@
-#!python
+#! /usr/bin/env python
 
 import threading
 from time import sleep, ctime
@@ -7,11 +7,11 @@ loops = [4, 2, 7]
 
 class My_thread ( threading.Thread ):
 	def __init__(self, func, args, name=''):
-                threading.Thread.__init__(self)   # intialize the superclass
+		threading.Thread.__init__(self)
 		self.name = name
 		self.func = func
 		self.args = args
-	
+
 	def run(self):
 		self.func ( *self.args )	
 

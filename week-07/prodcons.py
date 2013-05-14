@@ -44,7 +44,7 @@ nfuncs = range(len(funcs))
 
 def main():
     nloops = randint(8, 20)
-    q = Queue(6)
+    q = Queue(QUEUE_SIZE)
 
     threads = []
     for i in nfuncs:
