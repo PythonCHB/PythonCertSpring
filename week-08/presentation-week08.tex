@@ -88,7 +88,7 @@ when they try to logically determine where the slow code is. (I know I am)}
 {\Large Profiling: finding where the bottlenecks are}
 
 \vfill
-{\Large Timing: Comparing differnet implimentations}
+{\Large Timing: Comparing different implementations}
 
 \end{frame} 
 
@@ -111,7 +111,7 @@ print "It took %f seconds to run"%(time.clock - start)
 {\Large It works, it's easy, and it gives a gross approximation}
 
 \vfill
-(use \verb|time.clock()|, rather than \verb|time.time()|, unless you want to time netwoek access, etc.)
+(use \verb|time.clock()|, rather than \verb|time.time()|, unless you want to time network access, etc.)
 
 \end{frame} 
 
@@ -176,6 +176,23 @@ In [53]: %timeit timing.primes_stupid(5)
 {\Large So really only good for relative timing -- comparing one method to another -- on the same machine, under same load.}
 
 \end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+{\Large Timing Lab}
+\begin{itemize}
+  \item run \verb|timeit| on some code of yours (or timing.py, or..)
+  \item run iPython's \%timeit on the same code.
+  \item try to make the primes code in timing.py faster, and time the difference.
+  \item write some code that tests one of the performance issues in:\\
+        {\small \url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips} }\\
+        use one of the \verb|timeit|s to see if you can make a difference.
+  \item Is string concatenation really slower than building in a list and joining?
+\end{itemize}
+
+\end{frame}
+
 
 \section{Profiling}
 
@@ -444,14 +461,11 @@ demo: \verb|for_loop_test.ipynb|
 
 {\Large Profiling lab}
 \begin{itemize}
-  \item run \verb|timeit| on some code of yours (or timing.py, or..)
-  \item run iPython's \%timeit on the same code.
-  \item try to make the primes code in timing.py faster, and time the difference.
-  \item write some code that tests one of the performance issues in:\\
-        {\small \url{http://wiki.python.org/moin/PythonSpeed/PerformanceTips} }\\
-        use one of the \verb|timeit|s to see if you can make a difference.
   \item try the profile tutorial at:\\
         {\small \url{http://pysnippet.blogspot.com/2009/12/profiling-your-python-code.html} }
+
+  \item run cprofile on your code:\\
+        any surprizes? 
 \end{itemize}
 
 \end{frame}
