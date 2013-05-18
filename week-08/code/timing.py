@@ -4,7 +4,7 @@
 timing example
 """
 
-# @profile
+@profile
 def primes_stupid(N):
     """
     a really simple way to compute the first N prime numbers

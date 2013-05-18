@@ -1,0 +1,163 @@
+\documentclass{beamer}
+%\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+\title[Python Certificate: System Development]{System Development with Python: Week 9}
+\author{Christopher Barker}
+\institute{UW Continuing Education}
+\date{May 21, 2013}
+
+\usepackage{listings}
+\usepackage{hyperref}
+
+\begin{document}
+
+% ---------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------
+\begin{frame}
+\frametitle{Table of Contents}
+%\tableofcontents[currentsection]
+  \tableofcontents
+\end{frame}
+
+
+\section{Introduction}
+
+% ---------------------------------------------
+\begin{frame}[fragile]{Desktop GUIs: wxPython}
+
+{\Large Desktop GUIs}
+
+\vfill
+{\large Traditional Graphical User Interface Applications}
+
+\vfill
+{\large Run entirely on machine -- interative, interface and logic code in one process}
+
+\vfill
+
+{\large Advantages:}
+\begin{itemize}
+   \item Easier to write -- all in one program
+   \item Faster -- data/interface direct communication
+   \item Faster display: direct to screen (or even OpenGL, etc.)
+   \item Runs without network
+   \item Save/Manipulate local files
+   \item Familiar install/start/stop/run, etc. 
+\end{itemize}
+
+
+\end{frame} 
+
+
+
+\begin{frame}[fragile]{Python Options}
+
+
+
+{\Large Multiple GUI frameworks available:}
+
+\begin{itemize}
+  \item PyGTK
+  \item PYQT / PySide
+  \item TkInter
+  \item wxPython
+  \item PyGame
+  \item Native GUIs: Cocoa (PyObject), PythonWin
+  \item Some more minor ones...
+\end{itemize}
+
+\end{frame}
+
+\section{wxPython}
+
+\begin{frame}[fragile]{wxPython}
+
+{\Large Why wxPython?}
+
+\begin{itemize}
+  \item Python wrapper around C++ toolkit (wxWidget)
+  \item wxWidgets is a wrapper around \emph{native} toolkit:
+  \begin{itemize}
+    \item Windows: Win32 (64)
+    \item OS-X: Cocoa
+    \item Linux: GTK
+  \end{itemize}
+  \item Native look and feel
+  \item License: (modified) LGPL
+\end{itemize}
+
+\vfill
+{\Large Legacy: it was the best option for me when I first needed something...}
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{BILS}
+
+\vfill
+{\Large {\bf B}rowser {\bf I}nterface, {\bf L}ocal {\bf S}erver}
+\vfill
+
+\vfill
+{\Large Web app: Server runs on local machine}
+\vfill
+
+\vfill
+{\Large Browser is the interface -- but all running local}
+
+\vfill
+{\Large Can wrap the Browser window in a desktop app: Chrome Embedded Framework, wxWebkit, etc.}
+
+\vfill
+{\Large Good way to get both a web app and desktop app with one codebase}
+
+\vfill
+{\Large Example: Cameo Chemicals}
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Wrap up}
+
+\vfill
+{\Large }
+\vfill
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}{Next Week:}
+
+\vfill
+{\LARGE Student Project Presentations}
+
+\vfill
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Project Time!}
+
+\vfill
+\Large{Final wrap up}
+
+\vfill
+\Large{Put it together}
+
+\vfill
+\Large{Get ready to present}
+
+\vfill
+\Large{Presentation: focus on code!}
+
+\end{frame}
+
+\end{document}
+
+ 
