@@ -111,6 +111,395 @@ See http://www.wxpython.org for more information
 
 \end{frame}
 
+%-------------------------------
+\begin{frame}[fragile]{Installing}
+
+{\Large wxPython is a big complicated build:\\
+        can't do \verb`pip` or \verb`easy_install`}
+
+\vfill
+{\Large Windows or OS-X:\\
+use the binaries on \url{http://wxpython.org/download.php}}
+
+\vfill
+{\Large Linux: use your system's package}
+
+{\large NOTE: there are some issues with some packages:}
+\begin{itemize}
+    \item May be old version
+    \item May use standard wx build -- more crash prone!\\ 
+          (some run-time checking turned off)
+\end{itemize}
+
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Versions}
+
+\vfill
+{\Large ``Stable'' version: 2.8.12.1}\\
+{\large (``stable'' means stable API, not less likely to crash)}
+
+\vfill
+{\Large ``Development'' version: 2.9.4.0}\\
+{\large (Under active development, API may change (but not much)}
+
+\vfill
+{\Large wx project very slow to do official releases -- You probably want to use the development version: it's getting more attention}
+
+\vfill
+{\Large ``Phoenix'': next generation version: new bindings, Py3 support, etc.}\\
+{\large -- Still experimental}\\
+\url{http://wiki.wxpython.org/ProjectPhoenix}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Documentation}
+
+\vfill
+{\Large ``Docs and Demos'': download these!}\\
+
+\vfill
+{\Large ``wxPython Demo'' -- run this!}\\
+{\large Examples of every Widget available}
+
+\vfill
+{\Large Primary wx docs:}\\
+{\large Written for C++, with Python notes...}\\
+\url{http://wxpython.org/onlinedocs.php}\\
+This may help: \url{http://wiki.wxpython.org/C%2B%2BGuideForwxPythoneers}
+
+\vfill
+{\large Semi-experimental Sphinx docs:}\\
+\url{http://xoomer.virgilio.it/infinity77/wxPython/}
+
+\vfill
+{\Large The wxPython wiki: lots of good stuff here}
+\url{http://wiki.wxpython.org/}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Some starting points}
+
+
+\vfill
+{\Large How to learn wxPython}
+\url{http://wiki.wxpython.org/How%20to%20Learn%20wxPython}
+
+\vfill
+{\Large wxPython Style Guide}
+\url{http://wiki.wxpython.org/wxPython%20Style%20Guide}
+
+\vfill
+{\Large The wxpython-users mailing list is a great resource (and great community):}\\
+\url{https://groups.google.com/forum/?fromgroups#!forum/wxpython-users}
+
+\vfill
+{\large My own repository of samples:}
+\url{https://github.com/PythonCHB/wxPythonDemos}
+
+\end{frame}
+
+
+\section{Basic Structure}
+
+%-------------------------------
+\begin{frame}[fragile]{Event-Driven programming}
+
+\vfill
+{\large On app startup, the .MainLoop() method is called.}
+
+\vfill
+{\large The mainloop takes control -- monitoring for events, then dispatching them}
+
+\vfill
+{\large Events can come from the system, or user interaction: keyboard, mouse, etc.}
+
+\vfill
+{\large All the work of your app is done in response to events}
+
+\vfill
+{\large You only need to response to (Bind) the events you care about}
+
+\vfill
+{\large Not so different than a web app, except events are finer-grained}\\
+(every mouse move, etc.)
+
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{wx.Window}
+
+\vfill
+{\Large Pretty much everything you see on the screen is a \verb`wx.Window`}
+
+\vfill
+{\Large It is the superclass for all the ``widgets'', ``controls'', or whatever you want to call them}
+
+\vfill
+{\Large It is essentially a rectangle on the screen that catches events}
+
+\vfill
+{\Large You generally don't use it by iteself, though you may derive from it to make a new widget}
+
+\vfill
+{\large(Historical Note: wxWidgets was called wxWindows -- until Microsoft threatened to sue them.)}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{wx.Window}
+
+\vfill
+{\Large Since everything is a \verb`wx.Window`, it's good to know it's methods and signature:}
+\begin{verbatim}
+def __init__(parent,
+             id=-1,
+             pos=wx.DefaultPosition,
+             size=wx.DefaultSize,
+             style=0,
+             name=wx.PanelNameStr)
+parent (wx.Window)
+id (int)
+pos (wx.Point)
+size (wx.Size)
+style (long)
+name (string)
+\end{verbatim}
+
+\vfill
+\url{http://xoomer.virgilio.it/infinity77/wxPython/Widgets/wx.Window.html}
+
+\end{frame}
+
+
+
+%-------------------------------
+\begin{frame}[fragile]{wx.Window}
+
+\vfill
+{\Large Methods types:}
+\begin{itemize}
+  \item Appearance: Colors, Fonts, Labels, Styles
+  \item Geometry: Size, Position, IsShown, Move, etc 
+  \item Layout: Sizers, etc.
+  \item Many others!
+\end{itemize}
+
+\vfill
+\url{http://xoomer.virgilio.it/infinity77/wxPython/Widgets/wx.Window.html}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Event-Driven programming}
+
+\vfill
+{\Large On app startup, the .MainLoop() method is called.}
+
+\vfill
+{\Large The mainloop takes control -- monitoring for events, then dispatching them}
+
+\vfill
+{\Large Events can come from the system, or user interaction: keyboard, mouse, etc.}
+
+\vfill
+{\Large All the work of your app is done in response to events}
+
+\vfill
+{\Large You only need to response to (Bind) the events you care about}
+
+\vfill
+{\Large Not so different than a web app, except events are finer-grained}\\
+(every mouse move, etc.)
+
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{wx.App}
+
+\vfill
+{\Large Every wx app has a single wx.App instance:}
+
+\begin{verbatim}
+app = wx.App(False)
+frame = DemoFrame(None, title="Micro App")
+frame.Show()
+app.MainLoop()
+\end{verbatim}
+
+(the \verb`False` means: ``don't re-direct stdout to a Window'')
+
+And you almost always start the `MainLoop`
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{wx.Frame}
+
+\vfill
+{\Large \verb`wx.Frame` is a ``top level'' Window: One with a title bar, min-max buttons,etc.}
+
+\vfill
+{\Large Most apps have a single \verb`wx.Frame` -- central interaction with the app.} 
+
+\vfill
+{\Large This is where menu bars, etc are placed, and often the core GUI logic of app.} 
+
+
+\begin{verbatim}
+class TestFrame(wx.Frame):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('title', "Simple test App")
+        wx.Frame.__init__(self, *args, **kwargs)
+\end{verbatim}
+
+
+\vfill
+demo: \verb`code\basic_app_1.py`
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Menus}
+
+\vfill
+{\Large A \verb`wx.Frame` has a menu bar you can add items to:}
+
+\begin{verbatim}
+    # create the menu bar object
+    menuBar = wx.MenuBar()
+        
+    # add a menu to it
+    fileMenu = wx.Menu()
+
+    # add an item to the menu
+    openMenuItem = fileMenu.Append(wx.ID_ANY, "&Open", "Open a file" )
+    #bind a handler to the menu event
+    self.Bind(wx.EVT_MENU, self.onOpen, openMenuItem)
+
+    self.SetMenuBar(menuBar)
+\end{verbatim}
+        
+\vfill
+demo: \verb`code\basic_app_2.py`
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Event Handlers}
+
+\vfill
+{\Large Event handlers have a common signature:}
+
+\vfill
+\begin{verbatim}
+    def onOpen(self, evt=None):
+        print "open menu selected"
+        self.app_logic.file_open()
+\end{verbatim}
+
+\vfill
+{\large The second parameter is the \verb`wx.Event` object that initiated the call -- it holds information about the event that can be useful}
+
+\vfill
+{\large I like to give the event parameter a default None, so the handler can be called from other parts of the code as well.}
+        
+\vfill
+demo: \verb`code\basic_app_2.py`
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Title}
+
+\vfill
+{\Large ``Stable'' version: 2.8.12.1}\\
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Title}
+
+\vfill
+{\Large ``Stable'' version: 2.8.12.1}\\
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Title}
+
+\vfill
+{\Large ``Stable'' version: 2.8.12.1}\\
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Title}
+
+\vfill
+{\Large ``Stable'' version: 2.8.12.1}\\
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Long Running Tasks}
+
+\vfill
+{\Large The UI is locked up while an event is being handled}
+
+\vfill
+{\Large So you want all event handlers to run fast.}
+
+\vfill
+{\Large But what if there is significant work to do?}
+
+\vfill
+{\Large Enter: threading and multi-processing}
+
+\vfill
+{\Large But: wxPython is not thread-safe: almost all wx methods must be called from within the same thread.}
+
+\vfill
+{\Large Thread-safe operations: Creating and Posting Events}
+
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{CallAfter}
+
+\vfill
+{\Large Easiest way to communicate with threads:\\
+ \verb`wx.CallAfter`}
+
+\vfill
+{\Large Puts an event on the event stack, calls the designated function or method when the stack is cleared:}
+
+\begin{verbatim}
+wx.CallAfter(function_to_call, *args, **kwargs)
+
+# *args, **kwargs are passed on to FunctionToCall
+\end{verbatim}
+
+{\large (see also: \verb`wx.CallLater()`) }
+
+\vfill
+\url{http://wiki.wxpython.org/LongRunningTasks}
+
+\end{frame}
+
+
+
 
 %-------------------------------
 \begin{frame}[fragile]{BILS}
