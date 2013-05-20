@@ -421,34 +421,147 @@ demo: \verb`code\basic_app_2.py`
 
 
 %-------------------------------
-\begin{frame}[fragile]{Title}
+\begin{frame}[fragile]{Common Dialogs}
 
 \vfill
-{\Large ``Stable'' version: 2.8.12.1}\\
+{\Large wxPython provides a number of common Dialogs. These wrap the native ones where possible for a native look and feel.}
+
+\begin{itemize}
+ \item \verb`wx.MessageDialog`
+ \item \verb`wx.ColourDialog`
+ \item \verb`wx.FileDialog`
+ \item \verb`wx.PageSetupDialog`
+ \item \verb`wx.FontDialog`
+ \item \verb`wx.DirDialog`
+ \item \verb`wx.SingleChoiceDialog`
+ \item \verb`wx.TextEntryDialog`
+ \item ...
+\end{itemize}
+
+\vfill
+{\Large These do pretty much what you'd expect...}
 
 \end{frame}
 
 %-------------------------------
-\begin{frame}[fragile]{Title}
+\begin{frame}[fragile]{wx.FileDialog}
 
 \vfill
-{\Large ``Stable'' version: 2.8.12.1}\\
+{\Large Example use of a common dialog: \verb`wx.FileDialog`}\\
+
+\begin{verbatim}
+some code here
+\end{verbatim}
+
+\vfill
+example: \verb`code/basic_app_3.py`
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Basic Widgets}
+
+\vfill
+{\Large All the basic widgets (controls) you'd expect are there:}
+
+\begin{itemize}
+ \item Buttons
+ \item TextCtrl (Text Control)
+ \item Check Boxes
+ \item List Box
+ \item Combo Box
+ \item Slider
+ \item Spin Control
+ \item ....
+\end{itemize}
+
+\vfill
+{\Large Way too many to list here!}
+
+\vfill
+{\Large See the docs and the Demo to find the one you need}
 
 \end{frame}
 
 %-------------------------------
-\begin{frame}[fragile]{Title}
+\begin{frame}[fragile]{Using a Control}
+
+{\Large A Button about as simple as it gets}
 
 \vfill
-{\Large ``Stable'' version: 2.8.12.1}\\
+{\verb`__init__(parent, id=-1, label="", pos=wx.DefaultPosition, ...)` }
+
+\vfill
+{\Large Mostly the same as wx.Window, and other controls....}
+
+\begin{verbatim}
+## add just a single button:
+self.theButton = wx.Button(self, label="Push Me")
+self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
+ 
+## and give it an event handler                                  
+def onButton(self, evt=None):
+    print "You pushed the button!"
+\end{verbatim}
+
+\vfill
+code: \verb`code\basic_app_4.py`
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{wx.Panel}
+
+{\Large A \verb`wx.Panel` is a \verb`wx.Window` that you can put other controls on}
+
+\vfill
+{\Large It supplies nifty things like tab traversal, etc.}
+
+\vfill
+{\Large You \emph{can} put controls right on a \verb`wx.Frame` (we just did it), but a wx.Panel provided extra features, the ``normal'' look, and helps you organize and re-use your code}
+
+\vfill
+{\Large Mostly the same as wx.Window, and other controls....}
 
 \end{frame}
 
 %-------------------------------
-\begin{frame}[fragile]{Title}
+\begin{frame}[fragile]{wx.Panel}
+
+\begin{verbatim}
+class ButtonPanel(wx.Panel):
+    def __init__(self, *args, **kwargs):
+        wx.Panel.__init__(self, *args, **kwargs)
+
+        ## add just a single button:
+        self.theButton = wx.Button(self, label="Push Me")
+        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
+                                   
+    def onButton(self, evt=None):
+        print "You pushed the button!"
+\end{verbatim}
+And use it in the Frame:
+\begin{verbatim}
+        # put the Panel on the frame
+        self.buttonPanel = ButtonPanel(self)
+\end{verbatim}
 
 \vfill
-{\Large ``Stable'' version: 2.8.12.1}\\
+code: \verb`code\basic_app_5.py`
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Control Layout}
+
+{\Large With more than one control, you need to figure out how to place them 
+and how big to make them}
+
+\vfill
+{\Large You may have noticed that \verb`wx.Window` takes \verb`pos` and \verb`size` parameters}
+
+\vfill
+{\Large You may have also noticed that I didn't use them.}
+
+\vfill
+{\Large Why not?}
 
 \end{frame}
 

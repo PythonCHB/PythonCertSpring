@@ -37,10 +37,6 @@ class TestFrame(wx.Frame):
 
         self.app_logic = app_logic
 
-        # Add a panel so it looks the correct on all platforms
-        self.panel = wx.Panel(self, wx.ID_ANY)
- 
-
         # Build up the menu bar:
         menuBar = wx.MenuBar()
         
@@ -60,6 +56,13 @@ class TestFrame(wx.Frame):
         menuBar.Append(helpMenu, "&Help")
 
         self.SetMenuBar(menuBar)
+        
+        ## add just a single button:
+        self.theButton = wx.Button(self, label="Push Me")
+        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
+                                   
+    def onButton(self, evt=None):
+        print "You pushed the button!"
 
     def onOpen(self, evt=None):
         print "open menu selected"

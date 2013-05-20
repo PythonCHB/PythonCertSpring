@@ -28,7 +28,17 @@ class AppLogic(object):
         """This method closes a file"""
         print "Close a file: "
         print "I'd be closing a file now"
- 
+
+class ButtonPanel(wx.Panel):
+    def __init__(self, *args, **kwargs):
+        wx.Panel.__init__(self, *args, **kwargs)
+
+        ## add just a single button:
+        self.theButton = wx.Button(self, label="Push Me")
+        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
+                                   
+    def onButton(self, evt=None):
+        print "You pushed the button!"
 
 class TestFrame(wx.Frame):
     def __init__(self, app_logic, *args, **kwargs):
@@ -37,9 +47,8 @@ class TestFrame(wx.Frame):
 
         self.app_logic = app_logic
 
-        # Add a panel so it looks the correct on all platforms
-        self.panel = wx.Panel(self, wx.ID_ANY)
- 
+        # put the Panel on the frame
+        self.buttonPanel = ButtonPanel(self)
 
         # Build up the menu bar:
         menuBar = wx.MenuBar()
@@ -60,6 +69,7 @@ class TestFrame(wx.Frame):
         menuBar.Append(helpMenu, "&Help")
 
         self.SetMenuBar(menuBar)
+        
 
     def onOpen(self, evt=None):
         print "open menu selected"
