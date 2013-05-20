@@ -56,22 +56,35 @@ class TestFrame(wx.Frame):
 
         # Build up the menu bar:
         menuBar = wx.MenuBar()
-        
+
+        # Creating a file menu
         fileMenu = wx.Menu()
+
+        # Creating an Open option on the file menu.
         openMenuItem = fileMenu.Append(wx.ID_ANY, "&Open", "Open a file" )
         self.Bind(wx.EVT_MENU, self.onOpen, openMenuItem)
 
+        # Creating a Close option on the file menu
         closeMenuItem = fileMenu.Append(wx.ID_ANY, "&Close", "Close a file" )
         self.Bind(wx.EVT_MENU, self.onClose, closeMenuItem)
 
+        # Creating an Exit option on the file menu
         exitMenuItem = fileMenu.Append(wx.ID_EXIT, "Exit", "Exit the application")
         self.Bind(wx.EVT_MENU, self.onExit, exitMenuItem)
+
+        # The file menu goes on the menuBar
         menuBar.Append(fileMenu, "&File")
-        
+
+        # Create a help menu
         helpMenu = wx.Menu()
+
+        # The help menu has a single option, help.
         helpMenuItem = helpMenu.Append(wx.ID_HELP, "Help", "Get help")
+
+        # The help menu goes on the menuBar
         menuBar.Append(helpMenu, "&Help")
 
+        # The menuBar goes on the frame.
         self.SetMenuBar(menuBar)
         
         ## add just a single button:
