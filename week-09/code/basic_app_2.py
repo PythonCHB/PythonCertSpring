@@ -2,6 +2,8 @@
 
 """
 Example of the very basic, minimal farmework for a wxPython application
+
+This version adds a basic menu bar with a file menu
 """
 
 import wx
