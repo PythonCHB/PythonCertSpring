@@ -566,6 +566,115 @@ and how big to make them}
 \end{frame}
 
 %-------------------------------
+\begin{frame}[fragile]{Absolute Positioning}
+
+{\LARGE Absolute positioning:}
+
+\vfill
+{\Large Specifying the size and location of controls with pixel coordinates.}
+
+\vfill
+{\Large This is a serious pain to do!}
+
+\vfill
+{\Large Though it can be made a lot easier with GUI-building tools...}
+
+\vfill
+{\Large So why not?}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Absolute Positioning}
+
+{\Large When you add or remove a control, the layout changes:}\\
+{\large -- recalculate all positions and sizes}
+
+\vfill
+{\Large When you change the text  on a control the layout changes:}\\
+{\large -- recalculate all positions and sizes}
+
+\vfill
+{\Large When you try it on another platform the layout changes:}\\
+{\large -- recalculate all positions and sizes}
+
+\vfill
+{\Large When the user changes default font size, the layout changes:}\\
+{\large -- recalculate all positions and sizes}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Sizers:}
+
+{\Large The alternative is ``Sizers''}
+
+\vfill
+{\large \verb`wx.Sizer` is wx's system for automatically determining the size an location of controls}
+
+\vfill
+{\large Instead of thinking in terms of what size an position a given control should be, you think in terms of how they relate to each other:}
+
+\vfill
+{\large ``I want a column of buttons all the same size along the left edge of the Panel''}
+
+\vfill
+{\large Sizers capture that logic and compute the sizes for you}
+
+\vfill
+{\large They will re-size things for you when anything changes -- adding, removing, changing labels, re-sing the Window, etc...}
+
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{Sizers:}
+
+{\Large Sizers take a while to wrap your brain around...}
+
+\vfill
+{\large but it's worth the learning curve.}
+
+
+\vfill
+{\large nice discussion here:\\
+\url{http://wiki.wxpython.org/UsingSizers} }
+
+\vfill
+{I have the graphic posted on the wall by my desk...}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Sizer Example}
+
+{\Large The Basic \verb`BoxSizer`}
+
+\vfill
+{\large Lays out a row or column of controls...}
+
+\vfill
+{\Large Adding an item to a sizer:} 
+{ \verb`Sizer.Add( window, proportion, flag, border )` }
+
+\vfill
+\begin{verbatim}
+        ## do the layout
+        S = wx.BoxSizer(wx.VERTICAL)
+        
+        S.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+        S.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        
+        self.SetSizerAndFit(S)
+\end{verbatim}
+
+\vfill
+code: \verb`code\basic_app_6.py`
+\end{frame}
+
+
+
+%-------------------------------
 \begin{frame}[fragile]{Long Running Tasks}
 
 \vfill

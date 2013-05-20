@@ -167,9 +167,6 @@ class TestFrame(wx.Frame):
             # This returns a Python list of files that were selected.
             path = dlg.GetPath()
 
-
-
-
         # Destroy the dialog. Don't do this until you are done with it!
         # BAD things can happen otherwise!
         dlg.Destroy()
@@ -196,6 +193,6 @@ class TestApp(wx.App):
         return True
 
 if __name__ == "__main__":
-    app = TestApp()
+    app = TestApp(False)
     app.MainLoop()
 

@@ -3,7 +3,7 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This version adds a panel for the controls.
+This version adds a BoxSizer for laying out buttons on the panel
 """
 
 import wx
@@ -33,12 +33,27 @@ class ButtonPanel(wx.Panel):
     def __init__(self, *args, **kwargs):
         wx.Panel.__init__(self, *args, **kwargs)
 
-        ## add just a single button:
-        self.theButton = wx.Button(self, label="Push Me")
-        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
-                                   
+        ## add two buttons:
+        theButton1 = wx.Button(self, label="Push Me")
+        theButton1.Bind(wx.EVT_BUTTON, self.onButton)
+
+        ## add two buttons:
+        theButton2 = wx.Button(self, label="Push Me Also")
+        theButton2.Bind(wx.EVT_BUTTON, self.onButton)
+
+        ## do the layout
+        ## (try uncommenting the other, and see what happens...)
+        S = wx.BoxSizer(wx.VERTICAL)
+        #S = wx.BoxSizer(wx.HORIZONTAL)
+        
+        S.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+        S.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        
+        self.SetSizerAndFit(S)
+        
     def onButton(self, evt=None):
-        print "You pushed the button!"
+        print "You pushed one of the buttons!"
+
 
 class TestFrame(wx.Frame):
     def __init__(self, app_logic, *args, **kwargs):
