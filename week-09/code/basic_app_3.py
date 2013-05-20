@@ -61,7 +61,7 @@ class TestFrame(wx.Frame):
         
         fileMenu = wx.Menu()
         
-        newMenuItem = fileMenu.Append(wx.ID_ANY, "&New", "Create a new file")
+        newMenuItem = fileMenu.Append(wx.ID_ANY, "&Save As...", "Create a new file")
         self.Bind(wx.EVT_MENU, self.onNew, newMenuItem )
         
         openMenuItem = fileMenu.Append(wx.ID_ANY, "&Open", "Open an existing file" )
@@ -80,12 +80,6 @@ class TestFrame(wx.Frame):
 
         self.SetMenuBar(menuBar)
 
-#    def onNew (self, evt=None):
-#        print "Create menu selected"
-#        self.file_create()
-        
-#   def onOpen(self, evt=None):
-#        print "open menu selected"
 
     def onClose(self, evt=None):
         print "close menu selected"
@@ -118,7 +112,7 @@ class TestFrame(wx.Frame):
         # process the data.
         if dlg.ShowModal() == wx.ID_OK:
             path = dlg.GetPath()
-
+            print "In onNew, the path is %s" % path
             # Normally, at this point you would save your data using the file and path
             # data that the user provided to you, but since we didn't actually start
             # with any data to work with, that would be difficult.
@@ -132,6 +126,8 @@ class TestFrame(wx.Frame):
             #
             # You might want to add some error checking :-)
             #
+        else :
+            print "The file dialog was canceled before anything was selected"
 
         # Note that the current working dir didn't change. This is good since
         # that's the way we set it up.
@@ -166,13 +162,15 @@ class TestFrame(wx.Frame):
         if dlg.ShowModal() == wx.ID_OK:
             # This returns a Python list of files that were selected.
             path = dlg.GetPath()
+            print "I'd be opening file in onOpen ", path
+            self.app_logic.file_open( path )
+        else :
+            print "The file dialog was canceled before anything was selected"
 
         # Destroy the dialog. Don't do this until you are done with it!
         # BAD things can happen otherwise!
         dlg.Destroy()
 
-        print "I'd be opening file in onOpen ", path
-        self.app_logic.file_open( path )
 
     def file_close(self):
         """This method closes a file"""

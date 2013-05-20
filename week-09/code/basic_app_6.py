@@ -3,7 +3,7 @@
 """
 Example of the very basic, minimal farmework for a wxPython application
 
-This version adds a basic menu bar with a file menu
+This shows how to do a text box and a dialog box
 """
 
 import wx
@@ -32,7 +32,6 @@ class AppLogic(object):
     In a real app, this would be a substantial collection of 
     modules, classes, etc...
     """
-
     def file_open(self, filename="default_name"):
         """This method opens a file"""
         print "Open a file: "
@@ -42,10 +41,17 @@ class AppLogic(object):
         """This method closes a file"""
         print "Close a file: "
         print "I'd be closing a file now"
- 
 
+class ButtonPanel(wx.Panel):
+    def __init__(self, *args, **kwargs):
+        wx.Panel.__init__(self, *args, **kwargs)
 
-
+        ## add just a single button:
+        self.theButton = wx.Button(self, label="Push Me")
+        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
+                                   
+    def onButton(self, evt=None):
+        print "You pushed the button!"
 
 class TestFrame(wx.Frame):
     def __init__(self, app_logic, *args, **kwargs):
@@ -54,106 +60,30 @@ class TestFrame(wx.Frame):
 
         self.app_logic = app_logic
 
+        # put the Panel on the frame
+        self.buttonPanel = ButtonPanel(self)
+
         # Build up the menu bar:
         menuBar = wx.MenuBar()
-
-        # Creating a file menu
+        
         fileMenu = wx.Menu()
-
-        # Creating an Open option on the file menu.
         openMenuItem = fileMenu.Append(wx.ID_ANY, "&Open", "Open a file" )
         self.Bind(wx.EVT_MENU, self.onOpen, openMenuItem)
 
-        # Creating a Close option on the file menu
         closeMenuItem = fileMenu.Append(wx.ID_ANY, "&Close", "Close a file" )
         self.Bind(wx.EVT_MENU, self.onClose, closeMenuItem)
 
-        # Creating an Exit option on the file menu
         exitMenuItem = fileMenu.Append(wx.ID_EXIT, "Exit", "Exit the application")
         self.Bind(wx.EVT_MENU, self.onExit, exitMenuItem)
-
-        # The file menu goes on the menuBar
         menuBar.Append(fileMenu, "&File")
-
-        # Create a help menu
+        
         helpMenu = wx.Menu()
-
-        # The help menu has a single option, help.
         helpMenuItem = helpMenu.Append(wx.ID_HELP, "Help", "Get help")
-
-        # The help menu goes on the menuBar
         menuBar.Append(helpMenu, "&Help")
 
-        # The menuBar goes on the frame.
         self.SetMenuBar(menuBar)
         
-        ## add just a single button:
-        self.theButton = wx.Button(self, label="Push Me")
-        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
-                                   
-    def onButton(self, evt=None):
-        print "You pushed the button!"
 
-
-    def onExit(self, evt=None):
-        print "Exit the program here"
-        print "The event passed to onExit is type ", type(evt),
-        self.Close()
-
-    def onClose(self, evt=None):
-        print "close menu selected"
-        self.app_logic.file_close()
-
-
-    def onNew ( self, evt=None ):
-        """This method creates a new file"""
-
-        # Create the dialog. In this case the current directory is forced as the starting
-        # directory for the dialog, and no default file name is forced. This can easilly
-        # be changed in your program. This is an 'save' dialog.
-        #
-        # Unlike the 'open dialog' example found elsewhere, this example does NOT
-        # force the current working directory to change if the user chooses a different
-        # directory than the one initially set.
-        dlg = wx.FileDialog(
-            self, message="Save file as ...", defaultDir=os.getcwd(), 
-            defaultFile="", wildcard=wildcard, style=wx.SAVE )
-
-        # This sets the default filter that the user will initially see. Otherwise,
-        # the first filter in the list will be used by default.
-        dlg.SetFilterIndex(2)
-
-        # Show the dialog and retrieve the user response. If it is the OK response, 
-        # process the data.
-        if dlg.ShowModal() == wx.ID_OK:
-            path = dlg.GetPath()
-            print "In onNew, the path is %s" % path
-            # Normally, at this point you would save your data using the file and path
-            # data that the user provided to you, but since we didn't actually start
-            # with any data to work with, that would be difficult.
-            # 
-            # The code to do so would be similar to this, assuming 'data' contains
-            # the data you want to save:
-            #
-            # fp = file(path, 'w') # Create file anew
-            # fp.write(data)
-            # fp.close()
-            #
-            # You might want to add some error checking :-)
-            #
-        else :
-            print "The file dialog was canceled before anything was selected"
-
-        # Note that the current working dir didn't change. This is good since
-        # that's the way we set it up.
-
-        # Destroy the dialog. Don't do this until you are done with it!
-        # BAD things can happen otherwise!
-        dlg.Destroy()
-
-        
-
-    
     def onOpen(self, evt=None):
         """This method opens an existing file"""
         print "Open a file: "
@@ -190,6 +120,15 @@ class TestFrame(wx.Frame):
         dlg.Destroy()
 
 
+
+    def onClose(self, evt=None):
+        print "close menu selected"
+        self.app_logic.file_close()
+
+    def onExit(self, evt=None):
+        print "Exit the program here"
+        print "The event passed to onExit is type ", type(evt),
+        self.Close()
 
 
 class TestApp(wx.App):
