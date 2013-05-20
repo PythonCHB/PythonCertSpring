@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Example of the very basic, minimal farmework for a wxPython application
+Example of the very basic, minimal framework for a wxPython application
 
 This version adds a basic menu bar with a file menu
 """
@@ -9,7 +9,7 @@ This version adds a basic menu bar with a file menu
 import wx
 import os
 
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------
 
 # This is how you pre-establish a file filter so that the dialog
 # only shows the extension(s) you want it to.
@@ -19,8 +19,7 @@ wildcard = "Python source (*.py)|*.py|"     \
            "Egg file (*.egg)|*.egg|"        \
            "All files (*.*)|*.*"
 
-#---------------------------------------------------------------------------
-
+#--------------------------------------------------------------
 
 class AppLogic(object):
     """
@@ -43,7 +42,6 @@ class AppLogic(object):
         print "Close a file: "
         print "I'd be closing a file now"
  
-
 
 class TestFrame(wx.Frame):
     def __init__(self, app_logic, *args, **kwargs):
@@ -100,9 +98,12 @@ class TestFrame(wx.Frame):
         # Unlike the 'open dialog' example found elsewhere, this example does NOT
         # force the current working directory to change if the user chooses a different
         # directory than the one initially set.
-        dlg = wx.FileDialog(
-            self, message="Save file as ...", defaultDir=os.getcwd(), 
-            defaultFile="", wildcard=wildcard, style=wx.SAVE )
+        dlg = wx.FileDialog(self,
+                            message="Save file as ...",
+                            defaultDir=os.getcwd(), 
+                            defaultFile="",
+                            wildcard=wildcard,
+                            style=wx.SAVE )
 
         # This sets the default filter that the user will initially see. Otherwise,
         # the first filter in the list will be used by default.
@@ -135,9 +136,7 @@ class TestFrame(wx.Frame):
         # Destroy the dialog. Don't do this until you are done with it!
         # BAD things can happen otherwise!
         dlg.Destroy()
-
         
-
     
     def onOpen(self, evt=None):
         """This method opens an existing file"""
@@ -149,13 +148,13 @@ class TestFrame(wx.Frame):
         #
         # Finally, if the directory is changed in the process of getting files, this
         # dialog is set up to change the current working directory to the path chosen.
-        dlg = wx.FileDialog(
-            self, message="Choose a file",
-            defaultDir=os.getcwd(), 
-            defaultFile="",
-            wildcard=wildcard,
-            style=wx.OPEN | wx.CHANGE_DIR
-            )
+        dlg = wx.FileDialog( self,
+                             message="Choose a file",
+                             defaultDir=os.getcwd(), 
+                             defaultFile="", 
+                             wildcard=wildcard,
+                             style=wx.OPEN | wx.CHANGE_DIR
+                            )
 
         # Show the dialog and retrieve the user response. If it is the OK response, 
         # process the data.
@@ -185,7 +184,6 @@ class TestApp(wx.App):
         """
         app_logic = AppLogic()
         f = TestFrame(app_logic, parent=None)
-#        assert isinstance(f, wxWindow)
         f.Show()
 
         return True

@@ -41,6 +41,7 @@ class AppLogic(object):
         print "Close a file: "
         print "I'd be closing a file now"
 
+
 class ButtonPanel(wx.Panel):
     def __init__(self, *args, **kwargs):
         wx.Panel.__init__(self, *args, **kwargs)
@@ -55,13 +56,20 @@ class ButtonPanel(wx.Panel):
 
         ## do the layout
         ## (try uncommenting the other, and see what happens...)
-        S = wx.BoxSizer(wx.VERTICAL)
-        #S = wx.BoxSizer(wx.HORIZONTAL)
+        buttonSizer = wx.BoxSizer(wx.VERTICAL)
         
-        S.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
-        S.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
-        
-        self.SetSizerAndFit(S)
+        #buttonSizer.Add((1,1), 1) # stretchable space
+        buttonSizer.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        #buttonSizer.Add((1,1), 1) # stretchable space
+
+        ## need another sizer to get the horizonal right:
+        mainSizer = wx.BoxSizer(wx.HORIZONTAL)
+        mainSizer.Add((1,1), 1)    # stretchable space
+        mainSizer.Add(buttonSizer, 0, wx.ALIGN_CENTER) # the sizer with the buttons in it
+        mainSizer.Add((1,1), 1)    # stretchable space
+
+        self.SetSizer(mainSizer)
         
     def onButton(self, evt=None):
         print "You pushed one of the buttons!"
@@ -151,6 +159,10 @@ class TestApp(wx.App):
         return True
 
 if __name__ == "__main__":
+
     app = TestApp(False)
+    ## set up the WIT -- to help debug sizers
+    import wx.lib.inspection
+    wx.lib.inspection.InspectionTool().Show()
     app.MainLoop()
 

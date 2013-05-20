@@ -666,7 +666,76 @@ Sizer.Add( window, proportion, flag, border )
 code: \verb`code\basic_app_6.py`
 \end{frame}
 
+%-------------------------------
+\begin{frame}[fragile]{Nested Sizers}
 
+{\Large How do I get them centered both ways?}\\
+{\large  -- Nest a vertical inside a horizonal}\\
+{\large  -- And add stretchable spacers...}
+
+\vfill
+\begin{verbatim}
+buttonSizer = wx.BoxSizer(wx.VERTICAL)
+        
+buttonSizer.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+buttonSizer.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+
+mainSizer = wx.BoxSizer(wx.HORIZONTAL)
+mainSizer.Add((1,1), 1)    # stretchable space
+mainSizer.Add(buttonSizer, 0, wx.ALIGN_CENTER) # the sizer with the buttons in it
+mainSizer.Add((1,1), 1)    # stretchable space
+\end{verbatim}
+\vfill
+code: \verb`code\basic_app_7.py`
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Widget Inspection Tool}
+
+{\Large How do I keep all this straight?}\\
+
+\vfill
+{\large  The Widget Ispection Tool (WIT) is very handy:}
+
+\vfill
+\begin{verbatim}
+    app = TestApp(False)
+    ## set up the WIT -- to help debug sizers
+    import wx.lib.inspection
+    wx.lib.inspection.InspectionTool().Show()
+    app.MainLoop()
+\end{verbatim}
+
+(you can also bring it up from a menu event, or...)
+
+\vfill
+code: \verb`code\basic_app_7.py`
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Other Sizers}
+
+{\Large Sizers for laying out stuff in grids...}\\
+
+\vfill
+{\large \verb`wx.GridSizer`}
+
+\vfill
+{\large \verb`wx.FlexGridSizer`}
+
+\vfill
+{\large \verb`wx.GridBagSizer`}
+
+\vfill
+(you can do it all with a GridBagSizer)
+
+\vfill
+See the docs for info.
+
+\end{frame}
+
+%-------------------------------
 
 %-------------------------------
 \begin{frame}[fragile]{Long Running Tasks}
