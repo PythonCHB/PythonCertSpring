@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 
 """
-Example of the very basic, minimal farmework for a wxPython application
+Example of the very basic, minimal framework for a wxPython application
 
-This shows how to do a text box and a dialog box
+This version adds a BoxSizer for laying out buttons on the panel
 """
 
 import wx
-import os
 
 #---------------------------------------------------------------------------
 
-# This is how you pre-establish a file filter so that the dialog
-# only shows the extension(s) you want it to.
+# This is how you pre-establish a file filter so that file dialogs
+# only show the extension(s) you want it to.
 wildcard = "Python source (*.py)|*.py|"     \
            "Compiled Python (*.pyc)|*.pyc|" \
            "SPAM files (*.spam)|*.spam|"    \
@@ -20,7 +19,6 @@ wildcard = "Python source (*.py)|*.py|"     \
            "All files (*.*)|*.*"
 
 #---------------------------------------------------------------------------
-
 
 class AppLogic(object):
     """
@@ -46,12 +44,27 @@ class ButtonPanel(wx.Panel):
     def __init__(self, *args, **kwargs):
         wx.Panel.__init__(self, *args, **kwargs)
 
-        ## add just a single button:
-        self.theButton = wx.Button(self, label="Push Me")
-        self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
-                                   
+        ## add two buttons:
+        theButton1 = wx.Button(self, label="Push Me")
+        theButton1.Bind(wx.EVT_BUTTON, self.onButton)
+
+        ## add two buttons:
+        theButton2 = wx.Button(self, label="Push Me Also")
+        theButton2.Bind(wx.EVT_BUTTON, self.onButton)
+
+        ## do the layout
+        ## (try uncommenting the other, and see what happens...)
+        S = wx.BoxSizer(wx.VERTICAL)
+        #S = wx.BoxSizer(wx.HORIZONTAL)
+        
+        S.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+        S.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        
+        self.SetSizerAndFit(S)
+        
     def onButton(self, evt=None):
-        print "You pushed the button!"
+        print "You pushed one of the buttons!"
+
 
 class TestFrame(wx.Frame):
     def __init__(self, app_logic, *args, **kwargs):
@@ -83,13 +96,12 @@ class TestFrame(wx.Frame):
 
         self.SetMenuBar(menuBar)
         
-
     def onOpen(self, evt=None):
         """This method opens an existing file"""
         print "Open a file: "
         # Create the dialog. In this case the current directory is forced as the starting
-        # directory for the dialog, and no default file name is forced. This can easilly
-        # be changed in your program. This is an 'open' dialog, and allows multitple
+        # directory for the dialog, and no default file name is forced. This can easily
+        # be changed in your program. This is an 'open' dialog, and allows multiple
         # file selections as well.
         #
         # Finally, if the directory is changed in the process of getting files, this
@@ -111,15 +123,10 @@ class TestFrame(wx.Frame):
             self.app_logic.file_open( path )
         else :
             print "The file dialog was canceled before anything was selected"
-            
-
-
 
         # Destroy the dialog. Don't do this until you are done with it!
         # BAD things can happen otherwise!
         dlg.Destroy()
-
-
 
     def onClose(self, evt=None):
         print "close menu selected"

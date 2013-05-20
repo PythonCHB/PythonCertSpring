@@ -648,17 +648,12 @@ and how big to make them}
 %-------------------------------
 \begin{frame}[fragile]{Sizer Example}
 
-{\Large The Basic \verb`BoxSizer`}
-
-\vfill
-{\large Lays out a row or column of controls...}
-
-\vfill
-{\Large Adding an item to a sizer:} 
-{ \verb`Sizer.Add( window, proportion, flag, border )` }
+{\Large The Basic \verb`BoxSizer`}\\
+{\large  -- Lays out a row or column of controls...}
 
 \vfill
 \begin{verbatim}
+Sizer.Add( window, proportion, flag, border )
         ## do the layout
         S = wx.BoxSizer(wx.VERTICAL)
         
@@ -667,7 +662,6 @@ and how big to make them}
         
         self.SetSizerAndFit(S)
 \end{verbatim}
-
 \vfill
 code: \verb`code\basic_app_6.py`
 \end{frame}

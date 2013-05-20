@@ -3,11 +3,23 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This version adds a BoxSizer for laying out buttons on the panel
+This adds a text box and a dialog box
 """
+
 
 import wx
 
+#---------------------------------------------------------------------------
+
+# This is how you pre-establish a file filter so that file dialogs
+# only show the extension(s) you want it to.
+wildcard = "Python source (*.py)|*.py|"     \
+           "Compiled Python (*.pyc)|*.pyc|" \
+           "SPAM files (*.spam)|*.spam|"    \
+           "Egg file (*.egg)|*.egg|"        \
+           "All files (*.*)|*.*"
+
+#---------------------------------------------------------------------------
 
 class AppLogic(object):
     """
@@ -85,10 +97,37 @@ class TestFrame(wx.Frame):
 
         self.SetMenuBar(menuBar)
         
-
     def onOpen(self, evt=None):
-        print "open menu selected"
-        self.app_logic.file_open()
+        """This method opens an existing file"""
+        print "Open a file: "
+        # Create the dialog. In this case the current directory is forced as the starting
+        # directory for the dialog, and no default file name is forced. This can easily
+        # be changed in your program. This is an 'open' dialog, and allows multiple
+        # file selections as well.
+        #
+        # Finally, if the directory is changed in the process of getting files, this
+        # dialog is set up to change the current working directory to the path chosen.
+        dlg = wx.FileDialog(
+            self, message="Choose a file",
+            defaultDir=os.getcwd(), 
+            defaultFile="",
+            wildcard=wildcard,
+            style=wx.OPEN | wx.CHANGE_DIR
+            )
+
+        # Show the dialog and retrieve the user response. If it is the OK response, 
+        # process the data.
+        if dlg.ShowModal() == wx.ID_OK:
+            # This returns a Python list of files that were selected.
+            path = dlg.GetPath()
+            print "I'd be opening file in onOpen ", path
+            self.app_logic.file_open( path )
+        else :
+            print "The file dialog was canceled before anything was selected"
+
+        # Destroy the dialog. Don't do this until you are done with it!
+        # BAD things can happen otherwise!
+        dlg.Destroy()
 
     def onClose(self, evt=None):
         print "close menu selected"
