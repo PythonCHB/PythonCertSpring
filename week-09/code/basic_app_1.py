@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Example of the very basic, minimal farmework for a wxPython application
+Example of the very basic, minimal farmework for a wxPython application.
 """
 
 import wx
