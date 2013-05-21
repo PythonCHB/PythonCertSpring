@@ -1,0 +1,20 @@
+[
+    {
+        "first_name": "Chris", 
+        "last_name": "Barker", 
+        "phone": "123-456-7890", 
+        "email": "PythonCHB@gmail.com"
+    }, 
+    {
+        "first_name": "Fred", 
+        "last_name": "Jones", 
+        "phone": "510-555-1234", 
+        "email": "FredJones@some_company.com"
+    }, 
+    {
+        "first_name": "Nancy", 
+        "last_name": "Wilson", 
+        "phone": "423-321-9876", 
+        "email": "Wilson.Nancy@gmail.com"
+    }
+]
