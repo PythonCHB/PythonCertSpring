@@ -26,5 +26,6 @@ if __name__ == "__main__":
     a_book = AddressBook()
     a_book.load_from_file()
 
+    print "the data in the address book is:"
     pprint.pprint(a_book.book)
 
