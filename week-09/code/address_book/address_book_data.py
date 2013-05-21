@@ -16,14 +16,14 @@ class AddressBook(object):
         self.filename = "a_book.json"
 
     def save_to_file(self, filename=None):
-	if filename != None :
+        if filename is not None :
             self.filename = filename
-        json.dump(self.book, open(filename, 'wb'), indent=4 )
+        json.dump(self.book, open(self.filename, 'wb'), indent=4 )
 
     def load_from_file(self, filename=None):
-	if filename != None :
+        if filename is not None :
             self.filename = filename
-        self.book = json.load( open(filename, 'rb') )
+        self.book = json.load( open(self.filename, 'rb') )
 
 
 if __name__ == "__main__":
