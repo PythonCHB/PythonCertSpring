@@ -50,6 +50,9 @@ class MainForm(wx.Panel):
         theButton1 = wx.Button(self, label="Push Me")
         theButton1.Bind(wx.EVT_BUTTON, self.onButton)
 
+        ## add a static text lable:
+        label1 = wx.StaticText(self, label="Input Box:")
+
         ## add a text control:
         self.inTextControl = wx.TextCtrl(self)
 
@@ -57,6 +60,8 @@ class MainForm(wx.Panel):
         theButton2 = wx.Button(self, label="GetData")
         theButton2.Bind(wx.EVT_BUTTON, self.onGetData)
 
+        ## add a static text lable:
+        label2 = wx.StaticText(self, label="Output Box:")
         ## and another text control:
         self.outTextControl = wx.TextCtrl(self, style=wx.TE_READONLY)
 
@@ -65,8 +70,11 @@ class MainForm(wx.Panel):
         buttonSizer = wx.BoxSizer(wx.VERTICAL)
         
         buttonSizer.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add(label1, 0, wx.ALIGN_LEFT | wx.TOP, 4)
         buttonSizer.Add(self.inTextControl, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add((150, 10))
         buttonSizer.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add(label2, 0, wx.ALIGN_LEFT | wx.TOP, 4)
         buttonSizer.Add(self.outTextControl, 0, wx.GROW | wx.ALL, 4)
 
         ## need another sizer to get the horizonal placement right:
@@ -84,7 +92,7 @@ class MainForm(wx.Panel):
         print "get data button pressed"
         contents = self.inTextControl.Value
         print "the contents are:", contents
-        
+
         self.outTextControl.Value = self.inTextControl.Value
 
 
