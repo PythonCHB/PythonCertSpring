@@ -785,6 +785,35 @@ See the docs for info.
 
 \end{frame}
 
+%-------------------------------
+\begin{frame}[fragile]{Hierarchies...}
+
+{\Large wxPython has multiple independent hierarchies ...}\\
+
+\vfill
+{\large The nested parent-child relationship:}
+\begin{itemize}
+  \item every \verb`wx.Window` has a parent
+  \item every \verb`wx.Window` has zero or more children
+\end{itemize}
+
+{\large The class Hierarchy}
+\begin{itemize}
+  \item super-sub classes of \verb`wx.Window`
+  \item classes with instances as attributes
+\end{itemize}
+
+{\large The Layout Hierarchy}
+\begin{itemize}
+  \item Sizers within Sizers...
+  \item Arbitrarily deep.
+\end{itemize}
+
+\vfill
+{\large Each of these takes care of different concerns:\\
+        confusing but powerful}
+\end{frame}
+
 
 %-------------------------------
 \begin{frame}[fragile]{Accessing inputs}
