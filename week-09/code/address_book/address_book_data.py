@@ -10,9 +10,11 @@ import json
 class AddressBook(object):
     """
     very simple data model -- just a list of dicts
+    
+    each dict represents an entry in the address book
     """
     def __init__(self):
-        self.book = []
+        self.book = [{},]
         self.filename = "a_book.json"
 
     def save_to_file(self, filename=None):
@@ -25,6 +27,13 @@ class AddressBook(object):
             self.filename = filename
         self.book = json.load( open(self.filename, 'rb') )
 
+    def close(self):
+        """
+        clear out the data...
+        leave it with one empty dict
+        """
+        del self.book[:]
+        self.book.append({})
 
 if __name__ == "__main__":
     import pprint
