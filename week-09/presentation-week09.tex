@@ -71,8 +71,6 @@
 
 \begin{frame}[fragile]{Python Options}
 
-
-
 {\Large Multiple GUI frameworks available:}
 
 \begin{itemize}
@@ -86,6 +84,7 @@
 \end{itemize}
 
 \end{frame}
+
 
 \section{wxPython}
 
@@ -203,6 +202,56 @@ This may help: \url{http://wiki.wxpython.org/C%2B%2BGuideForwxPythoneers}
 
 \end{frame}
 
+%-------------------------------
+\begin{frame}[fragile]{Pythonic code:}
+
+
+\vfill
+{\Large Over the years, wxPython has grown a number of things to make it more ``pythonic'' -- hide some of that C++ legacy}
+
+\vfill
+{\Large Properties:}
+
+{\large The C++ classes are full of getters and setters:}
+\begin{verbatim}
+wxTextCtrl::GetValue
+wxTextCtrl::GetValue
+\end{verbatim}
+
+{\large These methods have been translated into properties for Python}
+\begin{verbatim}
+MyTextCtrl.Value = some_string
+another_string = wxTextCtrl.Value
+\end{verbatim}
+
+\vfill
+(The Get/Set versions are still there, but it's klunkier code)
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Pythonic code:}
+
+
+\vfill
+{\Large Other Python options: some specific wx types can be accessed with standard python types:}
+
+\vfill
+{\large \verb`wxPoint` --- \verb`(x,y)` ( tuple ) }
+
+\vfill
+{\large \verb`wx.List` --- \verb`[1,2,3]` (python list) }
+
+\vfill
+{\large \verb`wxSize` --- \verb`(w,h)` (tuple) }
+
+\vfill
+{\large ....... }
+
+
+\vfill
+{\Large Using these makes your code cleaner and more pythonic}
+
+\end{frame}
 
 \section{Basic Structure}
 
@@ -367,6 +416,7 @@ demo: \verb`code\basic_app_1.py`
 
 \end{frame}
 
+\section{controls}
 
 %-------------------------------
 \begin{frame}[fragile]{Menus}
@@ -610,13 +660,13 @@ and how big to make them}
 {\Large The alternative is ``Sizers''}
 
 \vfill
-{\large \verb`wx.Sizer` is wx's system for automatically determining the size an location of controls}
+{\large \verb`wx.Sizer` is wx's system for automatically determining the size and location of controls}
 
 \vfill
-{\large Instead of thinking in terms of what size an position a given control should be, you think in terms of how they relate to each other:}
+{\large Instead of thinking in terms of what size and position a given control should be, you think in terms of how they relate to each other:}
 
 \vfill
-{\large ``I want a column of buttons all the same size along the left edge of the Panel''}
+{\large \emph{``I want a column of buttons all the same size along the left edge of the Panel''} }
 
 \vfill
 {\large Sizers capture that logic and compute the sizes for you}
@@ -735,7 +785,53 @@ See the docs for info.
 
 \end{frame}
 
+
 %-------------------------------
+\begin{frame}[fragile]{Accessing inputs}
+
+{\Large Much of the point of a GUI is to collect data from the user.}
+
+\vfill
+{\large So you need to be able to access what s/he has input}
+
+\begin{verbatim}
+  ## add a text control:
+  self.textControl = wx.TextCtrl(self)
+
+  def onGetData(self, evt=None):
+      print "get data button pressed"
+      contents = self.textControl.Value
+      print "the contents are:", contents
+\end{verbatim}
+
+{\large Most controls have a \verb`.Value` property}
+
+\end{frame}
+
+%-------------------------------
+\begin{frame}[fragile]{Setting Values}
+
+{\Large You also want to display data...}
+
+\vfill
+{\large So you need to be able to set the values, too:}
+
+\begin{verbatim}
+  ## and another text control:
+  self.outTextControl = wx.TextCtrl(self, style=wx.TE_READONLY)
+
+  def onGetData(self, evt=None):        
+      self.outTextControl.Value = self.inTextControl.Value
+
+\end{verbatim}
+
+{\large You can set the \verb`.Value` property too...}
+
+\vfill
+example: \verb`code\basic_app8.py`
+
+\end{frame}
+
 
 %-------------------------------
 \begin{frame}[fragile]{Long Running Tasks}
@@ -760,6 +856,8 @@ See the docs for info.
 
 
 \end{frame}
+
+\section{Miscellaneous}
 
 %-------------------------------
 \begin{frame}[fragile]{CallAfter}
@@ -809,6 +907,20 @@ wx.CallAfter(function_to_call, *args, **kwargs)
 
 \vfill
 {\Large Example: Cameo Chemicals}
+
+\vfill
+(PyCon 2009: Browser Interface, Local Server Application)
+\end{frame}
+
+
+%-------------------------------
+\begin{frame}[fragile]{LAB}
+
+\vfill
+{\Large Make a very simple address book app:}
+\vfill
+
+\verb`code\address_book\`
 
 \end{frame}
 

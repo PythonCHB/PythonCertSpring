@@ -3,7 +3,7 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This adds a text box and a dialog box
+This adds a text box and reads the input from it.
 """
 
 
@@ -41,30 +41,51 @@ class AppLogic(object):
         print "Close a file: "
         print "I'd be closing a file now"
 
-class ButtonPanel(wx.Panel):
+
+class MainForm(wx.Panel):
     def __init__(self, *args, **kwargs):
         wx.Panel.__init__(self, *args, **kwargs)
 
-        ## add two buttons:
+        ## add a button:
         theButton1 = wx.Button(self, label="Push Me")
         theButton1.Bind(wx.EVT_BUTTON, self.onButton)
 
-        ## add two buttons:
-        theButton2 = wx.Button(self, label="Push Me Also")
-        theButton2.Bind(wx.EVT_BUTTON, self.onButton)
+        ## add a text control:
+        self.inTextControl = wx.TextCtrl(self)
+
+        ## add another button:
+        theButton2 = wx.Button(self, label="GetData")
+        theButton2.Bind(wx.EVT_BUTTON, self.onGetData)
+
+        ## and another text control:
+        self.outTextControl = wx.TextCtrl(self, style=wx.TE_READONLY)
+
 
         ## do the layout
-        ## (try uncommenting the other, and see what happens...)
-        S = wx.BoxSizer(wx.VERTICAL)
-        #S = wx.BoxSizer(wx.HORIZONTAL)
+        buttonSizer = wx.BoxSizer(wx.VERTICAL)
         
-        S.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
-        S.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
-        
-        self.SetSizerAndFit(S)
+        buttonSizer.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add(self.inTextControl, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        buttonSizer.Add(self.outTextControl, 0, wx.GROW | wx.ALL, 4)
+
+        ## need another sizer to get the horizonal placement right:
+        mainSizer = wx.BoxSizer(wx.HORIZONTAL)
+        mainSizer.Add((1,1), 1)    # stretchable space
+        mainSizer.Add(buttonSizer, 0, wx.ALIGN_TOP) # the sizer with the buttons in it
+        mainSizer.Add((1,1), 1)    # stretchable space
+
+        self.SetSizer(mainSizer)
         
     def onButton(self, evt=None):
         print "You pushed one of the buttons!"
+
+    def onGetData(self, evt=None):
+        print "get data button pressed"
+        contents = self.inTextControl.Value
+        print "the contents are:", contents
+        
+        self.outTextControl.Value = self.inTextControl.Value
 
 
 class TestFrame(wx.Frame):
@@ -75,7 +96,7 @@ class TestFrame(wx.Frame):
         self.app_logic = app_logic
 
         # put the Panel on the frame
-        self.buttonPanel = ButtonPanel(self)
+        self.buttonPanel = MainForm(self)
 
         # Build up the menu bar:
         menuBar = wx.MenuBar()
@@ -151,6 +172,10 @@ class TestApp(wx.App):
         return True
 
 if __name__ == "__main__":
+
     app = TestApp(False)
+    ## set up the WIT -- to help debug sizers
+#    import wx.lib.inspection
+#    wx.lib.inspection.InspectionTool().Show()
     app.MainLoop()
 

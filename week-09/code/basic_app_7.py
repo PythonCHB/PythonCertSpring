@@ -46,24 +46,21 @@ class ButtonPanel(wx.Panel):
     def __init__(self, *args, **kwargs):
         wx.Panel.__init__(self, *args, **kwargs)
 
-        ## add two buttons:
+        ## add a button:
         theButton1 = wx.Button(self, label="Push Me")
         theButton1.Bind(wx.EVT_BUTTON, self.onButton)
 
-        ## add two buttons:
+        ## add another button:
         theButton2 = wx.Button(self, label="Push Me Also")
         theButton2.Bind(wx.EVT_BUTTON, self.onButton)
 
         ## do the layout
-        ## (try uncommenting the other, and see what happens...)
         buttonSizer = wx.BoxSizer(wx.VERTICAL)
         
-        #buttonSizer.Add((1,1), 1) # stretchable space
         buttonSizer.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
         buttonSizer.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
-        #buttonSizer.Add((1,1), 1) # stretchable space
 
-        ## need another sizer to get the horizonal right:
+        ## need another sizer to get the horizonal placement right:
         mainSizer = wx.BoxSizer(wx.HORIZONTAL)
         mainSizer.Add((1,1), 1)    # stretchable space
         mainSizer.Add(buttonSizer, 0, wx.ALIGN_CENTER) # the sizer with the buttons in it
