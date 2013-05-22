@@ -50,7 +50,7 @@
 {\large Traditional Graphical User Interface Applications}
 
 \vfill
-{\large Run entirely on machine -- interative, interface and logic code in one process}
+{\large Run entirely on machine -- interactive, interface and logic code in one process}
 
 \vfill
 
@@ -862,6 +862,62 @@ example: \verb`code\basic_app8.py`
 \end{frame}
 
 
+%---------------------------------
+\begin{frame}[fragile]{Code-generated GUIs...}
+
+\vfill
+{\large You shouldn't write the same repetitive code for a GUI..}
+
+\vfill
+{\large Or even need to build a GUI to match data at run time.}
+
+\vfill
+{\large Lots of ways to do that with wxPython -- Sizers help a lot.}
+
+\vfill
+{\large Try to do it whenever you find yourself writing repetitive code...}
+
+\vfill
+{\large The key is how to do the event Binding}
+\begin{verbatim}
+    def OnButton(self, evt):        
+        label = evt.GetEventObject().GetLabel()
+
+        do_somethign_with_label(label)
+\end{verbatim}
+\vfill
+example: \verb`code/CalculatorDemo.py`
+\end{frame}
+
+%---------------------------------
+\begin{frame}[fragile]{Code-generated GUIs...}
+
+\vfill
+{\Large The ``lambda trick''}
+
+\vfill
+{\large -- a way to pass custom data to an event handler:}
+
+\vfill
+{\large The key is how to do the event Binding}
+\begin{verbatim}
+for name in ["first", "second", "third"]:
+  btn = wx.Button(self, label=name)
+  btn.Bind(wx.EVT_BUTTON,
+          lambda evt, n=name: self.OnButton(evt, n) )
+....
+def OnButton(self, Event, name):
+    print "In OnButton:", name
+
+\end{verbatim}
+
+\vfill
+\url{http://wiki.wxpython.org/Passing%20Arguments%20to%20Callbacks}
+\end{frame}
+
+
+\section{Miscellaneous}
+
 %-------------------------------
 \begin{frame}[fragile]{Long Running Tasks}
 
@@ -886,7 +942,6 @@ example: \verb`code\basic_app8.py`
 
 \end{frame}
 
-\section{Miscellaneous}
 
 %-------------------------------
 \begin{frame}[fragile]{CallAfter}
@@ -910,8 +965,6 @@ wx.CallAfter(function_to_call, *args, **kwargs)
 \url{http://wiki.wxpython.org/LongRunningTasks}
 
 \end{frame}
-
-
 
 
 %-------------------------------
