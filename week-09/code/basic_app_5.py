@@ -3,7 +3,7 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This version adds a single button
+This version puts the button on a Panel, where it belongs.
 """
 
 import wx

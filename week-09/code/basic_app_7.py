@@ -3,7 +3,7 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This adds a text box and a dialog box
+This one adds another sizer to fix the layout -- and the WIT!
 """
 
 

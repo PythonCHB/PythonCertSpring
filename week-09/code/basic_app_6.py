@@ -3,7 +3,7 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This version adds a BoxSizer for laying out buttons on the panel
+This version adds a BoxSizer for laying out two buttons on the panel
 """
 
 import wx

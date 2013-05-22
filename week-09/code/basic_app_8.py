@@ -3,7 +3,8 @@
 """
 Example of the very basic, minimal framework for a wxPython application
 
-This adds a text box and reads the input from it.
+This adds a text box and reads the input from it, and writes it
+to another text box
 """
 
 
