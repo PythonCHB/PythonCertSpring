@@ -57,11 +57,11 @@ class ButtonPanel(wx.Panel):
 
         ## do the layout
         ## (try uncommenting the other, and see what happens...)
-        S = wx.BoxSizer(wx.VERTICAL)
-        #S = wx.BoxSizer(wx.HORIZONTAL)
+        #S = wx.BoxSizer(wx.VERTICAL)
+        S = wx.BoxSizer(wx.HORIZONTAL)
         
-        S.Add(theButton1, 0, wx.GROW | wx.ALL, 4)
-        S.Add(theButton2, 0, wx.GROW | wx.ALL, 4)
+        S.Add(theButton1, 1, wx.GROW | wx.ALL, 4)
+        S.Add(theButton2, 2, wx.GROW | wx.ALL, 4)
         
         self.SetSizerAndFit(S)
         

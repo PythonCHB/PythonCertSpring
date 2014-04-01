@@ -47,6 +47,7 @@ class ButtonPanel(wx.Panel):
     def __init__(self, *args, **kwargs):
         wx.Panel.__init__(self, *args, **kwargs)
 
+        #self.SetBackgroundColour(wx.Colour('red'))
         ## add just a single button:
         self.theButton = wx.Button(self, label="Push Me")
         self.theButton.Bind(wx.EVT_BUTTON, self.onButton)

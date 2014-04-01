@@ -77,9 +77,12 @@ class TestFrame(wx.Frame):
         ## add just a single button:
         self.theButton = wx.Button(self, label="Push Me")
         self.theButton.Bind(wx.EVT_BUTTON, self.onButton)
-                                   
+        self.theButton.Bind(wx.EVT_LEFT_DOWN, self.onButton)
+
+    
     def onButton(self, evt=None):
         print "You pushed the button!"
+        evt.Skip()
 
     def onClose(self, evt=None):
         print "close menu selected"
